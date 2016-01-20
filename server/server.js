@@ -2,7 +2,10 @@
 
 const Hapi = require('hapi'),
       Glue = require('glue'),
-      manifest = require('./config/manifest.json');
+      manifest = require('./config/manifest.json'),
+      options = {
+        relativeTo: __dirname + '/lib/modules'
+      };
 
 if (process.env.NODE_ENV !== 'production') {
   manifest.registrations.push({
