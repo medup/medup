@@ -1,0 +1,30 @@
+{
+  "connections": [
+    {
+      "host": "localhost",
+      "port": "3003",
+      "labels": ["api"]
+    }
+  ],
+  "registrations": [
+    {
+      "plugin": "hapi-auth-jwt2"
+    },
+    {
+      "plugin": {
+        "register": "good",
+        "options": {
+          "reporters": [
+            {
+              "reporter":"good-console",
+              "events": {
+                "log": "*",
+                "response": "*"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
