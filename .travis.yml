@@ -1,7 +1,8 @@
 language: node_js
+
 script: grunt test
+
+# test on two node.js versions: 0.12 and 0.10
 node_js:
-  - v5
-  - v4
   - '0.12'
   - '0.10'
