@@ -1,0 +1,31 @@
+{
+  "name": "shadow-heart",
+  "version": "0.0.1",
+  "description": "A medication tracking and reminder app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadow-heart/shadow-heart.git"
+  },
+  "author": "Shadow & Heart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shadow-heart/shadow-heart/issues"
+  },
+  "homepage": "https://github.com/shadow-heart/shadow-heart#readme",
+  "dependencies": {
+    "bookshelf": "^0.9.1",
+    "hapi": "^12.1.0",
+    "knex": "^0.9.0",
+    "sqlite3": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "morgan": "^1.6.1",
+    "supertest": "^1.1.0"
+  }
+}
