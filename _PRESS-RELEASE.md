@@ -1,4 +1,4 @@
-# Project Name #
+# shadow-heart #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > shadow-heart (name tba)
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > A medicine reminder  
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > The user will be have to input their medications and be able to track their daily dosages.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Keeping track of medications can be a daunting task for people who are taking multiple medications several times a day.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > By inputing the medications, a validation system is put in place to alert the user to make sure they are correctly taking the correct dosages of their medications.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Pill Alert"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply create a create an account with your medications and the app will manage and reminder you of your dosages.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "It's a lifeline when taking multiple medications."
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > "Make your life easier with our app"
