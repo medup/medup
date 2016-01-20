@@ -1,0 +1,21 @@
+{
+  "name": "shadow",
+  "homepage": "https://github.com/vjefri/shadow-heart",
+  "authors": [
+    "Jefri Vanegas <vjefri@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic-material": "~0.4.2"
+  }
+}
