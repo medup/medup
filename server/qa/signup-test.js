@@ -18,7 +18,7 @@ describe('POST /signup', () => {
       .expect(201, done);
   });
 
-  it('should create a new user on POST /user/signup', (done) => {
+  it('should return 409 for a user that already exists', (done) => {
     request(url)
       .post('/user/signup')
       .send(user)

@@ -13,11 +13,18 @@ module.exports = (request, reply) => {
           return reply(user).code(409);
         }
 
-        User.create({
-          email: newUser.email
-        }).exec(function(err, user) {
-          if (err) console.error(err);
-          return reply(user).code(201);
+        var salt = User.generateSalt();
+
+        User.hashPassword(newUser.password, hash => {
+          User.create({
+            email: newUser.email,
+            password: hash,
+            salt: salt
+          }).exec((err, user) => {
+            if (err) console.error(err);
+            console.log(user);
+            return reply(user.email).code(201);
+          });
         });
       });
 };
