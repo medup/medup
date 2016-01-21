@@ -22,7 +22,6 @@ module.exports = (request, reply) => {
             salt: salt
           }).exec((err, user) => {
             if (err) console.error(err);
-            console.log(user);
             return reply(user.email).code(201);
           });
         });

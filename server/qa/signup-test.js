@@ -8,7 +8,8 @@ describe('POST /signup', () => {
 
   let url = 'http://localhost:3003';
   let user = {
-    email: 'jonsnow@knowsnothing.org'
+    email: 'jonsnow@knowsnothing.org',
+    password: 'stillknowsnothing'
   };
 
   it('should response with status of 201 for successful signup POST operation', (done) => {
@@ -37,12 +38,14 @@ describe('POST /signin', () => {
 
   let url = 'http://localhost:3003';
   let nonUser = {
-    email: 'trump2016@whitehouse.gov'
+    email: 'trump2016@whitehouse.gov',
+    password: 'no'
   };
   let existingUser = {
-    email: 'jonsnow@knowsnothing.org'
-  };
-
+    email: 'jonsnow@knowsnothing.org',
+    password: 'stillknowsnothing'
+  }
+  
   it('should respond with status of 202 for successful signin POST operation', (done) => {
     request(url)
       .post('/user/signin')

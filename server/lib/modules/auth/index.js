@@ -1,6 +1,9 @@
 'use strict';
 
-let validate = (decoded, req, callback) => callback(null, true);
+let validate = (decoded, req, callback) => {
+  console.log('decoded', decoded);
+  return callback(null, true);
+};
 
 exports.register = (plugin, options, next) => {
   plugin.auth.strategy('jwt', 'jwt', {
@@ -10,6 +13,7 @@ exports.register = (plugin, options, next) => {
       algorithms: ['HS256']
     }
   });
+  plugin.auth.default('jwt');
   next();
 };
 

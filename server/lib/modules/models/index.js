@@ -20,7 +20,7 @@ exports.register = (plugin, options, next) => {
       ]
     }
   }).then(err => {
-    if (err) console.error(err);
+    if (err) throw err;
   });
 
   next();
