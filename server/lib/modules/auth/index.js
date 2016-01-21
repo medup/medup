@@ -6,7 +6,7 @@ let validate = (decoded, req, callback) => callback(null, true);
 
 exports.register = (plugin, options, next) => {
   plugin.auth.strategy('jwt', 'jwt', {
-    key: 'secret',
+    key: process.env.tokenSecret || "bumblebee",
     validateFunc: validate,
     verifyOptions: {
       algorithms: ['HS256']
