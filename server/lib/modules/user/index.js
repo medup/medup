@@ -3,6 +3,8 @@ const Memory = require('sails-memory');
 
 exports.register = (plugin, options, next) => {
 
+  plugin.dependency('models');
+
   plugin.route({
     path: '/user/signin',
     method: 'POST',
