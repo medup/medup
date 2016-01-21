@@ -32,3 +32,18 @@ describe('POST /signup', () => {
   });
 
 });
+
+describe('POST /signin', () => {
+  let url = 'http://localhost:3003';
+  let user = {
+    email: 'trump2016@whitehouse.gov'
+  };
+
+  it('should respond with status of 202 for successful signin POST operation', (done) => {
+    request(url)
+      .post('/user/signin')
+      .send(user)
+      .expect(202, done);
+  });
+
+});

@@ -1,20 +1,17 @@
 'use strict';
 
-const Plugo = require('plugo');
+module.exports = (request, reply) => {
 
-let validate = (decoded, req, callback) => callback(null, true);
+  let User = request.collections.users;
+  let existingUser = request.payload;
 
-exports.register = (plugin, options, next) => {
-  plugin.auth.strategy('jwt', 'jwt', {
-    key: process.env.tokenSecret || "bumblebee",
-    validateFunc: validate,
-    verifyOptions: {
-      algorithms: ['HS256']
-    }
-  });
-  next();
-};
+  User.findOne({ email: existingUser.email })
+      .exec(function(err, user) {
+        if (err) console.error(err, '12');
 
-exports.register.attributes = {
-  name: 'auth'
+        if (user) {
+          return reply(user).code(202);
+        }
+
+      });
 };
