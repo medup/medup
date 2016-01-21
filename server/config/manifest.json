@@ -11,6 +11,9 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
+      "plugin": "./auth"
+    },
+    {
       "plugin": {
         "register": "good",
         "options": {

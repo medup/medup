@@ -2,7 +2,10 @@
 
 const Hapi = require('hapi'),
       Glue = require('glue'),
-      manifest = require('./config/manifest.json');
+      manifest = require('./config/manifest.json'),
+      options = {
+        relativeTo: __dirname + '/lib/modules'
+      };
 
 if (process.env.NODE_ENV !== 'production') {
   manifest.registrations.push({
@@ -18,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
+Glue.compose(manifest, options, (err, server) => {
   if (err) console.error('server.register err:', err);
 
   server.start(() => {
