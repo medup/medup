@@ -4,7 +4,7 @@ exports.register = (plugin, options, next) => {
     register: require('dogwater'),
     options: {
       adapters: {
-        userMemory: 'sails-memory'
+        memory: 'sails-memory'
       },
       connections: {
         adapter: 'memory'
