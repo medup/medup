@@ -7,7 +7,7 @@ module.exports = (request, reply) => {
 
   User.findOne({ email: newUser.email })
       .exec(function(err, user) {
-        if (err) console.error(err, '12');
+        if (err) console.error(err);
 
         if (user) {
           return reply(user).code(409);
@@ -16,8 +16,7 @@ module.exports = (request, reply) => {
         User.create({
           email: newUser.email
         }).exec(function(err, user) {
-          if (err) console.error(err);
-          
+          if (err) console.error(err);      
           return reply(user).code(201);
         });
       });

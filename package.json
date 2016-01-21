@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/shadow-heart/shadow-heart#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "dogwater": "^1.1.0",
     "glue": "^3.1.0",
     "hapi": "^12.1.0",
