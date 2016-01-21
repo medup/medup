@@ -1,14 +1,10 @@
 'use strict';
 
 module.exports = {
-
   tableName: 'users',
-  connection: 'memory',
+  connection: 'local',
   attributes: {
-    username: {
-      type: 'string'
-    },
-    password: {
+    email: {
       type: 'string'
     }
   }
