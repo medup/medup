@@ -11,26 +11,6 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
-      "plugin": {
-        "register": "dogwater",
-        "options": {
-          "adapters": {
-            "memory": "sails-memory",
-            "mysql": "sails-mysql"
-          },
-          "connections": {
-            "myql": {
-              "adapter": "mysql"
-            },
-            "memory": {
-              "adapter": "memory"
-            }
-          },
-          "models": "server/lib/modules/user/user.model.js"
-        }
-      }
-    },
-    {
       "plugin": "./auth"
     },
     {
