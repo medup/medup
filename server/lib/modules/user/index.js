@@ -23,6 +23,12 @@ exports.register = (plugin, options, next) => {
   });
 
   plugin.route({
+    path: '/user/signin',
+    method: 'POST',
+    handler: require('./signin.handler')
+  });
+
+  plugin.route({
     path: '/user/signup',
     method: 'POST',
     handler: require('./signup.handler')
