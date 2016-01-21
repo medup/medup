@@ -1,7 +1,5 @@
 'use strict';
 
-const Plugo = require('plugo');
-
 let validate = (decoded, req, callback) => callback(null, true);
 
 exports.register = (plugin, options, next) => {
