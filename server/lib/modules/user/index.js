@@ -1,5 +1,18 @@
 exports.register = (plugin, options, next) => {
 
+  plugin.register({
+    register: require('dogwater'),
+    options: {
+      adapters: {
+        userMemory: 'sails-memory'
+      },
+      connections: {
+        adapter: 'memory'
+      },
+      models: require('./user.model')
+    }
+  })
+
   plugin.route({
     path: '/user/create',
     method: 'POST',
