@@ -10,8 +10,10 @@ module.exports = (request, reply) => {
         if (err) console.error(err, '12');
 
         if (user) {
-          return reply(user).code(202);
+          return reply().code(202);
         }
+
+        return reply().code(404);
 
       });
 };
