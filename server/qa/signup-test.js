@@ -35,15 +35,25 @@ describe('POST /signup', () => {
 
 describe('POST /signin', () => {
   let url = 'http://localhost:3003';
-  let user = {
+  let nonUser = {
     email: 'trump2016@whitehouse.gov'
   };
+  let existingUser = {
+    email: 'jonsnow@knowsnothing.org'
+  }
 
   it('should respond with status of 202 for successful signin POST operation', (done) => {
     request(url)
       .post('/user/signin')
-      .send(user)
+      .send(existingUser)
       .expect(202, done);
+  });
+
+  it('should response with status of 404 for unsuccessful signin POST operation', (done) => {
+    request(url)
+      .post('/user/signin')
+      .send(nonUser)
+      .expect(404, done);
   });
 
 });
