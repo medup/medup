@@ -2,6 +2,6 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
+bower_components/
 platforms/
 plugins/
-bower_components/
