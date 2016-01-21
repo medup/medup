@@ -8,7 +8,9 @@ exports.register = (plugin, options, next) => {
   plugin.auth.strategy('jwt', 'jwt', {
     key: 'secret',
     validateFunc: validate,
-    verifyOptions: {algorithms: ['HS256']}
+    verifyOptions: {
+      algorithms: ['HS256']
+    }
   });
   next();
 };
