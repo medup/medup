@@ -4,7 +4,7 @@ A medication tracking and reminder app
 
 ## Team
 
-  - __Product Owner__: Kayla Dowlinf
+  - __Product Owner__: Kayla Dowling
   - __Scrum Master__: Jefri Vanegas
   - __Development Team Members__: Brian Tedder, Robert Lin, Dave Meidlinger
 

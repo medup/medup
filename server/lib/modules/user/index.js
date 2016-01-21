@@ -1,20 +1,29 @@
+'use strict';
+const Memory = require('sails-memory');
+
 exports.register = (plugin, options, next) => {
 
   plugin.register({
     register: require('dogwater'),
     options: {
       adapters: {
-        memory: 'sails-memory'
+        memory: Memory
       },
       connections: {
-        adapter: 'memory'
+        local: {
+          adapter: 'memory'
+        }
       },
-      models: require('./user.model')
+      models: [
+        require('./user.model')
+      ]
     }
-  })
+  }).then(err => {
+    if (err) console.error(err);
+  });
 
   plugin.route({
-    path: '/user/create',
+    path: '/user/signup',
     method: 'POST',
     handler: require('./signup.handler')
   });
