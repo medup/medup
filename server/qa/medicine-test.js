@@ -7,17 +7,35 @@ const request = require('supertest'),
 describe('API endpoint /api/medications', () => {
 
   let url = 'http://localhost:3003';
+  let user = {
+    email: 'jonsnow@knowsnothing.org',
+    password: 'stillknowsnothing'
+  };
   let medication = {
     name: 'Amaryl',
-    instruct: 'Take once a day',
-    owner: 1
+    instruct: 'Take once a day'
   };
+  let token;
+
+  before((done) => {
+    request(url)
+      .post('/user/signin')
+      .send(user)
+      .expect(202)
+      .end((err, res) => {
+        expect(res.headers['authorization']).to.exist;
+        expect(res.headers['authorization']).to.be.a('string');
+        token = res.headers['authorization'];
+        done();
+      });
+  });
 
   describe('POST /api/medications', () => {
 
     it('should save list of medications to database', (done) => {
       request(url)
         .post('/api/medications')
+        .set('Authorization', token)
         .send(medication)
         .expect(201, done);
     });
@@ -29,12 +47,12 @@ describe('API endpoint /api/medications', () => {
     it('should get list of medications from database', (done) => {
       request(url)
         .get('/api/medications')
-        .send()
+        .set('Authorization', token)
         .expect(200)
         .end((err, res) => {
           if (err) console.error(err);
-          expect(res.body.medication).to.be.an('array');
-          expect(res.body.medication).to.equal(medication);
+          expect(res.body.medications).to.be.an('array');
+          expect(res.body.medications[0].name).to.equal(medication.name);
           done();
         });
     });

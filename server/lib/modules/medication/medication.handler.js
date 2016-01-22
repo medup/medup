@@ -4,7 +4,7 @@ let handle = {
   'get': (request, reply) => {
     let User = request.collections.users;
 
-    User.find().populate('medications')
+    User.findOne({id: request.auth.credentials.id}).populate('medications')
       .exec(function(err, found) {
         if (err) console.error(err);
 
@@ -23,7 +23,7 @@ let handle = {
     Medications.create({
       name: medication.name,
       instruct: medication.instruct,
-      owner: medication.owner
+      owner: request.auth.credentials.id
     }).exec(function(err, med) {
       if (err) console.error(err);
 
