@@ -4,7 +4,7 @@ let handle = {
   'get': (request, reply) => {
     let Medications = request.collections.medications;
 
-    Medications.findOne({})
+    Medications.findOne()
       .exec(function(err, medications) {
         if (err) console.error(err);
 
@@ -17,7 +17,7 @@ let handle = {
       });
   },
   'post': (request, reply) => {
-    let Medications = request.collections;
+    let Medications = request.collections.medications;
     let list = request.payload;
 
     Medications.create({
@@ -31,6 +31,6 @@ let handle = {
 };
 
 module.exports = (request, reply) => {
-  console.log('request collections:', request.collections);
+  console.log('request collections:', request.collections.medications);
   handle[request.method](request, reply);
 };

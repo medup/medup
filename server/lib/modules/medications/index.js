@@ -4,24 +4,7 @@ const Memory = require('sails-memory');
 
 exports.register = (plugin, options, next) => {
 
-  plugin.register({
-    register: require('dogwater'),
-    options: {
-      adapters: {
-        memory: Memory
-      },
-      connections: {
-        local: {
-          adapter: 'memory'
-        }
-      },
-      models: [
-        require('./medications.model')
-      ]
-    }
-  }).then(err => {
-    if (err) console.error(err);
-  });
+  plugin.dependency('models');
 
   plugin.route({
     path: '/api/medications',
