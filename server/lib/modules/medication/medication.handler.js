@@ -4,17 +4,18 @@ let handle = {
   'get': (request, reply) => {
     let User = request.collections.users;
 
-    User.findOne({id: request.auth.credentials.id}).populate('medications')
-      .exec(function(err, found) {
-        if (err) console.error(err);
+    User.findOne({id: request.auth.credentials.id})
+        .populate('medications')
+        .exec(function(err, found) {
+          if (err) console.error(err);
 
-        if (found) {
-          return reply(found).code(200);
-        }
+          if (found) {
+            return reply(found).code(200);
+          }
 
-        return reply().code(404);
+          return reply().code(404);
 
-      });
+        });
   },
   'post': (request, reply) => {
     let Medications = request.collections.medications;

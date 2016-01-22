@@ -35,7 +35,7 @@ module.exports = {
     return crypto.randomBytes(32).toString('base64');
   },
   generateKey(password, salt, callback) {
-    crypto.pbkdf2(password, salt, 10000, 512, 'sha512', (err, key) => {
+    crypto.pbkdf2(password, salt, 10000, 64, 'sha512', (err, key) => {
       callback(key);
     });
   },
