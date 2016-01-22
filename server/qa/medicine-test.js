@@ -7,19 +7,18 @@ const request = require('supertest'),
 describe('API endpoint /api/medications', () => {
 
   let url = 'http://localhost:3003';
-  let medications = [
-    'Amaryl',
-    'Dabigatran',
-    'Halaven',
-    'Paclitaxel'
-  ];
+  let medication = {
+    name: 'Amaryl',
+    instruct: 'Take once a day',
+    owner: 1
+  };
 
   describe('POST /api/medications', () => {
 
     it('should save list of medications to database', (done) => {
       request(url)
         .post('/api/medications')
-        .send(medications)
+        .send(medication)
         .expect(201, done);
     });
 
@@ -34,8 +33,8 @@ describe('API endpoint /api/medications', () => {
         .expect(200)
         .end((err, res) => {
           if (err) console.error(err);
-          expect(res.body.medications).to.be.an('array');
-          expect(res.body.medications).to.equal(medications);
+          expect(res.body.medication).to.be.an('array');
+          expect(res.body.medication).to.equal(medication);
           done();
         });
     });

@@ -4,8 +4,10 @@ module.exports = {
   tableName: 'medications',
   connection: 'local',
   attributes: {
-    list: {
-      type: 'array'
+    name: 'string',
+    instruct: 'string',
+    owner: {
+      model: 'users'
     }
   }
 };

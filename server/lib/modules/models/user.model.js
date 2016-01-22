@@ -16,6 +16,10 @@ module.exports = {
     salt: {
       type: 'string'
     },
+    medications: {
+      collection: 'medications',
+      via: 'owner'
+    }
   },
   hashPassword(password, callback) {
     bcrypt.hash(password, null, null, (err, hash) => {

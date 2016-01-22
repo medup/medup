@@ -23,7 +23,9 @@ exports.register = (plugin, options, next) => {
       auth: 'jwt'
     }
   });
+
   next();
+
 };
 
 exports.register.attributes = {
