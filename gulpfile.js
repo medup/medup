@@ -25,7 +25,12 @@ var gulp = require('gulp'),
   embedlr = require('gulp-embedlr'),
   lrserver = require('tiny-lr')();
 
+
 var filepath = {
+  clean: {
+    client: 
+    server:
+  },
 }
   // in what order should the files be concatenated
 var clientIncludeOrder = [];
