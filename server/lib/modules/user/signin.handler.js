@@ -23,7 +23,7 @@ module.exports = (request, reply) => {
                   };
 
                   User.signToken(session, (token) => {
-                    return reply().code(202)
+                    return reply(medications).code(202)
                             .header('Authorization', token);
                   });
                 });
