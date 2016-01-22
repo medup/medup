@@ -1,8 +1,11 @@
 'use strict';
 
 let validate = (decoded, req, callback) => {
-  console.log('decoded', decoded);
-  return callback(null, true);
+  if (decoded.valid) {
+    return callback(null, true);
+  } else {
+    return callback(null, false);
+  }
 };
 
 exports.register = (plugin, options, next) => {
