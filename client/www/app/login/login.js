@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 // QUESTION - on line 4. 
-  angular.module('starter.dashboard', [])
+  angular.module('starter.login', [])
     .controller('LoginCtrl', function($scope, $state) {
      $scope.data = {};
      $scope.login = function() {
