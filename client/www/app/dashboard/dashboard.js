@@ -3,6 +3,7 @@
 
   angular.module('starter.dashboard', [])
     .controller('DashboardCtrl', function($scope, $state) {
+      // testing for dashboard medications
       $scope.medications = [{
         name: "Abilify (Aripiprazole)",
         dosage: "5mg",
@@ -21,4 +22,6 @@
         reminder: "10:30AM Every Day"
       }];
     });
+
+
 })();
