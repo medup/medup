@@ -20,7 +20,7 @@
       "plugin": "./user"
     },
     {
-      "plugin": "./medications"
+      "plugin": "./medication"
     },
     {
       "plugin": {

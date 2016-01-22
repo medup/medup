@@ -9,7 +9,7 @@ exports.register = (plugin, options, next) => {
   plugin.route({
     path: '/api/medications',
     method: 'POST',
-    handler: require('./medications.handler'),
+    handler: require('./medication.handler'),
     config: {
       auth: 'jwt'
     }
@@ -18,12 +18,14 @@ exports.register = (plugin, options, next) => {
   plugin.route({
     path: '/api/medications',
     method: 'GET',
-    handler: require('./medications.handler'),
+    handler: require('./medication.handler'),
     config: {
       auth: 'jwt'
     }
   });
+
   next();
+
 };
 
 exports.register.attributes = {

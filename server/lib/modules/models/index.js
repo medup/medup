@@ -16,7 +16,7 @@ exports.register = (plugin, options, next) => {
       },
       models: [
         require('./user.model'),
-        require('./medications.model')
+        require('./medication.model')
       ]
     }
   }).then(err => {
