@@ -8,15 +8,23 @@ exports.register = (plugin, options, next) => {
   plugin.route({
     path: '/user/signin',
     method: 'POST',
-    handler: require('./signin.handler')
+    handler: require('./signin.handler'),
+    config: { auth: false }
   });
 
   plugin.route({
     path: '/user/signup',
     method: 'POST',
-    handler: require('./signup.handler')
+    handler: require('./signup.handler'),
+    config: { auth: false }
   });
 
+  plugin.route({
+    path: '/restricted',
+    method: 'GET',
+    handler: require('./restricted.handler'),
+    config: { auth: 'jwt' }
+  })
   next();
 };
 
