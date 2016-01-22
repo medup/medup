@@ -18,6 +18,13 @@ exports.register = (plugin, options, next) => {
     handler: require('./signup.handler'),
     config: { auth: false }
   });
+
+  plugin.route({
+    path: '/restricted',
+    method: 'GET',
+    handler: require('./restricted.handler'),
+    config: { auth: 'jwt' }
+  })
   next();
 };
 

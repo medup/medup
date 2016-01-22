@@ -61,7 +61,7 @@ describe('POST /signin', () => {
       .expect(404, done);
   });
 
-  it('should response with a token header on successful signin', done => {
+  it('response header should include a token on successful signin', done => {
     request(url)
       .post('/user/signin')
       .send(existingUser)
@@ -72,5 +72,18 @@ describe('POST /signin', () => {
         token = res.headers['authorization'];
         done();
       });
+  });
+
+  it('should allow a valid token to access /restricted routes', done => {
+    request(url)
+      .get('/restricted')
+      .set('Authorization', token)
+      .expect(200, done);
+  });
+
+  it('should respond with 401 for /restricted routes without a token', done => {
+    request(url)
+      .get('/restricted')
+      .expect(401, done);
   });
 });
