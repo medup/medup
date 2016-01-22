@@ -28,19 +28,20 @@ describe('POST /signup', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.email).to.equal('jonsnow@knowsnothing.org');
         done();
-      })
+      });
   });
 
 });
 
 describe('POST /signin', () => {
+
   let url = 'http://localhost:3003';
   let nonUser = {
     email: 'trump2016@whitehouse.gov'
   };
   let existingUser = {
     email: 'jonsnow@knowsnothing.org'
-  }
+  };
 
   it('should respond with status of 202 for successful signin POST operation', (done) => {
     request(url)

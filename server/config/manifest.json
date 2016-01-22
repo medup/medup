@@ -20,6 +20,9 @@
       "plugin": "./user"
     },
     {
+      "plugin": "./medications"
+    },
+    {
       "plugin": {
         "register": "good",
         "options": {
