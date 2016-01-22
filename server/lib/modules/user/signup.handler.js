@@ -16,7 +16,7 @@ module.exports = (request, reply) => {
         User.create({
           email: newUser.email
         }).exec(function(err, user) {
-          if (err) console.error(err);      
+          if (err) console.error(err);
           return reply(user).code(201);
         });
       });
