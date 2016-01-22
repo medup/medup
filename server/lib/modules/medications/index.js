@@ -34,7 +34,7 @@ exports.register = (plugin, options, next) => {
     method: 'GET',
     handler: require('./medications.handler')
   });
-  
+  next();
 };
 
 exports.register.attributes = {
