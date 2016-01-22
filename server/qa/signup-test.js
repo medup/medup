@@ -44,8 +44,9 @@ describe('POST /signin', () => {
   let existingUser = {
     email: 'jonsnow@knowsnothing.org',
     password: 'stillknowsnothing'
-  }
-  
+  };
+  let token;
+
   it('should respond with status of 202 for successful signin POST operation', (done) => {
     request(url)
       .post('/user/signin')
@@ -60,4 +61,16 @@ describe('POST /signin', () => {
       .expect(404, done);
   });
 
+  it('should response with a token header on successful signin', done => {
+    request(url)
+      .post('/user/signin')
+      .send(existingUser)
+      .expect(202)
+      .end((err, res) => {
+        expect(res.headers['authorization']).to.exist;
+        expect(res.headers['authorization']).to.be.a('string');
+        token = res.headers['authorization'];
+        done();
+      });
+  });
 });
