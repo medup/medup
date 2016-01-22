@@ -1,11 +1,4 @@
 'use strict';
-const JWT = require('jsonwebtoken');
-
-const signToken = (session, callback) => {
-  JWT.sign(session, process.env.tokenSecret || 'bumblebee', { algorithm: 'HS256' }, (token) => {
-    callback(token);
-  });
-};
 
 module.exports = (request, reply) => {
 
@@ -25,7 +18,7 @@ module.exports = (request, reply) => {
               valid: true
             };
             
-            signToken(session, (token) => {
+            User.signToken(session, (token) => {
               return reply().code(202)
                             .header('Authorization', token);
             });

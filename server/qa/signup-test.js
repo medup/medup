@@ -77,7 +77,7 @@ describe('POST /signin', () => {
   it('should allow a valid token to access /restricted routes', done => {
     request(url)
       .get('/restricted')
-      .set('Authorization', token)
+      .set('authorization', token)
       .expect(200, done);
   });
 

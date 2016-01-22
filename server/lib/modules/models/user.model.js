@@ -1,6 +1,7 @@
 'use strict';
 const crypto = require('crypto'),
-      bcrypt = require('bcrypt-nodejs');
+      bcrypt = require('bcrypt-nodejs'),
+      JWT = require('jsonwebtoken');
 
 module.exports = {
   tableName: 'users',
@@ -32,6 +33,11 @@ module.exports = {
   generateKey(password, salt, callback) {
     crypto.pbkdf2(password, salt, 10000, 512, 'sha512', (err, key) => {
       callback(key);
+    });
+  },
+  signToken(session, callback) {
+    JWT.sign(session, process.env.tokenSecret || 'bumblebee', { algorithm: 'HS256' }, (token) => {
+      callback(token);
     });
   }
 };
