@@ -12,8 +12,10 @@ describe('API endpoint /api/medications', () => {
     password: 'stillknowsnothing'
   };
   let medication = {
-    name: 'Amaryl',
-    instruct: 'Take once a day'
+    info: {
+      name: 'Amaryl',
+      instruct: 'Take once a day'
+    }
   };
   let token;
 
@@ -52,7 +54,7 @@ describe('API endpoint /api/medications', () => {
         .end((err, res) => {
           if (err) console.error(err);
           expect(res.body.medications).to.be.an('array');
-          expect(res.body.medications[0].name).to.equal(medication.name);
+          expect(res.body.medications[0].info.name).to.equal(medication.info.name);
           done();
         });
     });

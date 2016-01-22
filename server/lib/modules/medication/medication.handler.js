@@ -21,8 +21,7 @@ let handle = {
     let medication = request.payload;
 
     Medications.create({
-      name: medication.name,
-      instruct: medication.instruct,
+      info: medication.info,
       owner: request.auth.credentials.id
     }).exec(function(err, med) {
       if (err) console.error(err);
