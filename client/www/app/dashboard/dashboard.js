@@ -9,13 +9,6 @@
         ionicMaterialMotion.ripple();
       }, 0);
 
-      /**
-        TODO:
-        - If user clicks on the medication it should show more information of that medication
-        - For reminder property, it should display the time and daily scheduale the user set
-        - Should have navigation at the bottom of app 
-       */
-
       $ionicModal.fromTemplateUrl('app/dashboard/more-information.html', {
         scope: $scope,
         animation: 'slide-in-up'
