@@ -44,6 +44,9 @@ var filePath = {
     },
     server: {
       src: ['server/server.js, server/qa/*.js']
+    },
+    test: {
+      src: 'test/**/*.js'
     }
   },
   concat: {
@@ -96,16 +99,23 @@ gulp.task('clean', ['clean-client', 'clean-server']);
 
 // Lint the client dev files.
 gulp.task('lint-client', function() {
-    return gulp.src(filePath.lint.client.src)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+  return gulp.src(filePath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
 // Lint the server dev files.
 gulp.task('lint-server', function() {
-    return gulp.src(filePath.lint.client.src)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+  return gulp.src(filePath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+// Lint the test files.
+gulp.task('lint-test', function() {
+  return gulp.src(filePath.lint.test.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
 // Lint the client and server dev files
@@ -154,65 +164,6 @@ gulp.task('scripts-server', function() {
 
 gulp.task('scripts', ['scripts-client', 'scripts-server']);
 
-//Refresh when files change
-gulp.task('refresh', function() {
-	// listen for changes
-	livereload.listen();
-	// configure nodemon
-	nodemon({
-		// the script to run the app
-		script: filePath.dev.server,
-		ext: 'js'
-	}).on('restart', function(){
-		// when the app has restarted, run livereload.
-		gulp.src(filePath.dev.server)
-			.pipe(livereload())
-			.pipe(notify('Reloading page, please wait...'));
-	})
-});
-
-// Browserify task
-gulp.task('browserify', function() {
-/* Single point of entry (make sure not to src ALL your files,
-browserify will figure it out for you)*/
-  gulp.src(['app/scripts/main.js'])
-  .pipe(browserify({
-    insertGlobals: true,
-    debug: true
-  }))
-
-gulp.task('watch', ['lint'], function() {
-
-// Watch our scripts
-  gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'],[
-    'lint',
-    'browserify'
-  ]);
-});
-
-// Set up an express server (but not starting it yet)
-var server = express();
-// Add live reload
-server.use(livereload({port: livereloadport}));
-// Use our 'dist' folder as rootfolder
-server.use(express.static('./dist'));
-// Because I like HTML5 pushstate .. this redirects everything back to our index.html
-server.all('/*', function(req, res) {
-    res.sendfile('index.html', { root: 'dist' });
-});
-
-// Dev task
-gulp.task('dev', function() {
-  // Start webserver
-  server.listen(serverport);
-  // Start live reload
-  lrserver.listen(livereloadport);
-  // Run the watch task, to keep taps on changes
-  gulp.run('watch');
-});
-  
-gulp.task('default', ['sass']);
-
 //Compile and minify the scss file 
 gulp.task('sass', function(done) {
   gulp.src(filePath.sass.src)
@@ -228,9 +179,93 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+// Dev task
+gulp.task('dev', function() {
+  // Start webserver
+  server.listen(serverport);
+  // Start live reload
+  lrserver.listen(livereloadport);
+  // Run the watch task, to keep taps on changes
+  gulp.run('watch');
+});
+
+// Browserify task
+gulp.task('browserify', function() {
+/* Single point of entry (make sure not to src ALL your files,
+browserify will figure it out for you)*/
+  gulp.src(['app/scripts/main.js'])
+  .pipe(browserify({
+    insertGlobals: true,
+    debug: true
+  }))
+};
+
 gulp.task('watch', function() {
   gulp.watch(filePath.sass.src, ['sass']);
 });
+
+gulp.task('watch', ['lint'], function() {
+// Watch our scripts
+  gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'],[
+    'lint',
+    'browserify'
+  ]);
+});
+
+// Set up an express server (but not starting it yet)
+var server = express();
+// Add live reload
+server.use(livereload({port: livereloadport}));
+// Use our 'dist' folder as rootfolder
+server.use(express.static('./dist'));
+// Because I like HTML5 pushstate .. this redirects everything back to our index.html
+server.all('/*', function(req, res) {
+  res.sendfile('index.html', { root: 'dist' });
+});
+
+//Refresh when files change
+gulp.task('refresh', function() {
+  // listen for changes
+  livereload.listen();
+  // configure nodemon
+  nodemon({
+  // the script to run the app
+    script: filePath.dev.server,
+    ext: 'js'
+  }).on('restart', function(){
+  // when the app has restarted, run livereload.
+    gulp.src(filePath.dev.server)
+    .pipe(livereload())
+    .pipe(notify('Reloading page, please wait...'));
+  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+gulp.task('default', ['sass']);
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()
