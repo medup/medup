@@ -25,31 +25,72 @@ var gulp = require('gulp'),
   embedlr = require('gulp-embedlr'),
   lrserver = require('tiny-lr')();
 
+  // in what order should the files be concatenated
+var clientIncludeOrder = [];
 
 var filepath = {
   clean: {
-    client: 
-    server:
+    client: ['dist/assets/css', 'dist/assets/js/client', 'dist/assets/img'],
+    server: 'dist/assets/js/server'
   },
+  lint: {
+    client: {
+      src: 'client/www/app/**/*.js',
+    },
+    server: {
+      src: ['server/server.js, server/qa/*.js']
+    }
+  },
+  concat: {
+    client: {
+      dest: 'dist/assets/js/client'
+    },
+    server: {
+      dest: 'dist/assets/js/server'
+    }
+  },
+  uglify: {
+    client: {
+      dest: 'dist/assets/js/clients'
+    },
+    server: {
+      dest: 'dist/assets/js/server'
+    }
+  }
 }
-  // in what order should the files be concatenated
-var clientIncludeOrder = [];
 
 // gulp setup
 var config = require('package.json');
 
-// create a task called clean, which
-// deletes all files in the listed folders
-gulp.task('clean', function() {
-  return del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img']);
+//delete all files in the client distribution
+gulp.task('clean-client', function() {
+  return del(filepath.clean.client);
 });
 
-// Lint Task
+//delete all files in the server distribution
+gulp.task('clean-server', function() {
+  return del(filepath.clean.server);
+});
+
+//delete all files in the client and server distribution
+gulp.task('clean', ['clean-client', 'clean-server']);
+
+// Lint the client dev files.
 gulp.task('lint', function() {
-    return gulp.src('js/*.js')
+    return gulp.src(filepath.lint.client.src)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
+
+// Lint the server dev files.
+gulp.task('lint', function() {
+    return gulp.src(filepath.lint.client.src)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+// Lint the client and server dev files
+gulp.task('lint', ['lint-client', 'lint-server']);
 
 //Uglify the files
 gulp.task('uglify', function() {
