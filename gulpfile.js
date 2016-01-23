@@ -55,6 +55,14 @@ var filepath = {
       dest: 'dist/assets/js/server'
     }
   },
+  sass: {
+    src: 'client/scss/ionic.app.scss',
+    dest: 'dist/assets/css'
+  }
+  cssnano: {
+    src: 'dist/assets/css',
+    dest: 'dist/assets/css'
+  }
   uglify: {
     client: {
       src: 'dist/assets/js/client/*.min' 
@@ -143,6 +151,17 @@ gulp.task('scripts-server', function() {
 
 gulp.task('scripts', ['scripts-client', 'scripts-server']);
 
+//Compile and minify the scss file 
+gulp.task('styles', function() {
+  return sass(filepath.sass.src, { style: 'expanded' })
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(filepath.sass.dest))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(cssnano())
+    .pipe(gulp.dest(filepath.cssnano.dest))
+    .pipe(notify({ message: 'Styles task complete' }));
+});
+
 //Refresh when files change
 gulp.task('refresh', function() {
 	// listen for changes
@@ -150,11 +169,11 @@ gulp.task('refresh', function() {
 	// configure nodemon
 	nodemon({
 		// the script to run the app
-		script: 'app.js',
+		script: filepath.dev.server,
 		ext: 'js'
 	}).on('restart', function(){
 		// when the app has restarted, run livereload.
-		gulp.src('app.js')
+		gulp.src(filepath.dev.server)
 			.pipe(livereload())
 			.pipe(notify('Reloading page, please wait...'));
 	})
