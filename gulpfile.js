@@ -26,7 +26,8 @@ var gulp = require('gulp'),
   lrserver = require('tiny-lr')();
 
   // in what order should the files be concatenated
-var clientIncludeOrder = [];
+var clientConcatOrder = [];
+var serverConcatOrder = [];
 
 var filepath = {
   clean: {
@@ -43,17 +44,20 @@ var filepath = {
   },
   concat: {
     client: {
+      src: clientConcatOrder,
       dest: 'dist/assets/js/client'
     },
-    server: {
+    server: {serverConcatOrder,
       dest: 'dist/assets/js/server'
     }
   },
   uglify: {
     client: {
-      dest: 'dist/assets/js/clients'
+      src: 'dist/assets/js/client/*.min' 
+      dest: 'dist/assets/js/client'
     },
     server: {
+      src: 'dist/assets/js/server/*.min' 
       dest: 'dist/assets/js/server'
     }
   }
@@ -76,14 +80,14 @@ gulp.task('clean-server', function() {
 gulp.task('clean', ['clean-client', 'clean-server']);
 
 // Lint the client dev files.
-gulp.task('lint', function() {
+gulp.task('lint-client', function() {
     return gulp.src(filepath.lint.client.src)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 // Lint the server dev files.
-gulp.task('lint', function() {
+gulp.task('lint-server', function() {
     return gulp.src(filepath.lint.client.src)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
@@ -92,16 +96,25 @@ gulp.task('lint', function() {
 // Lint the client and server dev files
 gulp.task('lint', ['lint-client', 'lint-server']);
 
-//Uglify the files
-gulp.task('uglify', function() {
-    return gulp.src('js/*.js')
+//Uglify the client files
+gulp.task('uglify-client', function() {
+    return gulp.src(filepath.uglify.client.src)
       .pipe(uglify())
-      .pipe(gulp.dest(dist/assets));
+      .pipe(gulp.dest(filepath.uglify.client.dest));
 });
 
-/**/
-gulp.task('scripts', function() {
-    return gulp.src(clientIncludeOrder)
+//Uglify the server files
+gulp.task('uglify-server', function() {
+    return gulp.src(filepath.uglify.server.src)
+      .pipe(uglify())
+      .pipe(gulp.dest(filepath.uglify.server.dest));
+});
+
+//Uglify the client and server files
+gulp.task('uglify', ['uglify-client', 'uglify-server']);
+
+gulp.task('scripts-client', function() {
+    return gulp.src(filepath)
         .pipe(concat('all.js'))
         .pipe(gulp.dest('dist'))
         .pipe(rename('all.min.js'))
