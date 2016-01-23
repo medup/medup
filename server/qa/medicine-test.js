@@ -17,6 +17,12 @@ describe('API endpoint /api/medications', () => {
       instruct: 'Take once a day'
     }
   };
+  let medicationTwo = {
+    info: {
+      name: 'Tamaryl',
+      instruct: 'Take twice a day'
+    }
+  };
   let token;
 
   before((done) => {
@@ -46,6 +52,16 @@ describe('API endpoint /api/medications', () => {
 
   describe('GET /api/medications', () => {
 
+    before((done) => {
+      request(url)
+        .post('/api/medications')
+        .set('Authorization', token)
+        .send(medicationTwo)
+        .end((err, res) => {
+          done();
+        });
+    });
+
     it('should get list of medications from database', (done) => {
       request(url)
         .get('/api/medications')
@@ -58,7 +74,5 @@ describe('API endpoint /api/medications', () => {
           done();
         });
     });
-
   });
-
 });

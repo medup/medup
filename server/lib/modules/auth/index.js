@@ -1,4 +1,5 @@
 'use strict';
+const crypto = require('crypto');
 
 let validate = (decoded, req, callback) => {
   if (decoded.valid) {
@@ -10,7 +11,7 @@ let validate = (decoded, req, callback) => {
 
 exports.register = (plugin, options, next) => {
   plugin.auth.strategy('jwt', 'jwt', {
-    key: process.env.tokenSecret || "bumblebee",
+    key: process.env.tokenSecret,
     validateFunc: validate,
     verifyOptions: {
       algorithms: ['HS256']
