@@ -13,12 +13,6 @@ module.exports = {
     password: {
       type: 'string'
     },
-    salt: {
-      type: 'string'
-    },
-    glob: {
-      type: 'string'
-    },
     medications: {
       collection: 'medications',
       via: 'owner'

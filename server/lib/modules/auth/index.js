@@ -1,5 +1,4 @@
 'use strict';
-const crypto = require('crypto');
 
 let validate = (decoded, req, callback) => {
   if (decoded.valid) {

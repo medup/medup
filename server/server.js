@@ -11,6 +11,8 @@ const Hapi = require('hapi'),
 if (process.env.NODE_ENV !== 'production') {
   process.env.tokenSecret = crypto.randomBytes(16)
                                   .toString('base64');
+  process.env.keySecret = crypto.randomBytes(16)
+                                  .toString('base64');
 
   manifest.registrations.push({
     "plugin": {
