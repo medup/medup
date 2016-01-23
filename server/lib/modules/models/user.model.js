@@ -16,6 +16,9 @@ module.exports = {
     salt: {
       type: 'string'
     },
+    glob: {
+      type: 'string'
+    },
     medications: {
       collection: 'medications',
       via: 'owner'
@@ -40,7 +43,7 @@ module.exports = {
     });
   },
   signToken(session, callback) {
-    JWT.sign(session, process.env.tokenSecret || 'bumblebee', { algorithm: 'HS256' }, (token) => {
+    JWT.sign(session, process.env.tokenSecret, { algorithm: 'HS256' }, (token) => {
       callback(token);
     });
   }

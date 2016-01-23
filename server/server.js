@@ -3,11 +3,15 @@
 const Hapi = require('hapi'),
       Glue = require('glue'),
       manifest = require('./config/manifest.json'),
+      crypto = require('crypto'),
       options = {
         relativeTo: __dirname + '/lib/modules'
       };
 
 if (process.env.NODE_ENV !== 'production') {
+  process.env.tokenSecret = crypto.randomBytes(16)
+                                  .toString('base64');
+
   manifest.registrations.push({
     "plugin": {
       "register": "blipp"
