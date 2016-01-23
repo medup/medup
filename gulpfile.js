@@ -30,6 +30,10 @@ var clientConcatOrder = [];
 var serverConcatOrder = [];
 
 var filepath = {
+  dev: {
+    client: 'client/www/app/app.js',
+    server: 'server/server.js'
+  }
   clean: {
     client: ['dist/assets/css', 'dist/assets/js/client', 'dist/assets/img'],
     server: 'dist/assets/js/server'
@@ -114,13 +118,30 @@ gulp.task('uglify-server', function() {
 gulp.task('uglify', ['uglify-client', 'uglify-server']);
 
 gulp.task('scripts-client', function() {
-    return gulp.src(filepath)
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('dist'))
-        .pipe(rename('all.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+  return gulp.src(filepath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest(filepath.concat.client.dest))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest(filepath.uglify.client.dest))
+    .pipe(notify({ message: 'Scripts-client task complete' }));
 });
+
+gulp.task('scripts-server', function() {
+  return gulp.src(filepath.lint.server.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest(filepath.concat.server.dest))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest(filepath.uglify.server.dest))
+    .pipe(notify({ message: 'Scripts-server task complete' }));
+});
+
+gulp.task('scripts', ['scripts-client', 'scripts-server']);
 
 //Refresh when files change
 gulp.task('refresh', function() {
