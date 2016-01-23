@@ -4,9 +4,9 @@
     <div class="list animate-rip">
       <ion-item ng-repeat="medication in medications">
         <a href="#/app/medication" class="item item-avatar item-icon-right" ng-click="moreInformation(medication)">
-          <img src="img/ionic.png">
-          <h2><b>{{medication.name}} {{medication.dosage}}</b></h2>
-          <p>{{medication.reminder}}</p>
+          <img src={{medication.image}}>
+          <h2><b> {{medication.name}} {{medication.dosage}} </b></h2>
+          <p class="ion-android-alarm-clock"> {{medication.reminder}} </p>
         </a>
       </ion-item>
     </div>

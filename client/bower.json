@@ -17,5 +17,8 @@
   ],
   "dependencies": {
     "ionic-material": "~0.4.2"
+  },
+  "devDependencies": {
+    "platform.js": "platform#~1.3.1"
   }
 }
