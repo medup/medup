@@ -13,13 +13,10 @@ module.exports = (request, reply) => {
           return reply(user).code(409);
         }
 
-        var salt = User.generateSalt();
-
         User.hashPassword(newUser.password, hash => {
           User.create({
             email: newUser.email,
-            password: hash,
-            salt: salt
+            password: hash
           }).exec((err, user) => {
             if (err) console.error(err);
 

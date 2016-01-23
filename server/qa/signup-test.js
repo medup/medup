@@ -51,7 +51,7 @@ describe('POST /signin', () => {
     request(url)
       .post('/user/signin')
       .send(existingUser)
-      .expect(202, done);
+      .expect(200, done);
   });
 
   it('should response with status of 404 for unsuccessful signin POST operation', (done) => {
@@ -65,7 +65,7 @@ describe('POST /signin', () => {
     request(url)
       .post('/user/signin')
       .send(existingUser)
-      .expect(202)
+      .expect(200)
       .end((err, res) => {
         expect(res.headers['authorization']).to.exist;
         expect(res.headers['authorization']).to.be.a('string');

@@ -69,8 +69,8 @@ describe('API endpoint /api/medications', () => {
         .expect(200)
         .end((err, res) => {
           if (err) console.error(err);
-          expect(res.body.medications).to.be.an('array');
-          expect(res.body.medications[0].info.name).to.equal(medication.info.name);
+          expect(res.body).to.be.an('array');
+          expect(res.body[0].info.name).to.equal(medication.info.name);
           done();
         });
     });

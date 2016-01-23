@@ -4,7 +4,7 @@ module.exports = {
   tableName: 'medications',
   connection: 'local',
   attributes: {
-    info: 'json',
+    info: 'string',
     taken: 'array',
     owner: {
       model: 'users'
