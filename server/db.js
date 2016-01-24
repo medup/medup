@@ -1,7 +1,12 @@
 'use strict';
+
 const Memory = require('sails-memory');
 
 exports.register = (plugin, options, next) => {
+
+  plugin.dependency('models');
+
+  let models = plugin.plugins.models.schema;
 
   plugin.register({
     register: require('dogwater'),
@@ -15,8 +20,8 @@ exports.register = (plugin, options, next) => {
         }
       },
       models: [
-        require('./user.model'),
-        require('./medication.model')
+        models.User,
+        models.Medication
       ]
     }
   }).then(err => {
@@ -27,5 +32,5 @@ exports.register = (plugin, options, next) => {
 };
 
 exports.register.attributes = {
-  name: 'models'
+  name: 'db'
 };

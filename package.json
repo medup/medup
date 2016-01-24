@@ -20,25 +20,22 @@
     "bcrypt-nodejs": "0.0.3",
     "crypto-js": "^3.1.6",
     "dogwater": "^1.1.0",
-    "bookshelf": "^0.9.1",
+    "glob": "^6.0.4",
     "glue": "^3.1.0",
     "hapi": "^12.1.0",
     "hapi-auth-jwt2": "^5.3.2",
     "jsonwebtoken": "^5.5.4",
+    "path": "^0.12.7",
     "plugo": "^0.3.1",
     "sails-mysql": "^0.11.2",
-    "shortid": "^2.2.4",
-    "knex": "^0.9.0",
-    "sqlite3": "^3.1.1"
+    "shortid": "^2.2.4"
   },
   "devDependencies": {
     "blipp": "^2.3.0",
-    "code": "^2.1.0",
     "chai": "^3.4.1",
     "good": "^6.4.0",
     "good-console": "^5.2.0",
     "gulp": "^3.9.0",
-    "lab": "^8.0.2",
     "mocha": "^2.3.4",
     "sails-memory": "^0.10.5",
     "supertest": "^1.1.0"
