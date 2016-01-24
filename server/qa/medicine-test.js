@@ -75,4 +75,26 @@ describe('API endpoint /api/medications', () => {
         });
     });
   });
+
+  describe('PUT /api/medications/:id', () => {
+
+    it('should update medication info', (done) => {
+      medication.info.instruct = 'Take once in the morning and once at night';
+      request(url)
+        .put('/api/medications/1')
+        .set('Authorization', token)
+        .send(medication)
+        .expect(200, done);
+    });
+
+    it('should update only the taken property', (done) => {
+      medication.taken = [true, true, true, false];
+      request(url)
+        .put('/api/medications/1')
+        .set('Authorization', token)
+        .send(medication)
+        .expect(200, done);
+    });
+
+  });
 });
