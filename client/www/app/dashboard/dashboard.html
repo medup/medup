@@ -1,0 +1,16 @@
+<!-- Displays the alerts the user has made for each medication -->
+
+<ion-view view-title="Medications">
+  <div class="content has-header">
+    <div class="list">
+      <ion-item ng-repeat="medication in medications">
+        <a href="#/app/medication" class="item item-avatar item-icon-right animate-ripple">
+          <img src="img/ionic.png">
+          <h2><b>{{medication.name}} {{medication.dosage}}</b></h2>
+          <p>{{medication.reminder}}</p>
+          <i class="icon ion-android-arrow-dropright muted"></i>
+        </a>
+      </ion-item>
+    </div>
+  </div>
+</ion-view>

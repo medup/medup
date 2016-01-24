@@ -24,6 +24,15 @@ exports.register = (plugin, options, next) => {
     }
   });
 
+  plugin.route({
+    path: '/api/medications/{id}',
+    method: 'PUT',
+    handler: require('./medication.handler'),
+    config: {
+      auth: 'jwt'
+    }
+  });
+
   next();
 
 };
