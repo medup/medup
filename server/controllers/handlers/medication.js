@@ -51,23 +51,23 @@ let handle = {
     let medicationId = request.params.id;
 
     Medications.findOne({id: medicationId})
-    .exec((err, med) => {
+      .exec((err, med) => {
 
-      if (err) console.error(err);
+        if (err) console.error(err);
 
-      if (medication.taken) {
-        med.taken = medication.taken;
-        med.save((err, saved) => {
+        if (medication.taken) {
+          med.taken = medication.taken;
+          med.save((err, saved) => {
 
-          if (err) console.error(err);
+            if (err) console.error(err);
 
-          if (saved) {
-            return reply().code(200);
-          }
+            if (saved) {
+              return reply().code(200);
+            }
 
-          return reply().code(404);
+            return reply().code(404);
 
-        });
+          });
       } else {
 
         let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
@@ -88,7 +88,7 @@ let handle = {
     });
   },
   'delete': (request, reply) => {
-    console.log('inside delete');
+    
     let Medications = request.collections.medications;
     let medId = request.params.id;
 
