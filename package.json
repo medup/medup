@@ -32,12 +32,10 @@
   },
   "devDependencies": {
     "blipp": "^2.3.0",
-    "code": "^2.1.0",
     "chai": "^3.4.1",
     "good": "^6.4.0",
     "good-console": "^5.2.0",
     "gulp": "^3.9.0",
-    "lab": "^8.0.2",
     "mocha": "^2.3.4",
     "sails-memory": "^0.10.5",
     "supertest": "^1.1.0"
