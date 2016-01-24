@@ -95,6 +95,17 @@ describe('API endpoint /api/medications', () => {
         .send(medication)
         .expect(200, done);
     });
+  });
+
+  describe('DELETE /api/medications', () => {
+
+    it('should delete medication', (done) => {
+      request(url)
+        .delete('/api/medications/1')
+        .set('Authorization', token)
+        .expect(200, done);
+    });
 
   });
+
 });
