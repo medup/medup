@@ -1,4 +1,4 @@
-<ion-modal-view class="ion-nifty-modal">
+<ion-modal-view view-title="MedInfo" class="ion-nifty-modal">
   <div class="list">
     <div class="item item-button-right">
       <button class="button button-balanced">Edit</button>
@@ -6,7 +6,7 @@
     <h3 class="active slide-up"> {{medication.name}} {{medication.dosage}} </h3>
     <h3 class="active slide-up ion-android-alarm-clock"> {{medication.reminder}} </h3>
     <div class="item">
-      <h3 class="active slide-up"> Instructions</h3>
+      <h2 class="active slide-up"> {{medication.instruction}} </h2>
     </div>
   </div>
 </ion-modal-view>

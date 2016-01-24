@@ -25,21 +25,25 @@
       $scope.medications = [{
         name: "Abilify (Aripiprazole)",
         dosage: "5mg",
+        instruction: "Take one tablet by mouth every morning",
         reminder: "10:30AM Every Day",
         image: "http://i63.tinypic.com/289wqk5.png"
       }, {
         name: "Actiq (Fentanyl Citrate)",
         dosage: "5mg",
+        instruction: "Take one tablet by mouth every morning",
         reminder: "10:30AM Every Day",
         image: "http://i63.tinypic.com/289wqk5.png"
       }, {
         name: "Halcion (Triazolam)",
         dosage: "5mg",
+        instruction: "Take one tablet by mouth every morning",
         reminder: "10:30AM Every Day",
         image: "http://i68.tinypic.com/o7nlab.png"
       }, {
         name: "Quinidex (Quinidine)",
         dosage: "5mg",
+        instruction: "Take one tablet by mouth every morning",
         reminder: "10:30AM Every Day",
         image: "http://i63.tinypic.com/289wqk5.png"
       }];
