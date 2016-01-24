@@ -20,7 +20,7 @@ let handle = {
                 id: med.id,
                 owner: med.owner,
                 info: JSON.parse(decryptedText.toString(CryptoJS.enc.Utf8))
-              }
+              };
             });
 
             return reply(data).code(200);
@@ -43,7 +43,50 @@ let handle = {
 
       return reply(med).code(201);
     });
-   }
+  },
+  'put': (request, reply) => {
+
+    let Medications = request.collections.medications;
+    let medication = request.payload;
+    let medicationId = request.params.id;
+
+    Medications.findOne({id: medicationId})
+    .exec((err, med) => {
+
+      if (err) console.error(err);
+
+      if (medication.taken) {
+        med.taken = medication.taken;
+        med.save((err, saved) => {
+
+          if (err) console.error(err);
+
+          if (saved) {
+            return reply().code(200);
+          }
+
+          return reply().code(404);
+
+        });
+      } else {
+
+        let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
+
+        med.info = encryptedInfo.toString();
+        med.save((err, saved) => {
+
+          if (err) console.error(err);
+
+          if (saved) {
+            return reply().code(200);
+          }
+
+          return reply().code(404);
+
+        });
+      }
+    });
+  }
 };
 
 module.exports = (request, reply) => {
