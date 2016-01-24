@@ -3,10 +3,8 @@
 const Hapi = require('hapi'),
       Glue = require('glue'),
       manifest = require('./config/manifest.json'),
-      crypto = require('crypto'),
-      options = {
-        relativeTo: __dirname + '/lib/modules'
-      };
+      crypto = require('crypto');
+
 
 if (process.env.NODE_ENV !== 'production') {
   process.env.tokenSecret = crypto.randomBytes(16)
@@ -27,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-Glue.compose(manifest, options, (err, server) => {
+Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
 
   server.start(() => {

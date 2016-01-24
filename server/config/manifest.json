@@ -11,16 +11,19 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
-      "plugin": "./auth"
+      "plugin": "./authentication"
     },
     {
       "plugin": "./models"
     },
     {
-      "plugin": "./user"
+      "plugin": "./db"
     },
     {
-      "plugin": "./medication"
+      "plugin": "./controllers"
+    },
+    {
+      "plugin": "./routes"
     },
     {
       "plugin": {

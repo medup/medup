@@ -1,4 +1,5 @@
 'use strict';
+
 const crypto = require('crypto'),
       bcrypt = require('bcrypt-nodejs'),
       JWT = require('jsonwebtoken');
