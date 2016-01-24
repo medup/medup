@@ -86,7 +86,24 @@ let handle = {
         });
       }
     });
+  },
+  'delete': (request, reply) => {
+    console.log('inside delete');
+    let Medications = request.collections.medications;
+    let medId = request.params.id;
+
+    Medications.destroy({id: medId}).exec((err) => {
+
+      if (err) {
+        console.error(err);
+        reply.code(404);
+      }
+
+      reply().code(200);
+
+    });
   }
+
 };
 
 module.exports = (request, reply) => {
