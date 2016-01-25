@@ -4,7 +4,7 @@
 //RegisterService dependency is defined in the services.js file
 // $ionicPopup dependency for a simple popup
 // $state for the transition to the next view
-  angular.module('starter.register', [])
+  angular.module('starter.Register', [])
     .controller('RegisterCtrl', function($scope, $ionicPopup, $state) {
      $scope.data = {};
      $scope.register = function() {

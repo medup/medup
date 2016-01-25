@@ -79,8 +79,10 @@
         /**
 
 
+
           TODO:
           - sends GET request to get the array of med objects from database that matches the user
+
 
 
          */
@@ -94,8 +96,10 @@
         /**
 
 
+
           TODO:
           - sends PUT request to update that specific medicaiton for the user
+
 
 
          */
@@ -105,8 +109,10 @@
         /**
 
 
+
           TODO:
           - sends DELETE request to remove that medication of the user
+
 
 
          */
@@ -116,6 +122,8 @@
       return medication;
     });
 
+
 })();
+
 
 
