@@ -1,6 +1,8 @@
 'use strict';
 
-const validate = (decoded, req, callback) => {
+const internals = {};
+
+internals.validate = (decoded, req, callback) => {
   if (decoded.valid) {
     return callback(null, true);
   } else {
@@ -11,7 +13,7 @@ const validate = (decoded, req, callback) => {
 exports.register = (plugin, options, next) => {
   plugin.auth.strategy('jwt', 'jwt', {
     key: process.env.tokenSecret,
-    validateFunc: validate,
+    validateFunc: internals.validate,
     verifyOptions: {
       algorithms: ['HS256']
     }
