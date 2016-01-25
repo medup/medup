@@ -26,20 +26,20 @@
           promise.success = function(fn) {
             promise.then(fn);
             return promise;
-          }
+          };
           promise.error = function() {
             promise.then(null, fn);
             return promise;
-          }
+          };
           return promise;
         }
-      }
+      };
     })
-//TODO - REFACTOR FOR TOCKENS
+    //TODO - REFACTOR FOR TOCKENS
     .service('RegisterService', function($q) {
       return {
-    //expects the name and password from the user
-    // the promises to verify the user to a REST server - async
+        //expects the name and password from the user
+        // the promises to verify the user to a REST server - async
         registerUser: function() {
           var deferred = $q.defer();
           var promise = deferred.promise;
@@ -61,31 +61,21 @@
         }
       };
     })
-    .service('MedService', function($q) {
+    .service('MedService', function($http) {
       var medication = {};
 
-      medication.getMeds = function(userId) {
+      medication.getMeds = function(user) {
         /**
 
           TODO:
-          - sends GET request to get the array of med objects from database that matches the userId
+          - sends GET request to get the array of med objects from database that matches the user
 
          */
-         var deferred = $q.defer();
-         return $http.get('/api/users/')
-            .then(function (response) {
-                // promise is fulfilled
-                deferred.resolve(response.data);
-                // promise is returned
-                return deferred.promise;
-            }, function (response) {
-                // the following line rejects the promise
-                deferred.reject(response);
-                // promise is returned
-                return deferred.promise;
-            })
-        ;
-
+        /* Mock Data */
+        return $http({
+          method: 'GET',
+          url: '/api/medications'
+        });
       };
       medication.updateMeds = function() {
         /**

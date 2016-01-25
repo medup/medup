@@ -1,6 +1,6 @@
   /* grandfather.pageObject.js */
 
-  var GrandfatherOfAllKnowledge = function() {
+var GrandfatherOfAllKnowledge = function() {
       this.question = element(by.model('question.text'));
       this.answer = element(by.binding('answer'));
       this.button = element(by.className('question__button'));

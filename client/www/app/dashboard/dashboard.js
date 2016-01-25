@@ -3,7 +3,7 @@
 
   angular
     .module('starter.dashboard', ['ionic', 'ionic-material'])
-    .controller('DashboardCtrl', function($scope, $state, $ionicPopup, $ionicModal, $timeout) {
+    .controller('DashboardCtrl', function($scope, $state, $ionicModal, $timeout, MedService) {
 
       $ionicModal.fromTemplateUrl('app/dashboard/more-information.html', {
         scope: $scope,
@@ -11,35 +11,20 @@
       }).then(function(modal) {
         $scope.modal = modal;
       });
+      $scope.medication = {};
+      $scope.medStatus = {};
 
-      $scope.showPopup = function() {
-        $scope.data = {};
-
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-          template: '',
-          title: '',
-          subTitle: '',
-          scope: $scope,
-          buttons: [{
-            text: 'Cancel'
-          }, {
-            text: '<b>Confirm</b>',
-            type: 'button-positive',
-            onTap: function(e) {
-              if (!$scope.data.wifi) {
-                //don't allow the user to close unless he enters wifi password
-                e.preventDefault();
-              } else {
-                return $scope.data.wifi;
-              }
-            }
-          }]
-        });
+      /* Get med data when user enters dashboard */
+      var getMedData = function(user) {
+        MedService.getMeds(user)
+          .success(function(medInfoArr) {
+            $scope.medication = medInfoArr;
+          }).error(function(medInfoArr) {
+            console.log("Error Retrieving Information");
+          });
       };
 
-
-      $scope.medStatus = {};
+      getMedData();
 
       $scope.moreInformation = function(medication) {
         $scope.medication = medication;
@@ -81,11 +66,8 @@
         - Create Routes to Back-End
           - Read from database and set medication object of user in controller
           - Write to database the medication info the user types in (Dave)
-          -
 
        */
-
-
       /* Fake data to test dashboard */
       $scope.medications = [{
         id: 12,
