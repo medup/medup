@@ -39,6 +39,11 @@
           templateUrl: 'app/login/login.html',
           controller: 'LoginCtrl'
         })
+        .state('register', {
+          url: '/register',
+          templateUrl: 'app/register/register.html',
+          controller: 'RegisterCtrl'
+        })
         .state('medsForm', {
           url: '/medsForm/',
           templateUrl: 'app/medsForm/medsForm.html',
