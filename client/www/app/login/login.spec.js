@@ -1,10 +1,10 @@
 describe('Login Authentication', function() {
   var loginURL;
   //These need to be UPDATED
-  var email = element(by.name('login-email'));
-  var password = element(by.name('login-password));
-  var loginButton = element(by.xpath('//form[1]/input[@type="submit"]'));
-  var error = element(by.model('loginError'));
+  // var email = element(by.name('login-email'));
+  // var password = element(by.name('login-password));
+  // var loginButton = element(by.xpath('//form[1]/input[@type="submit"]'));
+  // var error = element(by.model('loginError'));
 
   it('should redirect to the login page if trying to load protected page while not authenticated', function() {
     browser.get('/#/login');

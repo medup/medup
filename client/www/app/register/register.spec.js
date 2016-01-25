@@ -1,10 +1,10 @@
 describe('Register Authentication', function() {
   var registerURL;
   //These need to be UPDATED
-  var email = element(by.name('register-email'));
-  var password = element(by.name('register-password));
-  var registerButton = element(by.xpath('//form[1]/input[@type="submit"]'));
-  var error = element(by.model('registerError'));
+  // var email = element(by.name('register-email'));
+  // var password = element(by.name('register-password));
+  // var registerButton = element(by.xpath('//form[1]/input[@type="submit"]'));
+  // var error = element(by.model('registerError'));
 
   it('should redirect to the register page if trying to load protected page while not authenticated', function() {
     browser.get('/#/register');
@@ -35,7 +35,7 @@ describe('Register Authentication', function() {
   it('should check if NEW email address and password is valid', function() {
     email.clear();
     password.clear();
-
+// updated to test against username & password in database
     email.sendKeys('test@example.com');
     password.sendKeys('test');
     registerButton.click();
