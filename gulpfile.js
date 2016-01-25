@@ -38,6 +38,16 @@ var filePath = {
     client: ['dist/assets/css', 'dist/assets/js/client', 'dist/assets/img'],
     server: 'dist/assets/js/server'
   },
+  browserify: {
+    client: {
+      src: 'client/www/app/**/*.js',
+      dest: 'client/www/build'
+    },
+    test: {
+      src: 'test/client/**/*.js',
+      dest: 'client/www/build'
+    }
+  }
   lint: {
     client: {
       src: 'client/www/app/**/*.js',
@@ -138,6 +148,24 @@ gulp.task('uglify-server', function() {
 //Uglify the client and server files
 gulp.task('uglify', ['uglify-client', 'uglify-server']);
 
+gulp.task('browserify-client', ['lint-client'], function() {
+  return gulp.src(filePath.browserify.client.src)
+    .pipe(browserify({
+      insertGlobals: true,
+      debug : !gulp.env.production
+    }))
+    .pipe(gulp.dest(filePath.browserify.client.dest));
+});
+
+gulp.task('browserify-test', ['lint-test'], function() {
+  return gulp.src(filePath.browserify.test.src)
+  .pipe(browserify({
+    insertGlobals: true,
+    debug : !gulp.env.production
+  }))
+  .pipe(gulp.dest(filePath.browserify.test.dest));
+});
+
 gulp.task('scripts-client', function() {
   return gulp.src(filePath.lint.client.src)
     .pipe(jshint())
@@ -152,14 +180,14 @@ gulp.task('scripts-client', function() {
 
 gulp.task('scripts-server', function() {
   return gulp.src(filePath.lint.server.src)
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest(filePath.concat.server.dest))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest(filePath.uglify.server.dest))
-    .pipe(notify({ message: 'Scripts-server task complete' }));
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'));
+  .pipe(concat('main.js'))
+  .pipe(gulp.dest(filePath.concat.server.dest))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(uglify())
+  .pipe(gulp.dest(filePath.uglify.server.dest))
+  .pipe(notify({ message: 'Scripts-server task complete' }));
 });
 
 gulp.task('scripts', ['scripts-client', 'scripts-server']);
@@ -200,12 +228,9 @@ browserify will figure it out for you)*/
   }))
 };
 
-gulp.task('watch', function() {
-  gulp.watch(filePath.sass.src, ['sass']);
-});
-
 gulp.task('watch', ['lint'], function() {
-// Watch our scripts
+  gulp.watch(filePath.sass.src, ['sass']);
+  // Watch our scripts
   gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'],[
     'lint',
     'browserify'
