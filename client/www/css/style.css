@@ -1,5 +1,24 @@
 /* Empty. Add your own CSS if you like */
 
+
+/* Item */
+
+.item {
+  border-width: 0px;
+  border-color: #f8f8f8;
+  overflow: inherit;
+}
+
+.active {
+  text-align: center;
+}
+
+.drug-thumb {
+  border-radius: 20%;
+}
+
+/* Modal */
+
 .ion-nifty-modal {
   width: 90%;
   min-height: 0 !important;

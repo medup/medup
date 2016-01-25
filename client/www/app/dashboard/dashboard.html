@@ -1,10 +1,10 @@
 <!-- Displays the alerts the user has made for each medication -->
 <ion-view view-title="Medications">
   <div class="content has-header">
-    <div class="list animate-rip">
+    <div class="list">
       <ion-item ng-repeat="medication in medications">
-        <a href="#/app/medication" class="item item-avatar item-icon-right" ng-click="moreInformation(medication)">
-          <img src={{medication.image}}>
+        <a href="#/app/medication" class="item item-thumbnail-left" ng-if="!medStatus[medication.id]" ng-click="moreInformation(medication)">
+          <img class="drug-thumb" src={{medication.image}}>
           <h2><b> {{medication.name}} {{medication.dosage}} </b></h2>
           <p class="ion-android-alarm-clock"> {{medication.reminder}} </p>
         </a>

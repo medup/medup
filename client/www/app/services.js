@@ -52,17 +52,60 @@
           promise.success = function(fn) {
             promise.then(fn);
             return promise;
-          }
+          };
           promise.error = function() {
             promise.then(null, fn);
             return promise;
-          }
+          };
           return promise;
         }
-      }
+      };
     })
+    .service('MedService', function($q) {
+      var medication = {};
 
+      medication.getMeds = function(userId) {
+        /**
 
+          TODO:
+          - sends GET request to get the array of med objects from database that matches the userId
 
+         */
+         var deferred = $q.defer();
+         return $http.get('/api/users/')
+            .then(function (response) {
+                // promise is fulfilled
+                deferred.resolve(response.data);
+                // promise is returned
+                return deferred.promise;
+            }, function (response) {
+                // the following line rejects the promise
+                deferred.reject(response);
+                // promise is returned
+                return deferred.promise;
+            })
+        ;
 
+      };
+      medication.updateMeds = function() {
+        /**
+
+          TODO:
+          - sends PUT request to update that specific medicaiton for the user
+
+         */
+
+      };
+      medication.deleteMeds = function() {
+        /**
+
+          TODO:
+          - sends DELETE request to remove that medication of the user
+
+         */
+
+      };
+
+      return medication;
+    });
 })();
