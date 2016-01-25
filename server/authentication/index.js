@@ -20,27 +20,6 @@ exports.register = (plugin, options, next) => {
   });
   plugin.auth.default('jwt');
 
-  plugin.route({
-    path: '/user/signin',
-    method: 'POST',
-    handler: require('./signin'),
-    config: { auth: false }
-  });
-
-  plugin.route({
-    path: '/user/signup',
-    method: 'POST',
-    handler: require('./signup'),
-    config: { auth: false }
-  });
-
-  plugin.route({
-    path: '/restricted',
-    method: 'GET',
-    handler: require('./restricted.handler'),
-    config: { auth: 'jwt' }
-  });
-
   next();
 };
 
