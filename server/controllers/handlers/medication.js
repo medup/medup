@@ -2,7 +2,7 @@
 
 const CryptoJS = require('crypto-js');
 
-let handle = {
+let internals = {
   'get': (request, reply) => {
     let User = request.collections.users,
         userId = request.auth.credentials.id;
@@ -55,6 +55,10 @@ let handle = {
 
         if (err) console.error(err);
 
+        if (med.owner !== request.auth.credentials.id) {
+          return reply().code(401);
+        }
+
         if (medication.taken) {
           med.taken = medication.taken;
           med.save((err, saved) => {
@@ -68,44 +72,53 @@ let handle = {
             return reply().code(404);
 
           });
-      } else {
+        } else {
 
-        let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
+          let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
 
-        med.info = encryptedInfo.toString();
-        med.save((err, saved) => {
+          med.info = encryptedInfo.toString();
+          med.save((err, saved) => {
 
-          if (err) console.error(err);
+            if (err) console.error(err);
 
-          if (saved) {
-            return reply().code(200);
-          }
+            if (saved) {
+              return reply().code(200);
+            }
 
-          return reply().code(404);
+            return reply().code(404);
 
-        });
-      }
+          });
+        }
     });
   },
   'delete': (request, reply) => {
-    
+
     let Medications = request.collections.medications;
     let medId = request.params.id;
 
-    Medications.destroy({id: medId}).exec((err) => {
+    Medications.findOne({id: medId})
+      .exec((err, med) => {
 
-      if (err) {
-        console.error(err);
-        reply.code(404);
-      }
+        if (err) console.error(err);
 
-      reply().code(200);
+        if (med.owner !== request.auth.credentials.id) {
+          return reply().code(401);
+        }
 
-    });
-  }
+        Medications.destroy({id: medId}).exec((err) => {
 
+          if (err) {
+            console.error(err);
+            return reply().code(404);
+          }
+
+          return reply().code(200);
+
+        });
+      });
+    }
 };
 
 module.exports = (request, reply) => {
-  handle[request.method](request, reply);
+  internals[request.method](request, reply);
 };

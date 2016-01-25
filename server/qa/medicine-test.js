@@ -11,6 +11,10 @@ describe('API endpoint /api/medications', () => {
     email: 'jonsnow@knowsnothing.org',
     password: 'stillknowsnothing'
   };
+  let user2 = {
+    email: 'trump2016@whitehouse.gov',
+    password: 'no'
+  };
   let medication = {
     info: {
       name: 'Amaryl',
@@ -24,6 +28,7 @@ describe('API endpoint /api/medications', () => {
     }
   };
   let token;
+  let token2;
 
   before((done) => {
     request(url)
@@ -34,6 +39,19 @@ describe('API endpoint /api/medications', () => {
         expect(res.headers['authorization']).to.exist;
         expect(res.headers['authorization']).to.be.a('string');
         token = res.headers['authorization'];
+        done();
+      });
+  });
+
+  before((done) => {
+    request(url)
+      .post('/user/signup')
+      .send(user2)
+      .expect(201)
+      .end((err, res) => {
+        expect(res.headers['authorization']).to.exist;
+        expect(res.headers['authorization']).to.be.a('string');
+        token2 = res.headers['authorization'];
         done();
       });
   });
@@ -95,9 +113,25 @@ describe('API endpoint /api/medications', () => {
         .send(medication)
         .expect(200, done);
     });
+
+    it('should not allow other users to update a medication that\'s not theirs', (done) => {
+      medication.info.instruct = 'Take twice';
+      request(url)
+        .put('/api/medications/1')
+        .set('Authorization', token2)
+        .send(medication)
+        .expect(401, done);
+    });
   });
 
   describe('DELETE /api/medications', () => {
+
+    it('should not allow other users to delete a medication that\'s not theirs', (done) => {
+      request(url)
+        .delete('/api/medications/1')
+        .set('Authorization', token2)
+        .expect(401, done);
+    });
 
     it('should delete medication', (done) => {
       request(url)
@@ -105,7 +139,6 @@ describe('API endpoint /api/medications', () => {
         .set('Authorization', token)
         .expect(200, done);
     });
-
   });
 
 });
