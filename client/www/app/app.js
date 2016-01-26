@@ -34,9 +34,14 @@
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardCtrl'
         })
-        .state('auth', {
-          url: '/auth',
-          templateUrl: 'app/auth/auth.html',
+        .state('signin', {
+          url: '/signin',
+          templateUrl: 'app/auth/signin.html',
+          controller: 'AuthCtrl'
+        })
+        .state('signup', {
+          url: '/signup',
+          templateUrl: 'app/auth/signup.html',
           controller: 'AuthCtrl'
         })
         .state('medsForm', {

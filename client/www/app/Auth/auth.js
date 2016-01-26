@@ -16,9 +16,11 @@
 
     $scope.signin = function() {
       AuthService.signin($scope.data)
-        .success(function(data) {
+        console.log($scope.data)
+        .then(function(data) {
           $state.go('state.dashboard');
-        }).error(function(data) {
+        }).catch(function(data) {
+          console.log(data);
           var alertPopup = $ionicPopup.alert({
             title: 'Login Failed',
             template: 'Please Check your credentials!'
@@ -27,10 +29,10 @@
     };
 
     $scope.signup = function() {
-      RegisterService.signup($scope.data)
-        .success(function(data) {
+     AuthService.signup($scope.data)
+        .then(function(data) {
           $state.go('state.dashboard');
-        }).error(function(data) {
+        }).catch(function(data) {
           var alertPopup = $ionicPopup.alert({
             title: 'Register Failed',
             template: 'Please Check your credentials!'

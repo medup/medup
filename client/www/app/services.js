@@ -21,9 +21,13 @@
     };
 
     this.signin = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'POST',
-          url: '/users/signin',
+          headers: headers,
+          url: 'http://localhost:3003/users/signin',
           data: user
         })
         .then(function(response) {
@@ -34,9 +38,13 @@
     };
 
     this.signup = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'POST',
-          url: '/users/signup',
+          headers: headers,
+          url: 'http://localhost:3003/users/signup',
           data: user
         })
         .then(function(response) {
