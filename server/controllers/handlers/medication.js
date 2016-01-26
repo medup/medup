@@ -9,7 +9,7 @@ let internals = {
 
     User.findOne({ id: userId })
         .populate('medications')
-        .exec(function(err, user) {
+        .exec(function(err, user) { 
           if (err) console.error(err);
 
           if (user) {
