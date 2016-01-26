@@ -26,7 +26,7 @@
         }
       });
     })
-    .config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
       $urlRouterProvider.otherwise('/dashboard');
       $stateProvider
         .state('dashboard', {
@@ -49,5 +49,32 @@
           templateUrl: 'app/medsForm/medsForm.html',
           controller: 'MedsFormCtrl'
         });
-    });
+
+        $httpProvider.interceptors.push('AttachTokens');
+    })
+    .factory('AttachTokens', function($window) {
+      var attach = {
+        request: function(object) {
+          var jwt = $window.localStorage.getItem('com.pillMeNow');
+          if (jwt) {
+            object.headers['authorization'] = jwt;
+          }
+          return object;
+        }
+      };
+      return attach;
+    })
+    .run(function($rootScope, $state, Auth) {
+      $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+
+        if (toState.name === 'login' || toState.name === 'register') {
+          return;
+        }
+
+        if (!Auth.hasToken()) {
+          e.preventDefault();
+          $state.go('login');
+        }
+      });
+    })
 })();
