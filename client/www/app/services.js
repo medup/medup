@@ -63,9 +63,13 @@
 
   function MedService($state, $http) {
     this.getMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'GET',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {
@@ -76,9 +80,13 @@
     };
 
     this.updateMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'PUT',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {
@@ -89,9 +97,13 @@
     };
 
     this.deleteMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'DELETE',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {
