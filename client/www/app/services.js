@@ -62,11 +62,11 @@
         }
       };
     })
-    .service('Auth', function($window) {     
-      this.hasToken = function() {
-        return !!$window.localStorage.getItem('com.pillMeNow');
-      };
-    })
+    // .service('Auth', function($window) {     
+    //   this.hasToken = function() {
+    //     return !!$window.localStorage.getItem('com.pillMeNow');
+    //   };
+    // })
     .service('MedService', function($http) {
       var medication = {};
 
