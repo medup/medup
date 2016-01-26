@@ -10,63 +10,39 @@
 
   angular
     .module('starter.services', [])
-    //TODO - REFACTOR FOR TOCKENS
-    .service('LoginService', function($q) {
-      return {
-        //expects the name and password from the user
-        // the promises to verify the user to a REST server - async
-        loginUser: function() {
-          var deferred = $q.defer();
-          var promise = deferred.promise;
-          //if access is granted / promise is resolved
-          if (name == 'user' && pw == 'secret') {
-            deferred.resolve('Welcome ' + name + '!');
-          } else {
-            deferred.reject('Wrong credentials.');
-          };
-          promise.success = function(fn) {
-            promise.then(fn);
-            return promise;
-          };
-          promise.error = function() {
-            promise.then(null, fn);
-            return promise;
-          };
-          return promise;
-        }
+    .service('Auth', [$window, $state, $http, function($window, $state, $http) {  
+
+      this.hasToken = function() {
+        return !!$window.localStorage.getItem('com.pillMeNow');
       };
-    })
-    //TODO - REFACTOR FOR TOCKENS
-    .service('RegisterService', function($q) {
-      return {
-        //expects the name and password from the user
-        // the promises to verify the user to a REST server - async
-        registerUser: function() {
-          var deferred = $q.defer();
-          var promise = deferred.promise;
-          //if access is granted / promise is resolved
-          if (name == 'user' && pw == 'secret') {
-            deferred.resolve('Success!');
-          } else {
-            deferred.reject('Wrong credentials.');
-          }
-          promise.success = function(fn) {
-            promise.then(fn);
-            return promise;
-          };
-          promise.error = function() {
-            promise.then(null, fn);
-            return promise;
-          };
-          return promise;
-        }
+
+      this.signin = function (user) {
+        return $http({
+          method: 'POST',
+          url: '/users/signin',
+          data: user
+        })
+        .then(function (response) {
+          return response.data.token;
+        });
       };
-    })
-    // .service('Auth', function($window) {     
-    //   this.hasToken = function() {
-    //     return !!$window.localStorage.getItem('com.pillMeNow');
-    //   };
-    // })
+
+      this.signup = function (user) {
+        return $http({
+          method: 'POST',
+          url: '/users/signup',
+          data: user
+        })
+        .then(function (response) {
+          return response.data.token;
+        });
+      };
+
+      this.signout = function () {
+        $window.localStorage.removeItem('com.pillMeNow');
+        $state.go('/signin');
+      };
+    }])
     .service('MedService', function($http) {
       var medication = {};
 
@@ -84,7 +60,7 @@
         /* Mock Data */
         return $http({
           method: 'GET',
-          url: '/api/medications'
+          url: '/medications'
         });
       };
       medication.updateMeds = function() {
