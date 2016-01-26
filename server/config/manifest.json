@@ -3,7 +3,12 @@
     {
       "host": "localhost",
       "port": "3003",
-      "labels": ["api"]
+      "labels": ["api"],
+      "routes": {
+        "cors": {
+          "origin": [ "http://localhost:8100" ]
+        }
+      }
     }
   ],
   "registrations": [
