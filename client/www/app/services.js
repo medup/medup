@@ -21,24 +21,35 @@
     };
 
     this.signin = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'POST',
-          url: '/users/signin',
+          headers: headers,
+          url: 'http://localhost:3003/users/signin',
           data: user
         })
         .then(function(response) {
-          return response.data.token;
+          var token = response.data.token;
+          console.log(response);
+          $window.localStorage.setItem('com.pillMeNow');
         });
     };
 
     this.signup = function(user) {
+     
       return $http({
           method: 'POST',
-          url: '/users/signup',
+          headers: headers,
+          url: 'http://localhost:3003/users/signup',
           data: user
         })
         .then(function(response) {
-          return response.data.token;
+          var token = response.data.token;
+          console.log(response);
+          $window.localStorage.setItem('com.pillMeNow', token);
+        
         });
     };
 
@@ -50,9 +61,13 @@
 
   function MedService($state, $http) {
     this.getMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'GET',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {
@@ -63,9 +78,13 @@
     };
 
     this.updateMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'PUT',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {
@@ -76,9 +95,13 @@
     };
 
     this.deleteMeds = function(user) {
+      var headers = {
+        'Access-Control-Allow-Origin' : '*',
+      };
       return $http({
           method: 'DELETE',
-          url: '/medications',
+          headers: headers,
+          url: 'http://localhost:3003/medications',
           data: user
         })
         .then(function(response) {

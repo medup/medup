@@ -8,7 +8,7 @@
   'use strict';
 
   angular
-    .module('starter', ['ionic', 'starter.dashboard', 'starter.services','starter.register', 'starter.login'])
+    .module('starter', ['ionic', 'starter.dashboard', 'starter.services','starter.auth'])
     .run(function($ionicPlatform) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -27,6 +27,7 @@
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
+      $httpProvider.defaults.headers.common = 'headers: Access-Control-Allow-Origin: *', 'Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE';
       $urlRouterProvider.otherwise('/dashboard');
       $stateProvider
         .state('dashboard', {
@@ -34,15 +35,15 @@
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardCtrl'
         })
-        .state('login', {
-          url: '/login',
-          templateUrl: 'app/login/login.html',
-          controller: 'LoginCtrl'
+        .state('signin', {
+          url: '/signin',
+          templateUrl: 'app/auth/signin.html',
+          controller: 'AuthCtrl'
         })
-        .state('register', {
-          url: '/register',
-          templateUrl: 'app/register/register.html',
-          controller: 'RegisterCtrl'
+        .state('signup', {
+          url: '/signup',
+          templateUrl: 'app/auth/signup.html',
+          controller: 'AuthCtrl'
         })
         .state('medsForm', {
           url: '/medsForm/',
