@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   let good = manifest.registrations.find(p => p.plugin.register === 'good');
   if (good) {
     good.plugin.options.reporters[0].events['request'] = "*";
-    //good.plugin.options.reporters[0].events['log'] = null;
+    good.plugin.options.reporters[0].events['log'] = null;
   }
 }
 
