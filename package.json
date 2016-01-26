@@ -25,10 +25,7 @@
     "hapi": "^12.1.0",
     "hapi-auth-jwt2": "^5.3.2",
     "jsonwebtoken": "^5.5.4",
-<<<<<<< HEAD
     "path": "^0.12.7",
-=======
->>>>>>> signin auth
     "plugo": "^0.3.1",
     "sails-mysql": "^0.11.2",
     "shortid": "^2.2.4",
