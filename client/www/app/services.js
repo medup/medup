@@ -38,9 +38,7 @@
     };
 
     this.signup = function(user) {
-      var headers = {
-        'Access-Control-Allow-Origin' : '*',
-      };
+     
       return $http({
           method: 'POST',
           headers: headers,

@@ -27,6 +27,7 @@
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
+      $httpProvider.defaults.headers.common = 'headers: Access-Control-Allow-Origin: *', 'Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE';
       $urlRouterProvider.otherwise('/dashboard');
       $stateProvider
         .state('dashboard', {
