@@ -44,14 +44,8 @@ describe('POST /signin', () => {
   let existingUser = {
     email: 'jonsnow@knowsnothing.org',
     password: 'stillknowsnothing'
-<<<<<<< HEAD
   };
-  let token;
-
-=======
-  }
   
->>>>>>> signin auth
   it('should respond with status of 202 for successful signin POST operation', (done) => {
     request(url)
       .post('/user/signin')
