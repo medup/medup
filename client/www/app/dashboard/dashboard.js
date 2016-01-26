@@ -12,15 +12,15 @@
         $scope.modal = modal;
       });
 
-      // /* Get med data when user enters dashboard */
-      // var getMedData = function(user) {
-      //   MedService.getMeds(user)
-      //     .success(function(medInfoArr) {
-      //       $scope.medications = medInfoArr;
-      //     }).error(function(medInfoArr) {
-      //       console.log("Error Retrieving Information");
-      //     });
-      // };
+      /* Get med data when user enters dashboard */
+      var getMedData = function(user) {
+        MedService.getMeds(user)
+          .success(function(medInfoArr) {
+            $scope.medications = medInfoArr;
+          }).error(function(medInfoArr) {
+            console.log("Error Retrieving Information");
+          });
+      };
 
       // getMedData();
       $scope.editMedication = function(medication) {
