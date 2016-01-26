@@ -50,28 +50,29 @@
           controller: 'MedsFormCtrl'
         });
 
-        // $httpProvider.interceptors.push('AttachTokens');
+        $httpProvider.interceptors.push('AttachTokens');
     })
-    // .factory('AttachTokens', function($window) {
-    //   var attach = {
-    //     request: function(object) {
-    //       var jwt = $window.localStorage.getItem('com.pillMeNow');
-    //       if (jwt) {
-    //         object.headers['authorization'] = jwt;
-    //       }
-    //       return object;
-    //     }
-    //   };
-    //   return attach;
-    // })
-    // .run(function($rootScope, $state, Auth) {
+    .factory('AttachTokens', function($window) {
+      var attach = {
+        request: function(object) {
+          var jwt = $window.localStorage.getItem('com.pillMeNow');
+          if (jwt) {
+            object.headers['authorization'] = jwt;
+            console.log("obj", object);
+          }
+          return object;
+        }
+      };
+      return attach;
+    })
+    // .run(function($rootScope, $state, AuthService) {
     //   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
 
     //     if (toState.name === 'login' || toState.name === 'register') {
     //       return;
     //     }
 
-    //     if (!Auth.hasToken()) {
+    //     if (!AuthService.hasToken()) {
     //       e.preventDefault();
     //       $state.go('login');
     //     }

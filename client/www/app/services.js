@@ -1,7 +1,6 @@
-
 /**
  *
- * Factories will go here
+ * Handles requests made to server via $http
  *
  */
 
@@ -10,91 +9,83 @@
 
   angular
     .module('starter.services', [])
-    .service('Auth', [$window, $state, $http, function($window, $state, $http) {  
+    .service('AuthService', AuthService)
+    .service('MedService', MedService);
 
-      this.hasToken = function() {
-        return !!$window.localStorage.getItem('com.pillMeNow');
-      };
+  AuthService.$inject = ['$window', '$state', '$http'];
+  MedService.$inject = ['$state', '$http'];
 
-      this.signin = function (user) {
-        return $http({
+  function AuthService($window, $state, $http) {
+    this.hasToken = function() {
+      return !!$window.localStorage.getItem('com.pillMeNow');
+    };
+
+    this.signin = function(user) {
+      return $http({
           method: 'POST',
           url: '/users/signin',
           data: user
         })
-        .then(function (response) {
+        .then(function(response) {
           return response.data.token;
         });
-      };
+    };
 
-      this.signup = function (user) {
-        return $http({
+    this.signup = function(user) {
+      return $http({
           method: 'POST',
           url: '/users/signup',
           data: user
         })
-        .then(function (response) {
+        .then(function(response) {
           return response.data.token;
         });
-      };
+    };
 
-      this.signout = function () {
-        $window.localStorage.removeItem('com.pillMeNow');
-        $state.go('/signin');
-      };
-    }])
-    .service('MedService', function($http) {
-      var medication = {};
+    this.signout = function() {
+      $window.localStorage.removeItem('com.pillMeNow');
+      $state.go('/signin');
+    };
+  }
 
-      medication.getMeds = function(user) {
-        /**
-
-
-
-          TODO:
-          - sends GET request to get the array of med objects from database that matches the user
-
-
-
-         */
-        /* Mock Data */
-        return $http({
+  function MedService($state, $http) {
+    this.getMeds = function(user) {
+      return $http({
           method: 'GET',
-          url: '/medications'
+          url: '/medications',
+          data: user
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
         });
-      };
-      medication.updateMeds = function() {
-        /**
+    };
 
+    this.updateMeds = function(user) {
+      return $http({
+          method: 'PUT',
+          url: '/medications',
+          data: user
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
+        });
+    };
 
-
-          TODO:
-          - sends PUT request to update that specific medicaiton for the user
-
-
-
-         */
-
-      };
-      medication.deleteMeds = function() {
-        /**
-
-
-
-          TODO:
-          - sends DELETE request to remove that medication of the user
-
-
-
-         */
-
-      };
-
-      return medication;
-    });
-
-
+    this.deleteMeds = function(user) {
+      return $http({
+          method: 'DELETE',
+          url: '/medications',
+          data: user
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
+        });
+    };
+  }
 })();
-
-
-
