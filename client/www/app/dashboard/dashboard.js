@@ -11,38 +11,20 @@
       }).then(function(modal) {
         $scope.modal = modal;
       });
-      $scope.medication = {};
-      $scope.medStatus = {};
 
-      /* Get med data when user enters dashboard */
-      var getMedData = function(user) {
-        MedService.getMeds(user)
-          .success(function(medInfoArr) {
-            $scope.medication = medInfoArr;
-          }).error(function(medInfoArr) {
-            console.log("Error Retrieving Information");
-          });
-      };
+      // /* Get med data when user enters dashboard */
+      // var getMedData = function(user) {
+      //   MedService.getMeds(user)
+      //     .success(function(medInfoArr) {
+      //       $scope.medications = medInfoArr;
+      //     }).error(function(medInfoArr) {
+      //       console.log("Error Retrieving Information");
+      //     });
+      // };
 
-      getMedData();
-
-      $scope.moreInformation = function(medication) {
-        $scope.medication = medication;
-        $scope.modal.show();
-      };
-
-      $scope.removeReminder = function(medication) {
-
-        /**
-
-          TODO:
-          - remove reminder from dashboard view
-          - remove reminder from database
-
-         */
-      };
-
+      // getMedData();
       $scope.editMedication = function(medication) {
+        $state.go('medsForm', medication);
         /**
 
           TODO:
@@ -55,19 +37,23 @@
 
       };
 
+      // $scope.moreInformation = function(e, medication) {
+      //   $scope.medication = medication;
+      //   $scope.modal.show();
+      // };
+
+      $scope.removeReminder = function(medication) {
+        var index = $scope.medications.indexOf(medication);
+        $scope.medications.splice(index, 1);
+        /**
+
+          TODO:
+          - remove reminder from database
+
+         */
+      };
+
       /**
-
-        TODO:
-        - get the image of the medication and add it to correct medication (Complex)
-          - looked into pillbox and some other apis. this is going to be tricky
-          - i haven't found a way to get the information through the code or the name of med
-        - Create edit medication form as a sub template of medsForm
-        - Get Notifications Working (Robert)
-        - Create Routes to Back-End
-          - Read from database and set medication object of user in controller
-          - Write to database the medication info the user types in (Dave)
-
-       */
       /* Fake data to test dashboard */
       $scope.medications = [{
         id: 12,
@@ -94,6 +80,13 @@
         id: 12345,
         name: "Quinidex (Quinidine)",
         dosage: "5mg",
+        instruction: "Take one tablet by mouth every morning",
+        reminder: "10:30AM Every Day",
+        image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+      }, {
+        id: 12345,
+        name: "Adderall (Amphetamine)",
+        dosage: "10mg",
         instruction: "Take one tablet by mouth every morning",
         reminder: "10:30AM Every Day",
         image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
