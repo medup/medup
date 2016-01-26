@@ -23,9 +23,7 @@
             deferred.resolve('Welcome ' + name + '!');
           } else {
             deferred.reject('Wrong credentials.');
-
           };
-
           promise.success = function(fn) {
             promise.then(fn);
             return promise;
@@ -35,12 +33,8 @@
             return promise;
           };
           return promise;
-
-
         }
       };
-
-
     })
     //TODO - REFACTOR FOR TOCKENS
     .service('RegisterService', function($q) {
@@ -65,8 +59,12 @@
             return promise;
           };
           return promise;
-
         }
+      };
+    })
+    .service('Auth', function($window) {     
+      this.hasToken = function() {
+        return !!$window.localStorage.getItem('com.pillMeNow');
       };
     })
     .service('MedService', function($http) {
