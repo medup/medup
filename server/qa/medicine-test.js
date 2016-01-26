@@ -13,7 +13,7 @@ describe('API endpoint /api/medications', () => {
   };
   let user2 = {
     email: 'trump2016@whitehouse.gov',
-    password: 'no'
+    password: 'no123456'
   };
   let medication = {
     info: {

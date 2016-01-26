@@ -39,7 +39,7 @@ describe('POST /signin', () => {
   let url = 'http://localhost:3003';
   let nonUser = {
     email: 'trump2016@whitehouse.gov',
-    password: 'no'
+    password: 'no123456'
   };
   let existingUser = {
     email: 'jonsnow@knowsnothing.org',
@@ -54,7 +54,7 @@ describe('POST /signin', () => {
       .expect(200, done);
   });
 
-  it('should response with status of 404 for unsuccessful signin POST operation', (done) => {
+  it('should respond with status of 404 for unsuccessful signin POST operation', (done) => {
     request(url)
       .post('/user/signin')
       .send(nonUser)
