@@ -24,7 +24,7 @@
     this.signin = function(user) {
       return $http({
           method: 'POST',
-          url: 'http://localhost:3003/users/signin',
+          url: 'http://localhost:3003/user/signin',
           data: user
         })
         .then(function(response) {
@@ -35,7 +35,7 @@
     this.signup = function(user) {
       return $http({
           method: 'POST',
-          url: 'http://localhost:3003/users/signup',
+          url: 'http://localhost:3003/user/signup',
           data: user
         })
         .then(function(response) {
@@ -53,7 +53,7 @@
     this.getMeds = function(user) {
       return $http({
           method: 'GET',
-          url: 'http://localhost:3003/medications',
+          url: 'http://localhost:3003/api/medications',
           data: user
         })
         .then(function(response) {
@@ -66,7 +66,7 @@
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
-          url: 'http://localhost:3003/medications',
+          url: 'http://localhost:3003/api/medications',
           data: user
         })
         .then(function(response) {
@@ -79,7 +79,7 @@
     this.deleteMeds = function(user) {
       return $http({
           method: 'DELETE',
-          url: 'http://localhost:3003/medications',
+          url: 'http://localhost:3003/api/medications',
           data: user
         })
         .then(function(response) {

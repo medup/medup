@@ -16,7 +16,6 @@
 
     $scope.signin = function() {
       AuthService.signin($scope.data)
-        console.log($scope.data)
         .then(function(data) {
           $state.go('dashboard');
         }).catch(function(data) {
@@ -29,6 +28,7 @@
     };
 
     $scope.signup = function() {
+      console.log($scope.data);
      AuthService.signup($scope.data)
         .then(function(data) {
           $state.go('dashboard');
