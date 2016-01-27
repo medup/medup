@@ -61,15 +61,14 @@ describe('POST /signin', () => {
       .expect(404, done);
   });
 
-  it('response header should include a token on successful signin', done => {
+  it('response should include a token on successful signin', done => {
     request(url)
       .post('/user/signin')
       .send(existingUser)
       .expect(200)
       .end((err, res) => {
-        expect(res.headers['authorization']).to.exist;
-        expect(res.headers['authorization']).to.be.a('string');
-        token = res.headers['authorization'];
+        expect(res.body).to.be.an('object');
+        token = res.body.token;
         done();
       });
   });

@@ -33,8 +33,7 @@ internals.signup = (request, reply) => {
               };
 
               User.signToken(session, (token) => {
-                return reply().code(201)
-                            .header('Authorization', token);
+                return reply({ token: token }).code(201);
               });
             });
           });
@@ -63,8 +62,7 @@ internals.signin = (request, reply) => {
               };
 
               User.signToken(session, (token) => {
-                return reply().code(200)
-                            .header('Authorization', token);
+                return reply({ token: token }).code(200);
               });
             });
           });
