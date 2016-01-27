@@ -25,16 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
-const setCorsHeaders = (request, reply) => {
-  return reply().header('access-control-allow-origin', '*')
-                .header('access-control-allow-methods', '*')
-                .header('access-control-allow-headers', 'accept, content-type, authorization');
-};
-
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
-
-  server.ext('onPreResponse', setCorsHeaders);
 
   server.start(() => {
     console.log("Server is listening on", server.info.port);
