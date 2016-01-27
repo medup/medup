@@ -11,7 +11,7 @@
     .module('starter.services', [])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
-    .factory('Medications', MedService);
+    .factory('Medications', Medications);
    
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
