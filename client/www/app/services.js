@@ -10,8 +10,9 @@
   angular
     .module('starter.services', [])
     .service('AuthService', AuthService)
-    .service('MedService', MedService);
-
+    .service('MedService', MedService)
+    .factory('Medications', MedService);
+   
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
 
@@ -21,35 +22,24 @@
     };
 
     this.signin = function(user) {
-      var headers = {
-        'Access-Control-Allow-Origin' : '*',
-      };
       return $http({
           method: 'POST',
-          headers: headers,
-          url: 'http://localhost:3003/users/signin',
+          url: '/users/signin',
           data: user
         })
         .then(function(response) {
-          var token = response.data.token;
-          console.log(response);
-          $window.localStorage.setItem('com.pillMeNow');
+          return response.data.token;
         });
     };
 
     this.signup = function(user) {
-     
       return $http({
           method: 'POST',
-          headers: headers,
-          url: 'http://localhost:3003/users/signup',
+          url: '/users/signup',
           data: user
         })
         .then(function(response) {
-          var token = response.data.token;
-          console.log(response);
-          $window.localStorage.setItem('com.pillMeNow', token);
-        
+          return response.data.token;
         });
     };
 
@@ -61,13 +51,9 @@
 
   function MedService($state, $http) {
     this.getMeds = function(user) {
-      var headers = {
-        'Access-Control-Allow-Origin' : '*',
-      };
       return $http({
           method: 'GET',
-          headers: headers,
-          url: 'http://localhost:3003/medications',
+          url: '/medications',
           data: user
         })
         .then(function(response) {
@@ -78,13 +64,9 @@
     };
 
     this.updateMeds = function(user) {
-      var headers = {
-        'Access-Control-Allow-Origin' : '*',
-      };
       return $http({
           method: 'PUT',
-          headers: headers,
-          url: 'http://localhost:3003/medications',
+          url: '/medications',
           data: user
         })
         .then(function(response) {
@@ -95,13 +77,9 @@
     };
 
     this.deleteMeds = function(user) {
-      var headers = {
-        'Access-Control-Allow-Origin' : '*',
-      };
       return $http({
           method: 'DELETE',
-          headers: headers,
-          url: 'http://localhost:3003/medications',
+          url: '/medications',
           data: user
         })
         .then(function(response) {
@@ -111,4 +89,16 @@
         });
     };
   }
+
+  function Medications() {
+    var  medFac = {};
+    MedService.getMeds(user)
+      .success(function(medInfoArr) {
+        medFac.userMeds.medArray = medInfoArray;
+      }).error(function(medInfoArr) {
+        console.log("ERROR: User Medications not Received");
+      });
+    return medFac;
+  };
+  
 })();
