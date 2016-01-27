@@ -6,9 +6,7 @@ const internals = {
   optionsConfig: {
     auth: false,
     handler: (request, reply) => {
-      return reply().header('access-control-allow-origin', 'http://localhost:8100')
-                    .header('access-control-allow-methods', '*')
-                    .header('access-control-allow-headers', 'accept, content-type');
+      return reply();
     }
   },
   routeValidation: {
@@ -47,12 +45,12 @@ exports.register = (plugin, options, next) => {
   let handlers = plugin.plugins.controllers.handlers;
 
   plugin.route([
-    { method: 'POST', path: '/{path*}', config: internals.optionsConfig },
+    { method: 'OPTIONS', path: '/{path*}', config: internals.optionsConfig },
     { method: 'POST', path: '/user/signup', config: { auth: false, handler: handlers['Users'].signup, validate: internals.routeValidation.signup } },
     { method: 'POST', path: '/user/signin', config: { auth: false, handler: handlers['Users'].signin, validate: internals.routeValidation.signin } },
     { method: 'GET', path: '/restricted', config: { auth: 'jwt', handler: handlers['Restricted'] } },
     { method: 'DELETE', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: { params: Joi.object().keys({ id: Joi.number() }) } } },
-    { method: '*', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: internals.routeValidation.medication } }
+    { method: '*', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: internals.routeValidation.medication } },
   ]);
 
   next();
