@@ -11,7 +11,7 @@ internals.signup = (request, reply) => {
         if (err) console.error(err);
 
         if (user) {
-          return reply(user).code(409);
+          return reply('User already exists').code(409);
         }
 
         let salt = User.generateSalt();
@@ -50,7 +50,7 @@ internals.signin = (request, reply) => {
 
         if (user) {
           User.comparePassword(requestUser.password, user.password, (res) => {
-            if (!res) return reply().code(401);
+            if (!res) return reply('Invalid password').code(401);
 
             User.generateKey(requestUser.password, user.salt, key => {
 
