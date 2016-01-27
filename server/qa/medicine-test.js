@@ -36,9 +36,8 @@ describe('API endpoint /api/medications', () => {
       .send(user)
       .expect(202)
       .end((err, res) => {
-        expect(res.headers['authorization']).to.exist;
-        expect(res.headers['authorization']).to.be.a('string');
-        token = res.headers['authorization'];
+        expect(res.body).to.be.an('object');
+        token = res.body.token;
         done();
       });
   });
@@ -49,9 +48,8 @@ describe('API endpoint /api/medications', () => {
       .send(user2)
       .expect(201)
       .end((err, res) => {
-        expect(res.headers['authorization']).to.exist;
-        expect(res.headers['authorization']).to.be.a('string');
-        token2 = res.headers['authorization'];
+        expect(res.body).to.be.an('object');
+        token2 = res.body.token;
         done();
       });
   });

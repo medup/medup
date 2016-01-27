@@ -3,7 +3,7 @@
 const internals = {};
 
 internals.signup = (request, reply) => {
-    let User = request.collections.users;
+  let User = request.collections.users;
   let newUser = request.payload;
 
   User.findOne({ email: newUser.email })
@@ -14,21 +14,27 @@ internals.signup = (request, reply) => {
           return reply(user).code(409);
         }
 
+        let salt = User.generateSalt();
+
         User.hashPassword(newUser.password, hash => {
           User.create({
             email: newUser.email,
-            password: hash
+            password: hash,
+            salt: salt
           }).exec((err, user) => {
             if (err) console.error(err);
 
-            let session = {
-              id: user.id,
-              valid: true
-            };
-            
-            User.signToken(session, (token) => {
-              return reply().code(201)
-                            .header('Authorization', token);
+            User.generateKey(newUser.password, user.salt, key => {
+
+              let session = {
+                id: user.id,
+                auth: key,
+                valid: true
+              };
+
+              User.signToken(session, (token) => {
+                return reply({ token: token }).code(201);
+              });
             });
           });
         });
@@ -47,14 +53,17 @@ internals.signin = (request, reply) => {
           User.comparePassword(requestUser.password, user.password, (res) => {
             if (!res) return reply().code(401);
 
-            let session = {
-              id: user.id,
-              valid: true
-            };
+            User.generateKey(requestUser.password, user.salt, key => {
 
-            User.signToken(session, (token) => {
-              return reply().code(200)
-                      .header('Authorization', token);
+              let session = {
+                id: user.id,
+                auth: key,
+                valid: true
+              };
+
+              User.signToken(session, (token) => {
+                return reply({ token: token }).code(200);
+              });
             });
           });
         } else {
