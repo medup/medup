@@ -25,65 +25,197 @@ var gulp = require('gulp'),
   embedlr = require('gulp-embedlr'),
   lrserver = require('tiny-lr')();
 
-
-var filepath = {
-  clean: {
-    client: 
-    server:
-  },
-}
   // in what order should the files be concatenated
-var clientIncludeOrder = [];
+var clientConcatOrder = [];
+var serverConcatOrder = [];
+
+var filePath = {
+  dev: {
+    client: 'client/www/app/app.js',
+    server: 'server/server.js'
+  }
+  clean: {
+    client: ['dist/assets/css', 'dist/assets/js/client', 'dist/assets/img'],
+    server: 'dist/assets/js/server'
+  },
+  browserify: {
+    client: {
+      src: 'client/www/app/**/*.js',
+      dest: 'client/www/build'
+    },
+    test: {
+      src: 'test/client/**/*.js',
+      dest: 'client/www/build'
+    }
+  }
+  lint: {
+    client: {
+      src: 'client/www/app/**/*.js',
+    },
+    server: {
+      src: ['server/server.js, server/qa/*.js']
+    },
+    test: {
+      src: 'test/**/*.js'
+    }
+  },
+  concat: {
+    client: {
+      src: clientConcatOrder,
+      dest: 'dist/assets/js/client'
+    },
+    server: {serverConcatOrder,
+      dest: 'dist/assets/js/server'
+    }
+  },
+  sass: {
+    src: 'client/scss/**/*.scss',
+    dest: 'client/www/css'
+  }
+  minifyCss: {
+    dest: 'dist/assets/css'
+  }
+  cssnano: {
+    src: 'dist/assets/css',
+    dest: 'dist/assets/css'
+  }
+  uglify: {
+    client: {
+      src: 'dist/assets/js/client/*.min' 
+      dest: 'dist/assets/js/client'
+    },
+    server: {
+      src: 'dist/assets/js/server/*.min' 
+      dest: 'dist/assets/js/server'
+    }
+  }
+}
 
 // gulp setup
 var config = require('package.json');
 
-// create a task called clean, which
-// deletes all files in the listed folders
-gulp.task('clean', function() {
-  return del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img']);
+//delete all files in the client distribution
+gulp.task('clean-client', function() {
+  return del(filePath.clean.client);
 });
 
-// Lint Task
-gulp.task('lint', function() {
-    return gulp.src('js/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+//delete all files in the server distribution
+gulp.task('clean-server', function() {
+  return del(filePath.clean.server);
 });
 
-//Uglify the files
-gulp.task('uglify', function() {
-    return gulp.src('js/*.js')
+//delete all files in the client and server distribution
+gulp.task('clean', ['clean-client', 'clean-server']);
+
+// Lint the client dev files.
+gulp.task('lint-client', function() {
+  return gulp.src(filePath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+// Lint the server dev files.
+gulp.task('lint-server', function() {
+  return gulp.src(filePath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+// Lint the test files.
+gulp.task('lint-test', function() {
+  return gulp.src(filePath.lint.test.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+// Lint the client and server dev files
+gulp.task('lint', ['lint-client', 'lint-server']);
+
+//Uglify the client files
+gulp.task('uglify-client', function() {
+    return gulp.src(filePath.uglify.client.src)
       .pipe(uglify())
-      .pipe(gulp.dest(dist/assets));
+      .pipe(gulp.dest(filePath.uglify.client.dest));
 });
 
-/**/
-gulp.task('scripts', function() {
-    return gulp.src(clientIncludeOrder)
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('dist'))
-        .pipe(rename('all.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+//Uglify the server files
+gulp.task('uglify-server', function() {
+    return gulp.src(filePath.uglify.server.src)
+      .pipe(uglify())
+      .pipe(gulp.dest(filePath.uglify.server.dest));
 });
 
-//Refresh when files change
-gulp.task('refresh', function() {
-	// listen for changes
-	livereload.listen();
-	// configure nodemon
-	nodemon({
-		// the script to run the app
-		script: 'app.js',
-		ext: 'js'
-	}).on('restart', function(){
-		// when the app has restarted, run livereload.
-		gulp.src('app.js')
-			.pipe(livereload())
-			.pipe(notify('Reloading page, please wait...'));
-	})
-})
+//Uglify the client and server files
+gulp.task('uglify', ['uglify-client', 'uglify-server']);
+
+gulp.task('browserify-client', ['lint-client'], function() {
+  return gulp.src(filePath.browserify.client.src)
+    .pipe(browserify({
+      insertGlobals: true,
+      debug : !gulp.env.production
+    }))
+    .pipe(gulp.dest(filePath.browserify.client.dest));
+});
+
+gulp.task('browserify-test', ['lint-test'], function() {
+  return gulp.src(filePath.browserify.test.src)
+  .pipe(browserify({
+    insertGlobals: true,
+    debug : !gulp.env.production
+  }))
+  .pipe(gulp.dest(filePath.browserify.test.dest));
+});
+
+gulp.task('scripts-client', function() {
+  return gulp.src(filePath.lint.client.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest(filePath.concat.client.dest))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest(filePath.uglify.client.dest))
+    .pipe(notify({ message: 'Scripts-client task complete' }));
+});
+
+gulp.task('scripts-server', function() {
+  return gulp.src(filePath.lint.server.src)
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'));
+  .pipe(concat('main.js'))
+  .pipe(gulp.dest(filePath.concat.server.dest))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(uglify())
+  .pipe(gulp.dest(filePath.uglify.server.dest))
+  .pipe(notify({ message: 'Scripts-server task complete' }));
+});
+
+gulp.task('scripts', ['scripts-client', 'scripts-server']);
+
+//Compile and minify the scss file 
+gulp.task('sass', function(done) {
+  gulp.src(filePath.sass.src)
+    .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(gulp.dest(filePath.sass.dest))
+    .pipe(minifyCss({
+      keepSpecialComments: 0
+    }))
+    .pipe(rename({ extname: '.min.css' }))
+    .pipe(gulp.dest(filePath.minifyCss.dest))
+    .pipe(notify({ message: 'Styles task complete' }));
+    .on('end', done);
+});
+
+// Dev task
+gulp.task('dev', function() {
+  // Start webserver
+  server.listen(serverport);
+  // Start live reload
+  lrserver.listen(livereloadport);
+  // Run the watch task, to keep taps on changes
+  gulp.run('watch');
+});
 
 // Browserify task
 gulp.task('browserify', function() {
@@ -94,10 +226,11 @@ browserify will figure it out for you)*/
     insertGlobals: true,
     debug: true
   }))
+};
 
 gulp.task('watch', ['lint'], function() {
-
-// Watch our scripts
+  gulp.watch(filePath.sass.src, ['sass']);
+  // Watch our scripts
   gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js'],[
     'lint',
     'browserify'
@@ -112,41 +245,52 @@ server.use(livereload({port: livereloadport}));
 server.use(express.static('./dist'));
 // Because I like HTML5 pushstate .. this redirects everything back to our index.html
 server.all('/*', function(req, res) {
-    res.sendfile('index.html', { root: 'dist' });
+  res.sendfile('index.html', { root: 'dist' });
 });
 
-// Dev task
-gulp.task('dev', function() {
-  // Start webserver
-  server.listen(serverport);
-  // Start live reload
-  lrserver.listen(livereloadport);
-  // Run the watch task, to keep taps on changes
-  gulp.run('watch');
+//Refresh when files change
+gulp.task('refresh', function() {
+  // listen for changes
+  livereload.listen();
+  // configure nodemon
+  nodemon({
+  // the script to run the app
+    script: filePath.dev.server,
+    ext: 'js'
+  }).on('restart', function(){
+  // when the app has restarted, run livereload.
+    gulp.src(filePath.dev.server)
+    .pipe(livereload())
+    .pipe(notify('Reloading page, please wait...'));
+  })
 });
-  
-var paths = {
-  sass: ['./scss/**/*.scss']
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 gulp.task('default', ['sass']);
-
-gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .on('error', sass.logError)
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
-});
-
-gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
-});
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()
