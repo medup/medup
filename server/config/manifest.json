@@ -1,8 +1,6 @@
 {
   "connections": [
     {
-      "host": "localhost",
-      "port": "3003",
       "labels": ["api"],
       "routes": {
         "cors": true

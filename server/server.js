@@ -25,8 +25,21 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+manifest.connections[0].port = process.env.PORT || 3000;
+
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
+
+  if (process.env.NODE_ENV === 'production') {
+    server.ext('onRequest', (request, reply) => {
+      if (request.headers['x-forward-proto'] !== 'https') {
+        return reply('Forwarding to https')
+          .redirect('https://' + request.headers.host + request.path)
+          .code(301);
+      }
+      reply.continue();
+    });
+  }
 
   server.start(() => {
     console.log("Server is listening on", server.info.port);
