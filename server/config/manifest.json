@@ -5,9 +5,7 @@
       "port": "3003",
       "labels": ["api"],
       "routes": {
-        "cors": {
-          "origin": [ "http://localhost:8100" ]
-        }
+        "cors": true
       }
     }
   ],
