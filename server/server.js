@@ -25,6 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+manifest.connections[0].port = process.env.PORT || 3000;
+
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
 
