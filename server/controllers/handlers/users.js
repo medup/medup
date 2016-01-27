@@ -28,7 +28,6 @@ internals.signup = (request, reply) => {
 
               let session = {
                 id: user.id,
-                auth: key,
                 valid: true
               };
 
@@ -57,7 +56,6 @@ internals.signin = (request, reply) => {
 
               let session = {
                 id: user.id,
-                auth: key,
                 valid: true
               };
 
