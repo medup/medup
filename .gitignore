@@ -1,6 +1,0 @@
-.DS_STORE
-bower_components
-node_modules
-.jshintrc
-npm-debug.log
-dist/
