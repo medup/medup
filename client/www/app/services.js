@@ -28,7 +28,8 @@
           data: user
         })
         .then(function(response) {
-          return response.data.token;
+          $window.localStorage.setItem('com.pillMeNow', response.data.token);
+          //return response.data.token;
         });
     };
 
@@ -39,7 +40,8 @@
           data: user
         })
         .then(function(response) {
-          return response.data.token;
+          $window.localStorage.setItem('com.pillMeNow', response.data.token);
+          //return response.data.token;
         });
     };
 
