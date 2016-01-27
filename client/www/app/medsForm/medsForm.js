@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function() {
   'use strict';
 
@@ -10,3 +11,5 @@
   
   }
 })();
+=======
+>>>>>>> parent of 6a5babc... (cleanup) update before rebase
