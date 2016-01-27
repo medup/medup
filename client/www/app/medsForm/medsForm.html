@@ -1,18 +1,4 @@
 <!-- Display input fields for entering medication information and schedule times. -->
 <ion-view view-title="Medications Editor and Planner">
-  <div class="content has-header">
-    <ion-list show-delete="false" can-swipe="true">
-      <ion-item ng-repeat="medication in medications">
-        <h2><b> {{medication.name}} {{medication.dosage}} </b></h2>
-        <p class="ion-android-alarm-clock"> {{medication.reminder}} </p>
-        <ion-option-button class="button-balanced icon ion-edit" ng-click="editMedication(medication)"></ion-option-button>
-        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeReminder(medication)"></ion-option-button>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div class="tabs tabs-positive">
-    <a class="tab-item active"> <i class="icon ion-home"></i> </a>
-    <a class="tab-item"> <i class="icon ion-android-add"></i> </a>
-    <a class="tab-item"> <i class="icon ion-gear-a"></i> </a>
-  </div>
+
 </ion-view>
