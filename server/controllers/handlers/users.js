@@ -3,6 +3,7 @@
 const internals = {};
 
 internals.signup = (request, reply) => {
+  
   let User = request.collections.users;
   let newUser = request.payload;
 

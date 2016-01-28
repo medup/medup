@@ -6,7 +6,7 @@ const crypto = require('crypto'),
 
 module.exports = {
   tableName: 'users',
-  connection: 'local',
+  connection: 'deploy',
   attributes: {
     email: {
       type: 'string'
