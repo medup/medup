@@ -27,7 +27,7 @@
 
     // getMedData();
     $scope.editMedication = function(medication) {
-      $state.go('medsForm', medication);
+      $state.go('medsForm', {medName: medication.id});
       /**
 
         TODO:
@@ -87,7 +87,7 @@
       reminder: "10:30AM Every Day",
       image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
     }, {
-      id: 12345,
+      id: 123456,
       name: "Adderall (Amphetamine)",
       dosage: "10mg",
       instruction: "Take one tablet by mouth every morning",

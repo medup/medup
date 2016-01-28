@@ -11,11 +11,12 @@
     .module('starter.services', [])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
-    .factory('Medications', MedService);
+    .factory('Medications', Medications);
    
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
-
+  Medications.$inject = ['MedService'];
+  
   function AuthService($window, $state, $http) {
     this.hasToken = function() {
       return !!$window.localStorage.getItem('com.pillMeNow');
@@ -94,12 +95,52 @@
 
   function Medications() {
     var  medFac = {};
-    MedService.getMeds(user)
-      .success(function(medInfoArr) {
-        medFac.userMeds.medArray = medInfoArray;
-      }).error(function(medInfoArr) {
-        console.log("ERROR: User Medications not Received");
-      });
+    medFac.userMeds = {};
+    // MedService.getMeds(user)
+    //   .then(function(medInfoArr) {
+    //     medFac.userMeds.dbMeds = medInfoArray;
+    //   }).catch(function(medInfoArr) {
+    //     console.log("ERROR: User Medications not Received");
+    //   });
+    
+    var testMeds = [{
+      id: 12,
+      name: "Abilify (Aripiprazole)",
+      dosage: "5mg",
+      instruction: "Take one tablet by mouth every morning",
+      reminder: "10:30AM Every Day",
+      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+    }, {
+      id: 123,
+      name: "Actiq (Fentanyl Citrate)",
+      dosage: "5mg",
+      instruction: "Take one tablet by mouth every morning",
+      reminder: "10:30AM Every Day",
+      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+    }, {
+      id: 1234,
+      name: "Halcion (Triazolam)",
+      dosage: "5mg",
+      instruction: "Take one tablet by mouth every morning",
+      reminder: "10:30AM Every Day",
+      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+    }, {
+      id: 12345,
+      name: "Quinidex (Quinidine)",
+      dosage: "5mg",
+      instruction: "Take one tablet by mouth every morning",
+      reminder: "10:30AM Every Day",
+      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+    }, {
+      id: 123456,
+      name: "Adderall (Amphetamine)",
+      dosage: "10mg",
+      instruction: "Take one tablet by mouth every morning",
+      reminder: "10:30AM Every Day",
+      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
+    }];
+    
+    medFac.userMeds.localMeds = testMeds;
     return medFac;
   };
   
