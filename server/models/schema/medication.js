@@ -2,7 +2,7 @@
 
 module.exports = {
   tableName: 'medications',
-  connection: 'local',
+  connection: 'deploy',
   attributes: {
     info: 'string',
     taken: 'array',

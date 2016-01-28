@@ -1,8 +1,6 @@
 {
   "connections": [
     {
-      "host": "localhost",
-      "port": "3003",
       "labels": ["api"],
       "routes": {
         "cors": true
@@ -11,12 +9,6 @@
   ],
   "registrations": [
     {
-      "plugin": "hapi-auth-jwt2"
-    },
-    {
-      "plugin": "./authentication"
-    },
-    {
       "plugin": "./models"
     },
     {
@@ -24,6 +16,12 @@
     },
     {
       "plugin": "./controllers"
+    },
+    {
+      "plugin": "hapi-auth-jwt2"
+    },
+    {
+      "plugin": "./authentication"
     },
     {
       "plugin": "./routes"
