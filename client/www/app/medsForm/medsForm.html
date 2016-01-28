@@ -4,24 +4,28 @@
   <div class="list list-inset">
     <ion-list>
       <ion-input floating-label>
-        <ion-label>Name</ion-label>
-        <input type="text" placeholder="{{med.name}}">
+        <ion-label><b>Name</b></ion-label>
+        <input type="text" value="{{med.name}}">
       </ion-input>
       <ion-input floating-label>
-        <ion-label>Dosage</ion-label>
-        <input type="text" value="">
+        <ion-label><b>Dosage</b></ion-label>
+        <input type="text" value="{{med.dosage}}">
       </ion-input>
       <ion-input floating-label>
-        <ion-label>Time Needed</ion-label>
-        <input type="text" value="">
+	<span class="ion-android-alarm-clock"></span>
+        <ion-label><b>Time Needed</b></ion-label>
+	<input type="text" value="{{med.reminder}}">
       </ion-input>
       <ion-input floating-label>
-        <ion-label>Instructions</ion-label>
-        <input type="text" value="">
+        <ion-label><b>Instructions</b></ion-label>
+        <input type="text" value="{{med.instruction}}">
       </ion-input>
-      <button class="button button-block button-calm">Home</button>
-      <button class="button button-block button-calm">Save</button>
     </ion-list>
   </div>
-  </ion-content>
+  </ion-content>  
+  <div class="tabs tabs-positive">
+    <a class="tab-item" ui-sref="dashboard"><i class="icon ion-home"></i></a>
+    <a class="tab-item"><i class="icon ion-android-archive"></i></a>
+    <a class="tab-item"><i class="icon ion-refresh"></i></a>    
+  </div>
 </ion-view>

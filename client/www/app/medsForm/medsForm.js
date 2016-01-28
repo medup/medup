@@ -12,5 +12,8 @@
     $scope.userMeds.localMeds.forEach(function (medication) {
       if (medication.id === parseInt($scope.medId)) $scope.med = medication;
     });
+    $scope.goHome = function() {
+      $state.go('dashboard');
+    };
   };
 })();
