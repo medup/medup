@@ -4,27 +4,27 @@
   <div class="list list-inset">
     <ion-list>
       <ion-input floating-label>
-        <ion-label><b>Name</b></ion-label>
-        <input type="text" value="{{med.name}}">
+        <ion-label><h4><b>Name</b></h4></ion-label>
+        <input id="name" name="name" type="text" ng-model=form.name>
       </ion-input>
       <ion-input floating-label>
-        <ion-label><b>Dosage</b></ion-label>
-        <input type="text" value="{{med.dosage}}">
+        <ion-label><h4><b>Dosage</b></h4></ion-label>
+        <input id="dosage" name="dosage" type="text" ng-model=form.dosage>
       </ion-input>
       <ion-input floating-label>
-	<span class="ion-android-alarm-clock"></span>
-        <ion-label><b>Time Needed</b></ion-label>
-	<input type="text" value="{{med.reminder}}">
+        <ion-label><h4><b>Time Needed</b></h4></ion-label>
+	<!-- <span class="ion-android-alarm-clock"></span> -->
+	<input id="time" name="time" type="text" ng-model=form.timeNeeded>
       </ion-input>
       <ion-input floating-label>
-        <ion-label><b>Instructions</b></ion-label>
-        <input type="text" value="{{med.instruction}}">
+        <ion-label><h4><b>Instructions</b></h4></ion-label>
+        <input id="instruct" xoname="instruct" type="text" ng-model=form.instruction>
       </ion-input>
     </ion-list>
   </div>
   </ion-content>  
   <div class="tabs tabs-positive">
-    <a class="tab-item" ui-sref="dashboard"><i class="icon ion-home"></i></a>
+    <a class="tab-item active" ui-sref="dashboard"><i class="icon ion-home"></i></a>
     <a class="tab-item"><i class="icon ion-android-archive"></i></a>
     <a class="tab-item"><i class="icon ion-refresh"></i></a>    
   </div>
