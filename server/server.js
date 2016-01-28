@@ -32,7 +32,7 @@ Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
 
   if (process.env.NODE_ENV === 'production') {
     server.ext('onRequest', (request, reply) => {
-      if (request.headers['x-forward-proto'] !== 'https') {
+      if (request.headers['x-forward-proto'] === 'http') {
         return reply('Forwarding to https')
           .redirect('https://' + request.headers.host + request.path)
           .code(301);
@@ -42,6 +42,6 @@ Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   }
 
   server.start(() => {
-    console.log("Server is listening on", server.info.port);
+    console.log("Server is listening on", server.info.host);
   });
 });
