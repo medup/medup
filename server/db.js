@@ -1,6 +1,6 @@
 'use strict';
 
-const Memory = require('sails-memory');
+const Mongo = require('sails-mongo');
 
 exports.register = (plugin, options, next) => {
 
@@ -12,11 +12,12 @@ exports.register = (plugin, options, next) => {
     register: require('dogwater'),
     options: {
       adapters: {
-        memory: Memory
+        mongo: Mongo
       },
       connections: {
-        local: {
-          adapter: 'memory'
+        deploy: {
+          adapter: 'mongo',
+          url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/medtest6'
         }
       },
       models: [
