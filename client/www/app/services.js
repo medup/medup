@@ -11,11 +11,12 @@
     .module('starter.services', [])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
-    .factory('Medications', MedService);
+    .factory('Medications', Medications);
    
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
-
+  Medications.$inject = ['MedService'];
+  
   function AuthService($window, $state, $http) {
     this.hasToken = function() {
       return !!$window.localStorage.getItem('com.pillMeNow');
@@ -94,12 +95,13 @@
 
   function Medications() {
     var  medFac = {};
-    MedService.getMeds(user)
-      .success(function(medInfoArr) {
-        medFac.userMeds.dbMeds = medInfoArray;
-      }).error(function(medInfoArr) {
-        console.log("ERROR: User Medications not Received");
-      });
+    medFac.userMeds = {};
+    // MedService.getMeds(user)
+    //   .then(function(medInfoArr) {
+    //     medFac.userMeds.dbMeds = medInfoArray;
+    //   }).catch(function(medInfoArr) {
+    //     console.log("ERROR: User Medications not Received");
+    //   });
     
     var testMeds = [{
       id: 12,
