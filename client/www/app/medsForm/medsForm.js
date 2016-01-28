@@ -12,5 +12,9 @@
     $scope.userMeds.localMeds.forEach(function (medication) {
       if (medication.id === parseInt($scope.medId)) $scope.med = medication;
     });
+
+    $scope.saveMed = function () {
+      console.log('save med');
+    };
   };
 })();
