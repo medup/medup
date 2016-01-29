@@ -8,7 +8,7 @@
   'use strict';
 
   angular
-      .module('starter', ['ionic', 'starter.dashboard', 'starter.services','starter.auth', 'starter.medsForm'])
+    .module('starter', ['ionic', 'starter.dashboard', 'starter.services', 'starter.auth', 'starter.medsForm'])
     .run(function($ionicPlatform) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -50,7 +50,7 @@
           controller: 'MedsFormCtrl'
         });
 
-        $httpProvider.interceptors.push('AttachTokens');
+      $httpProvider.interceptors.push('AttachTokens');
     })
     .factory('AttachTokens', function($window) {
       var attach = {
@@ -65,17 +65,17 @@
       };
       return attach;
     })
-    // .run(function($rootScope, $state, AuthService) {
-    //   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    .run(function($rootScope, $state, AuthService) {
+      $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
 
-    //     if (toState.name === 'login' || toState.name === 'register') {
-    //       return;
-    //     }
+        if (toState.name === 'login' || toState.name === 'register') {
+          return;
+        }
 
-    //     if (!AuthService.hasToken()) {
-    //       e.preventDefault();
-    //       $state.go('login');
-    //     }
-    //   });
-    // });
+        if (!AuthService.hasToken()) {
+          e.preventDefault();
+          $state.go('login');
+        }
+      });
+    });
 })();
