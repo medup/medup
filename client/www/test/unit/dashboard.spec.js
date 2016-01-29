@@ -1,8 +1,12 @@
-// spec.js
-describe('Protractor Demo App', function() {
-  it('should have a title', function() {
-    browser.get('http://juliemr.github.io/protractor-demo/');
+var test = require('tape');
 
-    expect(browser.getTitle()).toEqual('Super Calculator');
-  });
+test('timing test', function(t) {
+  t.plan(2);
+
+  t.equal(typeof Date.now, 'function');
+  var start = Date.now();
+
+  setTimeout(function() {
+    t.equal(Date.now() - start, 100);
+  }, 100);
 });
