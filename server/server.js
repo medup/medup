@@ -6,6 +6,10 @@ const Hapi = require('hapi'),
       crypto = require('crypto');
 
 
+if (!process.env.NODE_ENV) {
+  manifest.connections[0].host = 'localhost';
+}
+
 if (process.env.NODE_ENV !== 'production') {
   process.env.tokenSecret = crypto.randomBytes(16)
                                   .toString('base64');
@@ -17,8 +21,6 @@ if (process.env.NODE_ENV !== 'production') {
       "register": "blipp"
     }
   });
-
-  manifest.connections[0].host = 'localhost';
 
   let good = manifest.registrations.find(p => p.plugin.register === 'good');
   if (good) {
