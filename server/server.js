@@ -6,6 +6,10 @@ const Hapi = require('hapi'),
       crypto = require('crypto');
 
 
+if (!process.env.NODE_ENV) {
+  manifest.connections[0].host = 'localhost';
+}
+
 if (process.env.NODE_ENV !== 'production') {
   process.env.tokenSecret = crypto.randomBytes(16)
                                   .toString('base64');
@@ -25,6 +29,9 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+manifest.connections[0].routes.files = {
+  relativeTo: __dirname + '/public'
+};
 manifest.connections[0].port = process.env.PORT || 3000;
 
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
@@ -40,6 +47,14 @@ Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
       reply.continue();
     });
   }
+
+  console.log(__dirname);
+
+  server.views({
+    engines: { ejs: require('ejs') },
+    relativeTo: __dirname,
+    path: 'public'
+  })
 
   server.start(() => {
     console.log("Server is listening on", server.info.host);

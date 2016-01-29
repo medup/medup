@@ -6,7 +6,7 @@ const request = require('supertest'),
 
 describe('POST /signup', () => {
 
-  let url = 'http://localhost:3003';
+  let url = 'http://localhost:3000';
   let user = {
     email: 'jonsnow@knowsnothing.org',
     password: 'stillknowsnothing'
@@ -23,20 +23,14 @@ describe('POST /signup', () => {
     request(url)
       .post('/user/signup')
       .send(user)
-      .expect(201)
-      .end((err, res) => {
-        if (err) console.error(err);
-        expect(res.body).to.be.an('object');
-        expect(res.body.email).to.equal('jonsnow@knowsnothing.org');
-        done();
-      });
+      .expect(409, done);
   });
 
 });
 
 describe('POST /signin', () => {
 
-  let url = 'http://localhost:3003';
+  let url = 'http://localhost:3000';
   let nonUser = {
     email: 'trump2016@whitehouse.gov',
     password: 'no123456'
