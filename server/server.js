@@ -18,6 +18,8 @@ if (process.env.NODE_ENV !== 'production') {
     }
   });
 
+  manifest.connections[0].host = 'localhost';
+
   let good = manifest.registrations.find(p => p.plugin.register === 'good');
   if (good) {
     good.plugin.options.reporters[0].events['request'] = "*";
@@ -25,6 +27,9 @@ if (process.env.NODE_ENV !== 'production') {
   }
 }
 
+manifest.connections[0].routes.files = {
+  relativeTo: __dirname + '/public'
+};
 manifest.connections[0].port = process.env.PORT || 3000;
 
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
@@ -40,6 +45,14 @@ Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
       reply.continue();
     });
   }
+
+  console.log(__dirname);
+
+  server.views({
+    engines: { ejs: require('ejs') },
+    relativeTo: __dirname,
+    path: 'public'
+  })
 
   server.start(() => {
     console.log("Server is listening on", server.info.host);

@@ -6,7 +6,7 @@ const request = require('supertest'),
 
 describe('API endpoint /api/medications', () => {
 
-  let url = 'http://localhost:3003';
+  let url = 'http://localhost:3000';
   let user = {
     email: 'jonsnow@knowsnothing.org',
     password: 'stillknowsnothing'

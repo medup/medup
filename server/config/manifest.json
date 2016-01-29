@@ -21,6 +21,12 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
+      "plugin": "vision"
+    },
+    {
+      "plugin": "inert"
+    },
+    {
       "plugin": "./authentication"
     },
     {
