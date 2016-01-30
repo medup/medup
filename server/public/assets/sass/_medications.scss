@@ -1,0 +1,92 @@
+.view-state {
+  padding: rem(35) 4%;
+  background-color: $light-gray;
+  height: 100%;
+}
+
+.top-heading {
+
+  h1 {
+    text-align: center;
+    color: $dark-blue;
+    font-weight: 400;
+    font-size: rem(24);
+    margin-bottom: rem(24);
+  }
+}
+
+.med-list {
+  @include outer-container(rem(820));
+}
+
+.med-card {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  padding: rem(30) rem(32);
+  margin-bottom: rem(18);
+  border-radius: rem(4);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+  @include clearfix;
+}
+
+.med-left {
+  @include span-columns(7.5);
+  @include clearfix;
+
+  h3 {
+    font-size: rem(20);
+    font-weight: 300;
+    color: $dark-blue;
+
+    span {
+      margin-left: rem(12);
+      color: #A2A3A5;
+      font-weight: 300;
+    }
+  }
+
+  .instructions {
+    font-size: rem(18);
+    color: #818181;
+  }
+}
+
+.med-notifications {
+  @include span-columns(2.5);
+
+  i {
+    color: #B6B6B6;
+  }
+
+  .time {
+    color: $dark-blue;
+  }
+}
+
+.med-alarm {
+  @include span-columns(1);
+
+  img {
+    width: rem(32);
+  }
+}
+
+.med-controls {
+  @include span-columns(1);
+  text-align: right;
+
+  span {
+    display: block;
+    font-weight: 400;
+    margin-bottom: rem(10);
+  }
+
+  .edit {
+    color: $dark-blue;
+  }
+
+  .delete {
+    color: $red;
+  }
+}

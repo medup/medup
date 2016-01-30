@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
+    "postinstall": "webpack --config ./webpack-production.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -22,7 +23,6 @@
   "homepage": "https://github.com/shadow-heart/shadow-heart#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "browser-sync": "^2.11.1",
     "crypto-js": "^3.1.6",
     "dogwater": "^1.1.0",
     "ejs": "^2.4.1",
@@ -66,6 +66,7 @@
     "supertest": "^1.1.0",
     "tap-colorize": "^1.2.0",
     "tape": "^4.4.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.12.12"
   }
 }

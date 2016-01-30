@@ -1,0 +1,87 @@
+.add-state {
+  padding: rem(35) 4%;
+  background-color: $teal;
+  height: 100%;
+
+  .top-heading h1 {
+    color: #fff;
+  }
+}
+
+.med-form-wrapper {
+  @include outer-container(rem(820));
+  background-color: #f1f1f1;
+  padding: rem(46) 0 rem(42);
+}
+
+.form-top {
+  padding: 0 rem(65);
+  @include clearfix;
+
+  input {
+    margin-bottom: rem(24);
+    background: #f1f1f1;
+    padding: rem(14) rem(32);
+    font-size: rem(24);
+    font-weight: 300;
+    color: $dark-blue;
+    border: 1px solid rgba(151,151,151,0.52);
+  }
+}
+
+input[type="text"].med-name-input {
+  float: left;
+  width: rem(511);
+  margin-right: 2.1rem;
+}
+
+input[type="text"].med-dose-input {
+  float: left;
+  width: rem(145);
+}
+
+.select-reminder {
+  text-align: center;
+  font-size: rem(20);
+  margin-top: rem(32);
+  margin-bottom: rem(22);
+  color: $dark-blue;
+  font-weight: 300;
+}
+
+.reminder-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-item {
+  float: left;
+  width: rem(133);
+  position: relative;
+  margin-right: rem(33);
+  text-align: center;
+  padding: rem(11) rem(21);
+  border: 1px solid rgba(151,151,151,0.52);
+}
+
+input[type=radio]:not(old) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: rem(45);
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.custom-input {
+  width: rem(133);
+  float: left;
+  height: rem(45);
+
+  input {
+    padding: rem(11) rem(21);
+    font-size: rem(20);
+  }
+}

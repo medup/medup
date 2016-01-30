@@ -4,3 +4,8 @@ node_modules
 .jshintrc
 npm-debug.log
 dist/
+
+bourbon
+neat
+base
+.sass-cache

@@ -1,0 +1,64 @@
+.content {
+  height: calc(100% - 58px);
+  @include clearfix;
+}
+
+.nav-bar {
+  @include span-columns(4.2);
+  margin-right: 0;
+  height: 100%;
+
+  .nav-tab {
+    display: flex;
+    align-items: center;
+    padding-left: 17.4%;
+    cursor: pointer;
+    transition: background-color 0.3s $ease-out-quart;
+
+    h2 {
+      font-weight: 100;
+      font-size: rem(48);
+      color: #fff;
+      margin: 0;
+    }
+  }
+
+  .view-tab {
+    height: 44%;
+    background-color: $light-gray;
+
+    &:hover {
+      background-color: darken($light-gray, 5%);
+    }
+
+    h2 {
+      color: $dark-blue;
+    }
+  }
+
+  .lower-tab {
+    height: 28%;
+
+    &.add-medication {
+      background-color: $teal;
+
+      &:hover {
+        background-color: darken($teal, 5%);
+      }
+    }
+
+    &.view-reports {
+      background-color: $blue;
+
+      &:hover {
+        background-color: darken($blue, 5%);
+      }
+    }
+  }
+}
+
+.primary {
+  @include span-columns(7.8);
+  height: 100%;
+  overflow-y: auto;
+}

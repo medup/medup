@@ -1,0 +1,41 @@
+header {
+  height: rem(58);
+  padding: rem(13) rem(48);
+  background-color: $dark-blue;
+  @include clearfix;
+
+  .logo {
+    float: left;
+
+    img {
+      display: block;
+      max-height: rem(32);
+    }
+  }
+
+  .header-nav {
+    float: right;
+    @include clearfix;
+
+    li {
+      float: left;
+      margin-right: rem(24);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    a {
+      color: #fff;
+      font-size: rem(20);
+      padding: rem(4) 0;
+      font-weight: 300;
+      cursor: pointer;
+
+      &:hover {
+        color: darken(#fff, 15%);
+      }
+    }
+  }
+}

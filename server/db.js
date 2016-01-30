@@ -22,7 +22,10 @@ exports.register = (plugin, options, next) => {
       models: [
         models.User,
         models.Medication
-      ]
+      ],
+      defaults: {
+        migration: 'safe'
+      }
     }
   }).then(err => {
     if (err) throw err;
