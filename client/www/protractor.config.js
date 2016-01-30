@@ -15,17 +15,7 @@ exports.config = {
     showColors: true,
     defaultTimeoutInterval: 30000,
     isVerbose: true,
+    includeStackTrace: true
   },
-  allScriptsTimeout: 20000,
-  mocks: {
-    dir: 'mocks',
-    default: ['medications']
-  },
-  onPrepare: function() {
-    browser.driver.get('http://localhost:8100');
-    require('protractor-http-mock').config = {
-      rootDirectory: __dirname, // default value: process.cwd()
-      protractorConfig: 'protractor.config.js' // default value: 'protractor.conf'
-    };
-  }
+  allScriptsTimeout: 20000
 };

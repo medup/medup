@@ -29,7 +29,7 @@
 
     $scope.signup = function() {
       console.log("Signup - Scope data " + $scope.data);
-     AuthService.signup($scope.data)
+      AuthService.signup($scope.data)
         .then(function(data) {
           $state.go('dashboard');
         }).catch(function(data) {

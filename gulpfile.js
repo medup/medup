@@ -107,8 +107,9 @@ gulp.task('protractor', function(callback) {
     .src(['client/www/test/e2e/*.js'])
     .pipe(gulpProtractorAngular({
       'configFile': 'client/www/protractor.config.js',
-      'debug': false,
-      'autoStartStopServer': true
+      'debug': true,
+      'autoStartStopServer': true,
+      'args': ['--baseUrl', 'http://localhost:8100'],
     }))
     .on('error', function(e) {
       console.log(e);
@@ -116,7 +117,7 @@ gulp.task('protractor', function(callback) {
     .on('end', callback);
 });
 
-gulp.task('test', ['tape, mocha, protractor']);
+gulp.task('test', ['tape', 'mocha', 'protractor']);
 
 /*=======================================
 =            Starting Server            =
