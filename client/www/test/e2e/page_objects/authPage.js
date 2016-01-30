@@ -1,18 +1,36 @@
-var loginPage = function() {
-  'use strict';
-  this.userName = element(by.model('data.email'));
-  this.password = element(by.model('data.password'));
-  this.submitButton = element(by.css('.login-form button[type="submit"]'));
-  //******************** functions *******************
-  this.setUserName = function(username) {
-    this.userName.clear();
-    this.userName.sendKeys(username);
-  };
-  this.clickSubmit = function() {
-    this.submitButton.click();
-  };
-};
+var SignPage = (function() {
+  function SignPage() {
+    this.emailField = element(By.input("user.email"));
+    this.passwordField = element(By.input("user.password"));
+    this.loginButton = element(By.id("log-in"));
+    this.currentUser = element(By.binding("{{currentUser.name}}"));
+  }
 
-module.exports = {
-  log: new loginPage()
-};
+  SignPage.prototype.visitPage = function() {
+    browser.get("/");
+  };
+
+  SignPage.prototype.fillEmail = function(email) {
+    this.emailField.sendKeys(email);
+  };
+
+  SignPage.prototype.fillPassword = function(password) {
+    if (password === null) {
+      password = "password";
+    }
+    this.passwordField.sendKeys(password);
+  };
+
+  SignPage.prototype.signup = function() {
+    this.loginButton.click();
+  };
+
+  SignPage.prototype.getCurrentUser = function() {
+    return this.currentUser.getText();
+  };
+
+  return SignPage;
+
+})();
+
+module.exports = SignPage;

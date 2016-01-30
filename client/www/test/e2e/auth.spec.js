@@ -1,10 +1,13 @@
 describe('Login - ', function() {
-  var username = element(by.model('data.email'));
-  var password = element(by.model('data.password'));
+  var username = element(by.model('user.email'));
+  var password = element(by.model('user.password'));
   it('test username exists', function() {
     browser.get('/#/signin');
-    // element(by.model('data.email')).sendKeys('jonSnow@got.com');
-    element(by.model(username)).isPresent().toBe(true);
+    element(by.model(username)).sendKeys('jonSnow@got.com');
+    expect(element(by.model(username)).isPresent()).toBe(true);
+  });
+  it('should redirect to /login when location hash is login', function() {
+    expect(browser.getLocationAbsUrl()).toMatch("/signin");
   });
 });
 // /* Rest of the modules to verify user creation */

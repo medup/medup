@@ -12,10 +12,10 @@
   AuthCtrl.$inject = ['$scope', '$state', '$ionicPopup', 'AuthService'];
 
   function AuthCtrl($scope, $state, $ionicPopup, AuthService) {
-    $scope.data = {};
+    $scope.user = {};
 
     $scope.signin = function() {
-      AuthService.signin($scope.data)
+      AuthService.signin($scope.user)
         .then(function(data) {
           $state.go('dashboard');
         }).catch(function(data) {
@@ -28,8 +28,7 @@
     };
 
     $scope.signup = function() {
-      console.log("Signup - Scope data " + $scope.data);
-      AuthService.signup($scope.data)
+      AuthService.signup($scope.user)
         .then(function(data) {
           $state.go('dashboard');
         }).catch(function(data) {
