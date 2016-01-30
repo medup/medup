@@ -1,13 +1,12 @@
 var SignPage = (function() {
   function SignPage() {
-    this.emailField = element(By.input("user.email"));
-    this.passwordField = element(By.input("user.password"));
-    this.loginButton = element(By.id("log-in"));
-    this.currentUser = element(By.binding("{{currentUser.name}}"));
+    this.emailField = element(by.model("user.email"));
+    this.passwordField = element(by.model("user.password"));
+    this.loginButton = element(by.buttonText("Open MedUp"));
   }
 
   SignPage.prototype.visitPage = function() {
-    browser.get("/");
+    browser.get("/#/signin");
   };
 
   SignPage.prototype.fillEmail = function(email) {
@@ -23,10 +22,6 @@ var SignPage = (function() {
 
   SignPage.prototype.signup = function() {
     this.loginButton.click();
-  };
-
-  SignPage.prototype.getCurrentUser = function() {
-    return this.currentUser.getText();
   };
 
   return SignPage;

@@ -1,13 +1,28 @@
-describe('Login - ', function() {
-  var username = element(by.model('user.email'));
-  var password = element(by.model('user.password'));
-  it('test username exists', function() {
-    browser.get('/#/signin');
-    element(by.model(username)).sendKeys('jonSnow@got.com');
-    expect(element(by.model(username)).isPresent()).toBe(true);
-  });
-  it('should redirect to /login when location hash is login', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/signin");
+var LoginPage = require("./pages/authPage");
+require('jasmine-given');
+
+describe("app", function() {
+  var page = new LoginPage();
+  describe("visiting the login page", function() {
+    Given(function() {
+      page.visitPage();
+    });
+    describe("when a user logs in", function() {
+      Given(function() {
+        page.fillEmail("testy@example.com");
+      });
+      Given(function() {
+        page.fillPassword('fasfasdfas');
+      });
+      When(function() {
+        page.login();
+      });
+      Then(function() {
+        page.getCurrentUser().then(function(text) {
+          expect(text).toEqual("Randy Savage");
+        });
+      });
+    });
   });
 });
 // /* Rest of the modules to verify user creation */

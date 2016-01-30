@@ -27,7 +27,7 @@
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/signup');
+      $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('dashboard', {
           url: '/dashboard',
