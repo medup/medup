@@ -1,7 +1,9 @@
 (() => {
   "use strict";
 
-  angular.module('app', [])
+  angular.module('medup-app', [
+    'ui-router'
+  ])
     .config(($stateProvider, $urlRouterProvider, $httpProvider, $urlRouterProvider) => {
       $urlRouterProvider.otherwise('/dashbaord');
       $stateProvider
@@ -32,8 +34,10 @@
 }();
 
 function attachTokens = ($window) => {
+
   let attach = {
     request: (object) => {
+
       let jwt = $window.localStorage.getItem('com.pillMeNow');
 
       if (jwt) {
@@ -41,10 +45,14 @@ function attachTokens = ($window) => {
       }
 
       object.headers['Allow-Control-Allow-Origin'] = '*';
+
       return object;
+
     }
   };
+
   return attach;
+
 }
 
 function appRun = ($rootScope, $state, Auth) => {
@@ -56,5 +64,6 @@ function appRun = ($rootScope, $state, Auth) => {
       evt.preventDefault();
       $state.go('signin');
     }
+
   });
 }
