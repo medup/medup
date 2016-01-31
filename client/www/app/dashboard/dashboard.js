@@ -4,9 +4,9 @@
   angular
     .module('starter.dashboard', ['ionic', 'ionic-material'])
     .controller('DashboardCtrl', DashboardCtrl);
-  DashboardCtrl.$inject = ['$scope', '$state', '$ionicModal', '$timeout', 'MedService', 'Medications'];
+  DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$ionicModal', '$timeout', 'MedService', 'Medications'];
 
-  function DashboardCtrl($scope, $state, $ionicModal, $timeout, MedService, Medications) {
+  function DashboardCtrl($scope, $state, $stateParams, $ionicModal, $timeout, MedService, Medications) {
 
     $ionicModal.fromTemplateUrl('app/dashboard/more-information.html', {
       scope: $scope,
@@ -15,6 +15,7 @@
       $scope.modal = modal;
     });
 
+    console.dir($stateParams);
     /* Get med data when user enters dashboard */
     var getMedData = function(user) {
       MedService.getMeds(user)

@@ -30,7 +30,7 @@
       $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('dashboard', {
-          url: '/dashboard',
+          url: '/dashboard/:user',
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardCtrl'
         })
