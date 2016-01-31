@@ -9,3 +9,4 @@ bourbon
 neat
 base
 .sass-cache
+server/public/assets/css
