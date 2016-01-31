@@ -32,10 +32,8 @@
 }();
 
 function attachTokens = ($window) => {
-
   let attach = {
     request: (object) => {
-
       let jwt = $window.localStorage.getItem('com.pillMeNow');
 
       if (jwt) {
@@ -43,14 +41,10 @@ function attachTokens = ($window) => {
       }
 
       object.headers['Allow-Control-Allow-Origin'] = '*';
-
       return object;
-
     }
   };
-
   return attach;
-
 }
 
 function appRun = ($rootScope, $state, Auth) => {
@@ -62,6 +56,5 @@ function appRun = ($rootScope, $state, Auth) => {
       evt.preventDefault();
       $state.go('signin');
     }
-
   });
 }
