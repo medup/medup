@@ -1,10 +1,110 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!doctype html>
+<html class="no-js" ng-app="medup-web">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300,100' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+      <header>
+        
+        <div class="logo">
+          <a ui-sref="dashboard">
+            <img src="img/logo.png" alt="MedUp Logo">
+          </a>
+        </div>
 
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="app.js"></script>
-  </body>
+        <div class="header-nav">
+          <ul>
+            <li><a ur-sref="profile">Profile</a></li>
+            <li><a ur-sref="profile">Logout</a></li>
+          </ul>
+        </div>
+
+      </header>
+
+      <section class="content">
+        
+        <section class="nav-bar">
+          
+          <a ui-sref="view-medications">
+            <div class="view-tab nav-tab">
+              
+              <h2>View<br>Medications</h2>
+
+            </div>
+          </a>
+
+          <a ui-sref="add-medication">
+            <div class="lower-tab nav-tab add-medication">
+              
+              <h2>Add<br>Medication</h2>
+
+            </div>
+          </a>
+
+          <a ui-sref="view-reports">
+            <div class="lower-tab nav-tab view-reports">
+              
+              <h2>View<br>Reports</h2>
+
+            </div>
+          </a>
+
+        </section>
+
+        <section class="primary" ui-view>
+          
+          <div class="add-state">
+            
+            <div class="top-heading">
+    
+              <h1>Your Medications</h1>
+
+            </div>
+
+            <div class="med-form-wrapper">
+              
+              <form class="med-form">
+
+                <div class="form-top">
+                  
+                  <input class="med-name-input" type="text" name="medName" placeholder="Medication Name">
+
+                  <input class="med-dose-input" type="text" name="medDose" placeholder="Dose">
+
+                  <input class="med-instructions-input" type="text" name="medInstructions" placeholder="Instructions">
+
+                  <h4 class="select-reminder">Select A Reminder</h4>
+
+                  <div class="reminder-wrapper">
+                  
+                    <label for="radio0" class="radio-item"><input type="radio" id="radio0" name="reminder" value="8:30am">8:30am</label>
+
+                    <label for="radio1" class="radio-item"><input type="radio" id="radio1" name="reminder" value="8:30am">8:30am</label>
+
+                    <label for="radio2" class="radio-item"><input type="radio" id="radio2" name="reminder" value="8:30am">8:30am</label>
+
+                    <div class="custom-input" for="radio3"><input type="text" id="radio3" name="customReminder" value="Custom"></div>
+
+                  </div>
+
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </section>
+
+    </body>
 </html>
