@@ -15,7 +15,6 @@
       $scope.modal = modal;
     });
 
-    console.dir($stateParams);
     /* Get med data when user enters dashboard */
     var getMedData = function(user) {
       MedService.getMeds(user)
@@ -29,8 +28,8 @@
 	console.dir(err);
       });
     };
- 
-    getMedData();
+
+    getMedData($stateParams.user);
 
     $scope.editMedication = function(medication) {
       $state.go('medsForm', {medName: medication.id});
