@@ -4,9 +4,9 @@
   angular
     .module('starter.dashboard', ['ionic', 'ionic-material'])
     .controller('DashboardCtrl', DashboardCtrl);
-  DashboardCtrl.$inject = ['$scope', '$state', '$ionicModal', '$timeout', 'MedService'];
+  DashboardCtrl.$inject = ['$scope', '$state', '$ionicModal', '$timeout', 'MedService', 'Medications'];
 
-  function DashboardCtrl($scope, $state, $ionicModal, $timeout, MedService) {
+  function DashboardCtrl($scope, $state, $ionicModal, $timeout, MedService, Medications) {
 
     $ionicModal.fromTemplateUrl('app/dashboard/more-information.html', {
       scope: $scope,
@@ -18,14 +18,18 @@
     /* Get med data when user enters dashboard */
     var getMedData = function(user) {
       MedService.getMeds(user)
-        .success(function(medInfoArr) {
-          $scope.medications = medInfoArr;
-        }).error(function(medInfoArr) {
-          console.log("Error Retrieving Information");
-        });
+      .then(function(medInfoArr) {
+        Medications.userMeds.dbMeds = medInfoArray;
+	$scope.medications = Medications.userMeds.dbMeds;
+	console.log("fetched medications for %s", user);
+      }).catch(function(err) {
+        console.error("unable to fetch medication data from server");
+	console.dir(err);
+      });
     };
+ 
+    getMedData();
 
-    // getMedData();
     $scope.editMedication = function(medication) {
       $state.go('medsForm', {medName: medication.id});
       /**
