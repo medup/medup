@@ -55,7 +55,7 @@
     .factory('AttachTokens', function($window) {
       var attach = {
         request: function(object) {
-          var jwt = $window.localStorage.getItem('com.pillMeNow');
+          var jwt = $window.localStorage.getItem('com.medUp');
           if (jwt) {
             object.headers['authorization'] = jwt;
             console.log("obj", object);

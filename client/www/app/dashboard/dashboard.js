@@ -19,9 +19,10 @@
     var getMedData = function(user) {
       MedService.getMeds(user)
       .then(function(medInfoArr) {
-        Medications.userMeds.dbMeds = medInfoArray;
+        Medications.userMeds.dbMeds = medInfoArr;
 	$scope.medications = Medications.userMeds.dbMeds;
 	console.log("fetched medications for %s", user);
+	console.table(medInfoArr);
       }).catch(function(err) {
         console.error("unable to fetch medication data from server");
 	console.dir(err);
