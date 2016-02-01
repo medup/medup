@@ -41,7 +41,7 @@ let internals = {
     }).exec(function(err, med) {
       if (err) console.error(err);
 
-      return reply().code(201);
+      return reply('Medication added').code(201);
     });
   },
   'put': (request, reply) => {
