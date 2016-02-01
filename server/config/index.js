@@ -1,6 +1,7 @@
 'use strict';
 
-const crypto = require('crypto');
+const crypto = require('crypto'),
+      neat = require('node-neat');
 
 module.exports = manifest => {
   /* TODO refactor this */
@@ -35,9 +36,11 @@ module.exports = manifest => {
   let sassOptions = {
     src: __dirname + '/../public/assets/sass',
     dest: __dirname + '/../public/assets/css',
-    force: true,
-    routePath: '/css/{file}.css'
+    routePath: '/css/{file}.css',
+    includePaths: neat.includePaths
   };
+
+  console.log(sassOptions);
 
   let hapiSass = manifest.registrations.find(p => p.plugin.register === 'hapi-sass');
   if (hapiSass) {

@@ -37,6 +37,7 @@
     "inert": "^3.2.0",
     "joi": "^7.2.2",
     "jsonwebtoken": "^5.5.4",
+    "node-neat": "^1.7.2",
     "path": "^0.12.7",
     "plugo": "^0.3.1",
     "sails-mongo": "^0.12.0",
