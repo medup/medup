@@ -1,10 +1,8 @@
-(() => {
-  "use strict";
+"use strict";
 
   angular.module('medup-app', [
-    'ui-router'
   ])
-    .config(($stateProvider, $urlRouterProvider, $httpProvider, $urlRouterProvider) => {
+    .config(($stateProvider, $urlRouterProvider, $httpProvider) => {
       $urlRouterProvider.otherwise('/dashbaord');
       $stateProvider
         .state('dashboard', {
@@ -31,9 +29,8 @@
       })
       .factory('AttachTokens', attachTokens)
       .run(appRun);
-}();
 
-function attachTokens = ($window) => {
+function attachTokens($window) {
 
   let attach = {
     request: (object) => {
@@ -55,7 +52,7 @@ function attachTokens = ($window) => {
 
 }
 
-function appRun = ($rootScope, $state, Auth) => {
+function appRun($rootScope, $state, Auth) {
   $rootScope.on('$stateChangeStart', (evt, toState) => {
 
     if (toState.name === 'signin') return;
@@ -64,6 +61,5 @@ function appRun = ($rootScope, $state, Auth) => {
       evt.preventDefault();
       $state.go('signin');
     }
-
   });
 }
