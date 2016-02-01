@@ -41,7 +41,7 @@ exports.register = (plugin, options, next) => {
   plugin.route([
     { method: 'GET', path: '/', config: { auth: false, handler: (request, reply) => { reply.view('index'); } } },
     { method: 'GET', path: '/{param*}', config: { auth: false,
-                                                    handler: { 
+                                                    handler: {
                                                       directory: {
                                                         path: 'assets' } } } },
 
