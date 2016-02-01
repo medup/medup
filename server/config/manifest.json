@@ -21,6 +21,11 @@
       "plugin": "hapi-auth-jwt2"
     },
     {
+      "plugin": {
+        "register": "hapi-sass"
+      }
+    },
+    {
       "plugin": "vision"
     },
     {
