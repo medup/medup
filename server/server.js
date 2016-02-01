@@ -9,8 +9,6 @@ const Hapi = require('hapi'),
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
 
-  //console.log(server.registrations);
-
   if (process.env.NODE_ENV === 'production') {
     server.ext('onRequest', (request, reply) => {
       if (request.headers['x-forward-proto'] === 'http') {
