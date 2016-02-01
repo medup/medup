@@ -36,8 +36,6 @@ module.exports = manifest => {
   let sassOptions = {
     src: __dirname + '/../public/assets/sass',
     dest: __dirname + '/../public/assets/css',
-    force: true,
-    debug: true,
     routePath: '/css/{file}.css',
     includePaths: neat.includePaths
   };
