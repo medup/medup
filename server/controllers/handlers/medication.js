@@ -4,6 +4,7 @@ const CryptoJS = require('crypto-js');
 
 let internals = {
   'get': (request, reply) => {
+
     let User = request.collections.users,
         userId = request.auth.credentials.id;
 
@@ -30,6 +31,7 @@ let internals = {
         });
   },
   'post': (request, reply) => {
+
     let Medications = request.collections.medications;
     let medication = request.payload;
 
