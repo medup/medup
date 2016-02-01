@@ -40,8 +40,6 @@ module.exports = manifest => {
     includePaths: neat.includePaths
   };
 
-  console.log(sassOptions);
-
   let hapiSass = manifest.registrations.find(p => p.plugin.register === 'hapi-sass');
   if (hapiSass) {
     hapiSass.plugin.options = sassOptions;
