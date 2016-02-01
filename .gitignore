@@ -5,8 +5,5 @@ npm-debug.log
 node_modules
 dist/
 
-bourbon
-neat
-base
 .sass-cache
 server/public/assets/css
