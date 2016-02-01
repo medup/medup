@@ -77,6 +77,8 @@
     "supertest": "^1.1.0",
     "tap-colorize": "^1.2.0",
     "tape": "^4.4.0",
+
     "webpack": "^1.12.12"
+
   }
 }
