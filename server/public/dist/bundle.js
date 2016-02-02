@@ -50,55 +50,64 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _angularComponent = __webpack_require__(6);
-
-	var _angularComponent2 = _interopRequireDefault(_angularComponent);
-
 	var _angularUiRouter = __webpack_require__(3);
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _app = __webpack_require__(4);
+	var _angularComponent = __webpack_require__(4);
+
+	var _angularComponent2 = _interopRequireDefault(_angularComponent);
+
+	var _components = __webpack_require__(5);
+
+	var _components2 = _interopRequireDefault(_components);
+
+	var _app = __webpack_require__(10);
 
 	var _app2 = _interopRequireDefault(_app);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('medup-web', [_angularUiRouter2.default]).config(function ($httpProvider) {
-	  $httpProvider.interceptors.push('AttachTokens');
-	}).component('medup-web', _app2.default).factory('AttachTokens', attachTokens).run(appRun);
-
-	function attachTokens($window) {
-
-	  var attach = {
-	    request: function request(object) {
-
-	      var jwt = $window.localStorage.getItem('com.pillMeNow');
-
-	      if (jwt) {
-	        object.headers['x-access-token'] = jwt;
-	      }
-
-	      object.headers['Allow-Control-Allow-Origin'] = '*';
-
-	      return object;
-	    }
-	  };
-
-	  return attach;
-	}
-
-	function appRun($rootScope, $state, Auth) {
-	  $rootScope.on('$stateChangeStart', function (evt, toState) {
-
-	    if (toState.name === 'signin') return;
-
-	    if (!Auth.isAuth() && toState.name !== 'signup') {
-	      evt.preventDefault();
-	      $state.go('signin');
-	    }
-	  });
-	}
+	_angular2.default.module('medup-web', [_angularUiRouter2.default, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
+	  $urlRouterProvider.otherwise('/');
+	  // $httpProvider.interceptors.push('AttachTokens');
+	}).component('medupWeb', _app2.default);
+	// .factory('AttachTokens', attachTokens)
+	//  .run();
+	//
+	// function attachTokens($window) {
+	//
+	//   let attach = {
+	//     request: (object) => {
+	//
+	//       let jwt = $window.localStorage.getItem('com.pillMeNow');
+	//
+	//       if (jwt) {
+	//         object.headers['x-access-token'] = jwt;
+	//       }
+	//
+	//       object.headers['Allow-Control-Allow-Origin'] = '*';
+	//
+	//       return object;
+	//
+	//     }
+	//   };
+	//
+	//   return attach;
+	//
+	// }
+	//
+	// function appRun($rootScope, $state, Auth) {
+	//   $rootScope.on('$stateChangeStart', (evt, toState) => {
+	//
+	//     if (toState.name === 'signin') return;
+	//
+	//     if (!Auth.isAuth() && toState.name !== 'signup') {
+	//       evt.preventDefault();
+	//       $state.go('signin');
+	//     }
+	//   });
+	// }
 
 /***/ },
 /* 1 */
@@ -17801,35 +17810,6 @@
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _app = __webpack_require__(5);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var appComponent = {
-	  template: _app2.default,
-	  restrict: 'E'
-	};
-
-	exports.default = appComponent;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
-
-/***/ },
-/* 6 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17854,6 +17834,148 @@
 	    }var e = n.apply(this, arguments);return e.component ? e : (e.component = r, e);
 	  }var n = angular.module;angular.module = r;
 	}();
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(1);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _dashboard = __webpack_require__(6);
+
+	var _dashboard2 = _interopRequireDefault(_dashboard);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var componentModule = _angular2.default.module('medup-web.components', [_dashboard2.default.name]);
+
+	exports.default = componentModule;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(1);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularUiRouter = __webpack_require__(3);
+
+	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
+
+	var _dashboard = __webpack_require__(7);
+
+	var _dashboard2 = _interopRequireDefault(_dashboard);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var dashboardModule = _angular2.default.module('dashboard', [_angularUiRouter2.default]).config(function ($stateProvider) {
+	  $stateProvider.state('dashboard', {
+	    url: '/dashboard',
+	    template: '<dashboard></dashboard>'
+	  });
+	}).component('dashboard', _dashboard2.default);
+
+	exports.default = dashboardModule;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dashboard = __webpack_require__(8);
+
+	var _dashboard2 = _interopRequireDefault(_dashboard);
+
+	var _dashboard3 = __webpack_require__(9);
+
+	var _dashboard4 = _interopRequireDefault(_dashboard3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var dashboardComponent = {
+	  restrict: 'E',
+	  bindings: {},
+	  template: _dashboard2.default,
+	  controller: _dashboard4.default,
+	  controllerAs: 'vm'
+	};
+
+	exports.default = dashboardComponent;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"dashboard\">\n            \n  <div class=\"heading-wrapper\">\n\n    <div class=\"primary-logo\">\n      \n      <img src=\"assets/img/logo.png\" alt=\"MedUp Logo\">\n\n    </div>\n\n    <h1>MedUp</h1>\n\n    <h3>Your healthy reminder</h3>\n\n  </div>\n\n</div>"
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var DashboardController = function DashboardController() {
+	  _classCallCheck(this, DashboardController);
+
+	  this.name = 'dashboard';
+	};
+
+	exports.default = DashboardController;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _app = __webpack_require__(11);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var appComponent = {
+	  templateUrl: 'app/app.html',
+	  restrict: 'E'
+	};
+
+	exports.default = appComponent;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class='app'>\n  <div ui-view></div>\n  <h1>Hello, world</h1>\n</div>\n"
 
 /***/ }
 /******/ ]);

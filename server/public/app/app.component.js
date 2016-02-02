@@ -3,7 +3,7 @@
 import template from './app.html';
 
 let appComponent = {
-  template,
+  templateUrl: 'app/app.html',
   restrict: 'E'
 };
 
