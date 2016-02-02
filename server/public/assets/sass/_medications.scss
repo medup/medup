@@ -55,6 +55,10 @@
 .med-notifications {
   @include span-columns(2.5);
 
+  li {
+    margin-bottom: rem(4);
+  }
+
   i {
     color: #B6B6B6;
   }

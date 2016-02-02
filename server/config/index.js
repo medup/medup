@@ -1,7 +1,8 @@
 'use strict';
 
 const crypto = require('crypto'),
-      neat = require('node-neat');
+      neat = require('node-neat'),
+      path = require('path');
 
 module.exports = manifest => {
   /* TODO refactor this */
@@ -34,9 +35,9 @@ module.exports = manifest => {
   manifest.connections[0].port = process.env.PORT || 3000;
 
   let sassOptions = {
-    src: __dirname + '/../public/assets/sass',
-    dest: __dirname + '/../public/assets/css',
-    routePath: '/css/{file}.css',
+    src: path.join(__dirname, '/../public/assets/sass'),
+    dest: path.join(__dirname, '/../public/assets/css'),
+    force: true,
     includePaths: neat.includePaths
   };
 

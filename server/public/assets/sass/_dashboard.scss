@@ -1,9 +1,18 @@
 .dashboard {
+  position: absolute;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  width: 65%;
+  height: calc(100% - 58px);
   background-color: $red;
+  transition: all 1.5s $ease-in-out-sine;
+  @include transform(translate3d(0,0,0));
+
+  &.splash {
+    width: 100%;
+  }
 }
 
 .heading-wrapper {

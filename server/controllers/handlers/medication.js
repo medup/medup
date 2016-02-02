@@ -13,6 +13,8 @@ let internals = {
         .exec(function(err, user) { 
           if (err) console.error(err);
 
+          if (!user) return reply('User not found').code(404);
+
           if (user) {
             let data = user.medications.map(med => {
               let decryptedText = CryptoJS.AES.decrypt(med.info.toString(), process.env.keySecret);
@@ -27,7 +29,7 @@ let internals = {
             return reply(data).code(200);
           }
 
-          return reply().code(404);
+          return reply([]).code(200);
         });
   },
   'post': (request, reply) => {
