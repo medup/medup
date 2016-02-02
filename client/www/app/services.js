@@ -57,7 +57,6 @@
       return $http({
           method: 'GET',
           url: 'https://medup.herokuapp.com/api/medications',
-          data: user
         })
         .then(function(response) {
           return response.data;
@@ -66,10 +65,23 @@
         });
     };
 
+    this.addMed = function(medication) {
+      return $http({
+          method: 'POST',
+          url: 'https://medup.herokuapp.com/api/medications',
+          data: medication
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
+        });
+    };
+    
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
-          url: 'https://localhost:3003/api/medications',
+          url: 'https://medup.herokuapp.com/api/medications',
           data: user
         })
         .then(function(response) {

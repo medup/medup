@@ -16,12 +16,12 @@
     });
 
     /* Get med data when user enters dashboard */
-    var getMedData = function(user) {
-      MedService.getMeds(user)
+    var getMedData = function() {
+      MedService.getMeds()
       .then(function(medInfoArr) {
         Medications.userMeds.dbMeds = medInfoArr;
 	$scope.medications = Medications.userMeds.dbMeds;
-	console.log("fetched medications for %s", user);
+	console.log("fetched medications");
 	console.table(medInfoArr);
       }).catch(function(err) {
         console.error("unable to fetch medication data from server");
