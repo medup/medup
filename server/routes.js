@@ -43,7 +43,7 @@ exports.register = (plugin, options, next) => {
     { method: 'GET', path: '/{param*}', config: { auth: false,
                                                     handler: {
                                                       directory: {
-                                                        path: ['public', 'public/app/components'] } } } },
+                                                        path: 'public' } } } },
     { method: 'POST', path: '/user/signup', config: { auth: false, handler: handlers['Users'].signup, validate: internals.routeValidation.signup } },
     { method: 'POST', path: '/user/signin', config: { auth: false, handler: handlers['Users'].signin, validate: internals.routeValidation.signin } },
     { method: 'GET', path: '/restricted', config: { auth: 'jwt', handler: handlers['Restricted'] } },
