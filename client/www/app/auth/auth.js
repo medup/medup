@@ -17,7 +17,8 @@
     $scope.signin = function() {
       AuthService.signin($scope.user)
         .then(function(data) {
-          $state.go('dashboard', {user: $scope.data.email});
+	  console.dir(data);
+        $state.go('dashboard', {user: $scope.data.email});
         }).catch(function(data) {
           console.log(data);
           var alertPopup = $ionicPopup.alert({

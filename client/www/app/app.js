@@ -20,7 +20,7 @@
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/dashboard');
+      $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('dashboard', {
           url: '/dashboard/:user',
@@ -59,6 +59,10 @@
     })
     .run(function($rootScope, $state, AuthService) {
       $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> (fix) change login and register in .run() to signin and signup
         if (toState.name === 'signin' || toState.name === 'signup') {
           return;
         }
