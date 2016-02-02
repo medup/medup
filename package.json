@@ -69,6 +69,8 @@
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
     "mocha": "^2.3.4",
+    "raw": "^0.1.4",
+    "raw-loader": "^0.5.1",
     "sails-memory": "^0.10.5",
     "supertest": "^1.1.0",
     "tap-colorize": "^1.2.0",
