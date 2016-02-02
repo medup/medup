@@ -25,11 +25,11 @@
     this.signin = function(user) {
       return $http({
           method: 'POST',
-          url: 'http://localhost:3003/user/signin',
+          url: 'https://medup.herokuapp.com/user/signin',
           data: user
         })
         .then(function(response) {
-          $window.localStorage.setItem('com.pillMeNow', response.data.token);
+          $window.localStorage.setItem('com.medUp', response.data.token);
           //return response.data.token;
         });
     };
@@ -37,17 +37,17 @@
     this.signup = function(user) {
       return $http({
           method: 'POST',
-          url: 'http://localhost:3003/user/signup',
+          url: 'https://medup.herokuapp.com/user/signup',
           data: user
         })
         .then(function(response) {
-          $window.localStorage.setItem('com.pillMeNow', response.data.token);
+          $window.localStorage.setItem('com.medUp', response.data.token);
           //return response.data.token;
         });
     };
 
     this.signout = function() {
-      $window.localStorage.removeItem('com.pillMeNow');
+      $window.localStorage.removeItem('com.medUp');
       $state.go('/signin');
     };
   }
@@ -56,8 +56,7 @@
     this.getMeds = function(user) {
       return $http({
           method: 'GET',
-          url: 'http://localhost:3003/api/medications',
-          data: user
+          url: 'https://medup.herokuapp.com/api/medications',
         })
         .then(function(response) {
           return response.data;
@@ -66,10 +65,23 @@
         });
     };
 
+    this.addMed = function(medication) {
+      return $http({
+          method: 'POST',
+          url: 'https://medup.herokuapp.com/api/medications',
+          data: medication
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
+        });
+    };
+    
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
-          url: 'http://localhost:3003/api/medications',
+          url: 'https://medup.herokuapp.com/api/medications',
           data: user
         })
         .then(function(response) {
@@ -82,7 +94,7 @@
     this.deleteMeds = function(user) {
       return $http({
           method: 'DELETE',
-          url: 'http://localhost:3003/api/medications',
+          url: 'https://medup.herokuapp.com/api/medications',
           data: user
         })
         .then(function(response) {
@@ -96,12 +108,6 @@
   function Medications() {
     var  medFac = {};
     medFac.userMeds = {};
-    // MedService.getMeds(user)
-    //   .then(function(medInfoArr) {
-    //     medFac.userMeds.dbMeds = medInfoArray;
-    //   }).catch(function(medInfoArr) {
-    //     console.log("ERROR: User Medications not Received");
-    //   });
     
     var testMeds = [{
       id: 12,

@@ -30,7 +30,7 @@
       $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('dashboard', {
-          url: '/dashboard',
+          url: '/dashboard/:user',
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardCtrl'
         })
@@ -45,7 +45,7 @@
           controller: 'AuthCtrl'
         })
         .state('medsForm', {
-          url: '/medsForm/:medName',
+          url: '/medsForm/:medId',
           templateUrl: 'app/medsForm/medsForm.html',
           controller: 'MedsFormCtrl'
         });
@@ -55,10 +55,9 @@
     .factory('AttachTokens', function($window) {
       var attach = {
         request: function(object) {
-          var jwt = $window.localStorage.getItem('com.pillMeNow');
+          var jwt = $window.localStorage.getItem('com.medUp');
           if (jwt) {
-            object.headers['authorization'] = jwt;
-            console.log("obj", object);
+            object.headers['Authorization'] = jwt;
           }
           return object;
         }

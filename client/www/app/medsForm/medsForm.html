@@ -5,20 +5,20 @@
     <ion-list>
       <ion-input floating-label>
         <ion-label><h4><b>Name</b></h4></ion-label>
-        <input id="name" name="name" type="text" value="{{med.name}}">
+        <input id="name" name="name" type="text" ng-model="med.info.name">
       </ion-input>
       <ion-input floating-label>
         <ion-label><h4><b>Dosage</b></h4></ion-label>
-        <input id="dosage" name="dosage" type="text" value="{{med.dosage}}">
+        <input id="dosage" name="dosage" type="text" ng-model="med.info.dosage">
       </ion-input>
       <ion-input floating-label>
         <ion-label><h4><b>Time Needed</b></h4></ion-label>
 	<!-- <span class="ion-android-alarm-clock"></span> -->
-	<input id="time" name="time" type="text" value="{{med.reminder}}">
+	<input id="time" name="time" type="text" ng-model="med.info.reminder">
       </ion-input>
       <ion-input floating-label>
         <ion-label><h4><b>Instructions</b></h4></ion-label>
-        <input id="instruct" xoname="instruct" type="text" value="{{med.instruction}}">
+        <input id="instruct" xoname="instruct" type="text" ng-model="med.info.instruct">
       </ion-input>
     </ion-list>
   </div>
