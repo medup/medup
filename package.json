@@ -22,6 +22,7 @@
   "homepage": "https://github.com/shadow-heart/shadow-heart#readme",
   "dependencies": {
     "angular": "^1.4.9",
+    "angular-component": "0.0.6",
     "angular-ui-router": "^0.2.17",
     "bcrypt-nodejs": "0.0.3",
     "crypto-js": "^3.1.6",
@@ -69,6 +70,8 @@
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
     "mocha": "^2.3.4",
+    "raw": "^0.1.4",
+    "raw-loader": "^0.5.1",
     "sails-memory": "^0.10.5",
     "supertest": "^1.1.0",
     "tap-colorize": "^1.2.0",
