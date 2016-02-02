@@ -16,6 +16,7 @@
         <div class="logo">
           <a ui-sref="dashboard">
             <img src="assets/img/logo.png" alt="MedUp Logo">
+            Dashboard
           </a>
         </div>
 
@@ -58,27 +59,14 @@
 
         </section>
 
-        <section class="primary" ui-view>
+        <section class="primary">
 
-          <div class="dashboard splash">
-            
-            <form class="auth-form">
-              
-              <h1>Sign in to your MedUp account</h1>
-
-              <input type="text" name="username" value="" placeholder="Username">
-
-              <input type="password" name="password" value="" placeholder="Password">
-
-              <button type="submit">Sign In</button>
-
-            </form>
-
-          </div>
+          <medup-web></medup-web>
 
         </section>
 
       </section>
+
       <script src="dist/bundle.js"></script>
     </body>
 </html>
