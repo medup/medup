@@ -9,11 +9,14 @@ var webpack = require('webpack');
        module: {
            loaders: [
                {
-                 test: path.join(__dirname, 'server/public'),
+                 test: /\.js$/,
                  loader: 'babel-loader',
                  query: {
                    presets: 'es2015'
                  }
+               },
+               {
+                 test: /\.html$/, loader: 'raw'
                }
            ]
        }
