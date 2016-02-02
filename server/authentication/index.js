@@ -18,7 +18,6 @@ exports.register = (plugin, options, next) => {
       algorithms: ['HS256']
     }
   });
-  plugin.auth.default('jwt');
 
   next();
 };
