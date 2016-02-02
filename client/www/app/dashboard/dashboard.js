@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('starter.dashboard', ['ionic', 'ionic-material'])
+    .module('starter.dashboard', ['ionic', 'ngCordova', 'ionic-material'])
     .controller('DashboardCtrl', DashboardCtrl);
   DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$ionicModal', '$timeout', 'MedService', 'Medications'];
 
@@ -18,21 +18,23 @@
     /* Get med data when user enters dashboard */
     var getMedData = function() {
       MedService.getMeds()
-      .then(function(medInfoArr) {
-        console.dir(medInfoArr);	    
-        $scope.medications = medInfoArr;
-	Medications.userMeds.dbMeds = medInfoArr;
-      }).catch(function(err) {
-        console.error("unable to fetch medication data from server");
-	console.dir(err);
-      });
+        .then(function(medInfoArr) {
+          console.dir(medInfoArr);
+          $scope.medications = medInfoArr;
+          Medications.userMeds.dbMeds = medInfoArr;
+        }).catch(function(err) {
+          console.error("unable to fetch medication data from server");
+          console.dir(err);
+        });
     };
 
     $scope.medications = {};
     getMedData();
-        
+
     $scope.editMedication = function(medication) {
-      $state.go('medsForm', {medId: medication.id});
+      $state.go('medsForm', {
+        medId: medication.id
+      });
       /**
 
         TODO:
@@ -53,51 +55,25 @@
     $scope.removeReminder = function(medication) {
       var index = $scope.medications.indexOf(medication);
       $scope.medications.splice(index, 1);
-      /**
-
-        TODO:
-        - remove reminder from database
-
-       */
     };
 
-    /**
-    /* Fake data to test dashboard */
-    // $scope.medications = [{
-    //   id: 12,
-    //   name: "Abilify (Aripiprazole)",
-    //   dosage: "5mg",
-    //   instruction: "Take one tablet by mouth every morning",
-    //   reminder: "10:30AM Every Day",
-    //   image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    // }, {
-    //   id: 123,
-    //   name: "Actiq (Fentanyl Citrate)",
-    //   dosage: "5mg",
-    //   instruction: "Take one tablet by mouth every morning",
-    //   reminder: "10:30AM Every Day",
-    //   image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    // }, {
-    //   id: 1234,
-    //   name: "Halcion (Triazolam)",
-    //   dosage: "5mg",
-    //   instruction: "Take one tablet by mouth every morning",
-    //   reminder: "10:30AM Every Day",
-    //   image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    // }, {
-    //   id: 12345,
-    //   name: "Quinidex (Quinidine)",
-    //   dosage: "5mg",
-    //   instruction: "Take one tablet by mouth every morning",
-    //   reminder: "10:30AM Every Day",
-    //   image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    // }, {
-    //   id: 123456,
-    //   name: "Adderall (Amphetamine)",
-    //   dosage: "10mg",
-    //   instruction: "Take one tablet by mouth every morning",
-    //   reminder: "10:30AM Every Day",
-    //   image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    // }];
+    $ionicPlatform.ready(function() {
+      // testing notifs
+      var now = new Date().getTime();
+      var _5SecondsFromNow = new Date(now + 5000);
+
+      var notifs = {
+        id: 12,
+        at: _5SecondsFromNow,
+        every: 'minute',
+        text: "Don't forget to take your medication",
+        title: "Medication Reminder",
+      };
+
+      $timeout(function() {
+        Notifications.scheduleNotifications(notifs);
+      }, 5000);
+    });
   }
+
 })();

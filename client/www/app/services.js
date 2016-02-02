@@ -8,15 +8,17 @@
   'use strict';
 
   angular
-    .module('starter.services', [])
+    .module('starter.services', ['ionic', 'ngCordova'])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
+    .service('Notifications', Notifications)
     .factory('Medications', Medications);
-   
+
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
+  Notifications.$inject = ['$cordovaLocalNotification', '$ionicPlatform'];
   Medications.$inject = ['MedService'];
-  
+
   function AuthService($window, $state, $http) {
     this.hasToken = function() {
       return !!$window.localStorage.getItem('com.pillMeNow');
@@ -25,7 +27,7 @@
     this.signin = function(user) {
       return $http({
           method: 'POST',
-          url: 'https://medup.herokuapp.com/user/signin',
+          url: 'http://localhost:3000/user/signin',
           data: user
         })
         .then(function(response) {
@@ -37,7 +39,7 @@
     this.signup = function(user) {
       return $http({
           method: 'POST',
-          url: 'https://medup.herokuapp.com/user/signup',
+          url: 'http://localhost:3000/user/signup',
           data: user
         })
         .then(function(response) {
@@ -56,7 +58,8 @@
     this.getMeds = function(user) {
       return $http({
           method: 'GET',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
+          data: user
         })
         .then(function(response) {
           return response.data;
@@ -77,11 +80,11 @@
           return err;
         });
     };
-    
+
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
           data: user
         })
         .then(function(response) {
@@ -94,7 +97,7 @@
     this.deleteMeds = function(user) {
       return $http({
           method: 'DELETE',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
           data: user
         })
         .then(function(response) {
@@ -105,49 +108,28 @@
     };
   }
 
+  function Notifications($cordovaLocalNotification, $ionicPlatform) {
+    var that = this;
+    $cordovaLocalNotification.registerPermission();
+    that.scheduleNotifications = function(notifs) {
+      $cordovaLocalNotification.schedule(notifs).then(function() {
+        alert("Instant Notification set");
+      });
+    };
+  }
+
   function Medications() {
-    var  medFac = {};
+    var medFac = {};
     medFac.userMeds = {};
-    
-    var testMeds = [{
-      id: 12,
-      name: "Abilify (Aripiprazole)",
-      dosage: "5mg",
-      instruction: "Take one tablet by mouth every morning",
-      reminder: "10:30AM Every Day",
-      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    }, {
-      id: 123,
-      name: "Actiq (Fentanyl Citrate)",
-      dosage: "5mg",
-      instruction: "Take one tablet by mouth every morning",
-      reminder: "10:30AM Every Day",
-      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    }, {
-      id: 1234,
-      name: "Halcion (Triazolam)",
-      dosage: "5mg",
-      instruction: "Take one tablet by mouth every morning",
-      reminder: "10:30AM Every Day",
-      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    }, {
-      id: 12345,
-      name: "Quinidex (Quinidine)",
-      dosage: "5mg",
-      instruction: "Take one tablet by mouth every morning",
-      reminder: "10:30AM Every Day",
-      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    }, {
-      id: 123456,
-      name: "Adderall (Amphetamine)",
-      dosage: "10mg",
-      instruction: "Take one tablet by mouth every morning",
-      reminder: "10:30AM Every Day",
-      image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
-    }];
-    
+    // MedService.getMeds(user)
+    //   .then(function(medInfoArr) {
+    //     medFac.userMeds.dbMeds = medInfoArray;
+    //   }).catch(function(medInfoArr) {
+    //     console.log("ERROR: User Medications not Received");
+    //   });
+
     medFac.userMeds.localMeds = testMeds;
     return medFac;
-  };
-  
+  }
+
 })();

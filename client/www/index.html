@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
   <title></title>
   <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
   <!-- ionic/angularjs js -->
@@ -14,6 +15,7 @@
   <!-- my css -->
   <link href="css/style.css" rel="stylesheet">
   <!-- cordova script -->
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
   <script src="cordova.js"></script>
   <!-- app-->
   <script src="app/app.js"></script>
@@ -26,7 +28,7 @@
 </head>
 
 <body ng-app="starter">
-  <ion-nav-view> Nav View </ion-nav-view>
+  <ion-nav-view> Nav </ion-nav-view>
 </body>
 
 </html>
