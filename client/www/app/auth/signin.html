@@ -1,19 +1,15 @@
 <ion-view view-title="auth" name="auth-view">
-  <ion-content class="padding">
-    <div class="list list-inset">
-      <label class="item item-input">
-        <!-- TODO: UPDATE - data is a placeholder -->
-        <input type="text" placeholder="Username" ng-model="user.email">
-      </label>
-      <label class="item item-input">
-        <!-- TODO: UPDATE - data is a placeholder -->
-        <input type="password" placeholder="Password" ng-model="user.password">
-      </label>
-    </div>
-    <div class="row">
+  <ion-content>
+    <div class="row row-center">
       <div class="col-offset-20 col-70">
-        <button class="button button-block button-calm" ng-click="signin()">Open MedUp</button>
-        <div ng-click="goToSignUp()">Already have an account? SIGN UP </div>
+        <label class="item item-input">
+          <input type="text" placeholder="Username" ng-model="user.email">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="user.password">
+        </label>
+        <button class="button button-block button-calm" ng-click="signin()"> Open MedUp </button>
+        <div>Already have an account? <a ui-sref="signup">SIGN UP</a></div>
       </div>
     </div>
   </ion-content>

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('starter.dashboard', ['ionic', 'ionic-material'])
+    .module('starter.dashboard', ['ionic', 'ngCordova', 'ionic-material'])
     .controller('DashboardCtrl', DashboardCtrl);
   DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$ionicModal', '$timeout', 'MedService', 'Medications'];
 
@@ -54,5 +54,24 @@
       var index = $scope.medications.indexOf(medication);
       $scope.medications.splice(index, 1);
     };
+
+    $ionicPlatform.ready(function() {
+      // testing notifs
+      var now = new Date().getTime();
+      var _5SecondsFromNow = new Date(now + 5000);
+
+      var notifs = {
+        id: 12,
+        at: _5SecondsFromNow,
+        every: 'minute',
+        text: "Don't forget to take your medication",
+        title: "Medication Reminder",
+      };
+
+      $timeout(function() {
+        Notifications.scheduleNotifications(notifs);
+      }, 5000);
+    });
   }
+
 })();

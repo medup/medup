@@ -17,42 +17,10 @@
         if (window.StatusBar) {
           StatusBar.styleDefault();
         }
-
-        $rootScope.$on('$cordovaLocalNotification:schedule',
-          function(event, notification, state) {
-            console.log("SCHEDULE");
-            console.log('event', event);
-            console.log('notification', notification);
-            console.log('state', state);
-          });
-
-        $rootScope.$on('$cordovaLocalNotification:trigger',
-          function(event, notification, state) {
-            console.log("TRIGGER");
-            console.log('event', event);
-            console.log('notification', notification);
-            console.log('state', state);
-          });
-
-        $rootScope.$on('$cordovaLocalNotification:update',
-          function(event, notification, state) {
-            console.log('UPDATE');
-            console.log('event', event);
-            console.log('notification', notification);
-            console.log('state', state);
-          });
-
-        $rootScope.$on('$cordovaLocalNotification:cancel',
-          function(event, notification, state) {
-            console.log('CANCEL');
-            console.log('event', event);
-            console.log('notification', notification);
-            console.log('state', state);
-          });
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/signup');
+      $urlRouterProvider.otherwise('/dashboard');
       $stateProvider
         .state('dashboard', {
           url: '/dashboard/:user',
@@ -75,31 +43,30 @@
           controller: 'MedsFormCtrl'
         });
 
-      $httpProvider.interceptors.push('AttachTokens');
+      // $httpProvider.interceptors.push('AttachTokens');
     })
-    .factory('AttachTokens', function($window) {
-      var attach = {
-        request: function(object) {
-          var jwt = $window.localStorage.getItem('com.medUp');
-          if (jwt) {
-            object.headers['Authorization'] = jwt;
-          }
-          return object;
-        }
-      };
-      return attach;
-    })
-    .run(function($rootScope, $state, AuthService) {
-      $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    // .factory('AttachTokens', function($window) {
+    //   var attach = {
+    //     request: function(object) {
+    //       var jwt = $window.localStorage.getItem('com.medUp');
+    //       if (jwt) {
+    //         object.headers['Authorization'] = jwt;
+    //       }
+    //       return object;
+    //     }
+    //   };
+    //   return attach;
+    // })
+    // .run(function($rootScope, $state, AuthService) {
+    //   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+  //     if (toState.name === 'signin' || toState.name === 'signup') {
+  //       return;
+  //     }
 
-        if (toState.name === 'signin' || toState.name === 'signup') {
-          return;
-        }
-
-        if (!AuthService.hasToken()) {
-          e.preventDefault();
-          $state.go('signin');
-        }
-      });
-    });
+  //     if (!AuthService.hasToken()) {
+  //       e.preventDefault();
+  //       $state.go('signin');
+  //     }
+  //   });
+  // });
 })();
