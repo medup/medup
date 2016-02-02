@@ -8,7 +8,7 @@
 
   function MedsFormCtrl($scope, $state, $stateParams, MedService, Medications) {
     $scope.med = {};
-    $scope.medId = $stateParams.medName;
+    $scope.medId = $stateParams.id;
     $scope.userMeds = Medications.userMeds;
     // $scope.userMeds.localMeds.forEach(function (medication) {
     //   if (medication.id === parseInt($scope.medId)) $scope.med = medication;

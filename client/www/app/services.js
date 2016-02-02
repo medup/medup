@@ -94,7 +94,7 @@
     this.deleteMeds = function(user) {
       return $http({
           method: 'DELETE',
-          url: 'http://medup.herokuapp.com/api/medications',
+          url: 'https://medup.herokuapp.com/api/medications',
           data: user
         })
         .then(function(response) {
