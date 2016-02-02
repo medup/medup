@@ -9,11 +9,11 @@
     uiRouter
   ])
     .config(($httpProvider) => {
-        $httpProvider.interceptors.push('AttachTokens');
-      })
-      .component('medup-web', AppComponent)
-      .factory('AttachTokens', attachTokens)
-      .run(appRun);
+      $httpProvider.interceptors.push('AttachTokens');
+    })
+    .component('medup-web', AppComponent)
+    .factory('AttachTokens', attachTokens)
+    .run(appRun);
 
 function attachTokens($window) {
 
