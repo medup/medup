@@ -60,45 +60,19 @@
 
         <section class="primary" ui-view>
 
-          <div class="add-state">
+          <div class="dashboard splash">
+            
+            <form class="auth-form">
+              
+              <h1>Sign in to your MedUp account</h1>
 
-            <div class="top-heading">
+              <input type="text" name="username" value="" placeholder="Username">
 
-              <h1>Your Medications</h1>
+              <input type="password" name="password" value="" placeholder="Password">
 
-            </div>
+              <button type="submit">Sign In</button>
 
-            <div class="med-form-wrapper">
-
-              <form class="med-form">
-
-                <div class="form-top">
-
-                  <input class="med-name-input" type="text" name="medName" placeholder="Medication Name">
-
-                  <input class="med-dose-input" type="text" name="medDose" placeholder="Dose">
-
-                  <input class="med-instructions-input" type="text" name="medInstructions" placeholder="Instructions">
-
-                  <h4 class="select-reminder">Select A Reminder</h4>
-
-                  <div class="reminder-wrapper">
-
-                    <label for="radio0" class="radio-item"><input type="radio" id="radio0" name="reminder" value="8:30am">8:30am</label>
-
-                    <label for="radio1" class="radio-item"><input type="radio" id="radio1" name="reminder" value="8:30am">8:30am</label>
-
-                    <label for="radio2" class="radio-item"><input type="radio" id="radio2" name="reminder" value="8:30am">8:30am</label>
-
-                    <div class="custom-input" for="radio3"><input type="text" id="radio3" name="customReminder" value="Custom"></div>
-
-                  </div>
-
-                </div>
-
-              </form>
-
-            </div>
+            </form>
 
           </div>
 
