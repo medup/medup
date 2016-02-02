@@ -1,17 +1,18 @@
 "use strict";
 
   import angular from 'angular';
+  import component from 'angular-component';
   import uiRouter from 'angular-ui-router';
   import AppComponent from './app.component';
 
-  angular.module('medup-app', [
-    'uiRouter'
+  angular.module('medup-web', [
+    uiRouter
   ])
     .config(($httpProvider) => {
         $httpProvider.interceptors.push('AttachTokens');
       })
+      .component('medup-web', AppComponent)
       .factory('AttachTokens', attachTokens)
-      .component('medup-app', AppComponent)
       .run(appRun);
 
 function attachTokens($window) {
