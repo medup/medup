@@ -12,11 +12,11 @@
     .service('AuthService', AuthService)
     .service('MedService', MedService)
     .factory('Medications', Medications);
-   
+
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
   Medications.$inject = ['MedService'];
-  
+
   function AuthService($window, $state, $http) {
     this.hasToken = function() {
       return !!$window.localStorage.getItem('com.pillMeNow');
@@ -25,7 +25,7 @@
     this.signin = function(user) {
       return $http({
           method: 'POST',
-          url: 'https://medup.herokuapp.com/user/signin',
+          url: 'http://localhost:3000/user/signin',
           data: user
         })
         .then(function(response) {
@@ -37,7 +37,7 @@
     this.signup = function(user) {
       return $http({
           method: 'POST',
-          url: 'https://medup.herokuapp.com/user/signup',
+          url: 'http://localhost:3000/user/signup',
           data: user
         })
         .then(function(response) {
@@ -56,7 +56,8 @@
     this.getMeds = function(user) {
       return $http({
           method: 'GET',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
+          data: user
         })
         .then(function(response) {
           return response.data;
@@ -81,7 +82,7 @@
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
           data: user
         })
         .then(function(response) {
@@ -94,7 +95,7 @@
     this.deleteMeds = function(user) {
       return $http({
           method: 'DELETE',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
           data: user
         })
         .then(function(response) {
@@ -106,9 +107,15 @@
   }
 
   function Medications() {
-    var  medFac = {};
+    var medFac = {};
     medFac.userMeds = {};
-    
+    // MedService.getMeds(user)
+    //   .then(function(medInfoArr) {
+    //     medFac.userMeds.dbMeds = medInfoArray;
+    //   }).catch(function(medInfoArr) {
+    //     console.log("ERROR: User Medications not Received");
+    //   });
+
     var testMeds = [{
       id: 12,
       name: "Abilify (Aripiprazole)",
@@ -145,9 +152,9 @@
       reminder: "10:30AM Every Day",
       image: "http://pillbox.nlm.nih.gov/assets/small/540920173.jpg"
     }];
-    
+
     medFac.userMeds.localMeds = testMeds;
     return medFac;
-  };
-  
+  }
+
 })();

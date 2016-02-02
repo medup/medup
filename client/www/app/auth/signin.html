@@ -10,7 +10,11 @@
         <input type="password" placeholder="Password" ng-model="user.password">
       </label>
     </div>
-    <button class="button button-block button-calm" ng-click="signin()">Open MedUp</button>
-    <label> Don't have an account? <a href="#/signin">SIGN UP</a></label>
+    <div class="row">
+      <div class="col-offset-20 col-70">
+        <button class="button button-block button-calm" ng-click="signin()">Open MedUp</button>
+        <div ng-click="goToSignUp()">Already have an account? SIGN UP </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

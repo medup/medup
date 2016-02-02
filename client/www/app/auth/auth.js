@@ -38,5 +38,13 @@
           });
         });
     };
+
+    $scope.goToSignUp = function() {
+      $state.go('signup');
+    };
+
+    $scope.goToSignIn = function() {
+      $state.go('signin');
+    };
   }
 })();
