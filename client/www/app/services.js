@@ -80,7 +80,7 @@
           return err;
         });
     };
-    
+
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',

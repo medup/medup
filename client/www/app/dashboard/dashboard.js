@@ -18,21 +18,23 @@
     /* Get med data when user enters dashboard */
     var getMedData = function() {
       MedService.getMeds()
-      .then(function(medInfoArr) {
-        console.dir(medInfoArr);	    
-        $scope.medications = medInfoArr;
-	Medications.userMeds.dbMeds = medInfoArr;
-      }).catch(function(err) {
-        console.error("unable to fetch medication data from server");
-	console.dir(err);
-      });
+        .then(function(medInfoArr) {
+          console.dir(medInfoArr);
+          $scope.medications = medInfoArr;
+          Medications.userMeds.dbMeds = medInfoArr;
+        }).catch(function(err) {
+          console.error("unable to fetch medication data from server");
+          console.dir(err);
+        });
     };
 
     $scope.medications = {};
     getMedData();
-        
+
     $scope.editMedication = function(medication) {
-      $state.go('medsForm', {medId: medication.id});
+      $state.go('medsForm', {
+        medId: medication.id
+      });
       /**
 
         TODO:
