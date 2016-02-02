@@ -1,33 +1,17 @@
 "use strict";
 
+  import angular from 'angular';
+  import uiRouter from 'angular-ui-router';
+  import AppComponent from './app.component';
+
   angular.module('medup-app', [
+    'uiRouter'
   ])
-    .config(($stateProvider, $urlRouterProvider, $httpProvider) => {
-      $urlRouterProvider.otherwise('/dashbaord');
-      $stateProvider
-        .state('dashboard', {
-          url: '/dashboard',
-          templateUrl: 'app/dashbaord/dashbaord.html',
-          controller: 'DashboardCtrl'
-        })
-        .state('signin', {
-          url: '/signin',
-          templateUrl: 'app/auth/signin.html',
-          controller: 'AuthCtrl'
-        })
-        .state('signup', {
-          url: '/signup',
-          templateUrl: 'app/auth/signup.html',
-          controller: 'AuthCtrl'
-        })
-        .state('medications', {
-          url: '/medications',
-          templateUrl: 'app/auth/medications.html',
-          controller: 'MedicationCtrl'
-        });
+    .config(($httpProvider) => {
         $httpProvider.interceptors.push('AttachTokens');
       })
       .factory('AttachTokens', attachTokens)
+      .component('medup-app', AppComponent)
       .run(appRun);
 
 function attachTokens($window) {
