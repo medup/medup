@@ -21,8 +21,7 @@
       .then(function(medInfoArr) {
         console.dir(medInfoArr);	    
         $scope.medications = medInfoArr;
-	console.dir($scope.medications);
-	//$scope.medications = Medications.userMeds.dbMeds;
+	Medications.userMeds.dbMeds = medInfoArr;
       }).catch(function(err) {
         console.error("unable to fetch medication data from server");
 	console.dir(err);
@@ -33,7 +32,7 @@
     getMedData();
         
     $scope.editMedication = function(medication) {
-      $state.go('medsForm', {medName: medication.id});
+      $state.go('medsForm', {medId: medication.id});
       /**
 
         TODO:

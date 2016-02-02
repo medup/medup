@@ -8,12 +8,12 @@
 
   function MedsFormCtrl($scope, $state, $stateParams, MedService, Medications) {
     $scope.med = {};
-    $scope.medId = $stateParams.id;
-    $scope.userMeds = Medications.userMeds;
-    // $scope.userMeds.localMeds.forEach(function (medication) {
+    $scope.medId = $stateParams.medId;
+    $scope.userMeds = Medications.userMeds.dbMeds;
+    // $scope.userMeds.dbMeds.forEach(function (medication) {
     //   if (medication.id === parseInt($scope.medId)) $scope.med = medication;
     // });
-    console.log($scope.med);
+    
     $scope.saveMed = function () {
       console.log($scope.med);
       MedService.addMed({info: {name: $scope.med.name, instruct: $scope.med.instruction}})
@@ -21,11 +21,10 @@
           console.dir(data);
 	}).catch(function (err) {
           console.error('unable to PUT new medication on server');
-	  cosnole.dir(err);
+	  console.dir(err);
 	});
       console.log($scope.medId);
     };
 
-    
   };
 })();

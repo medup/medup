@@ -45,7 +45,7 @@
           controller: 'AuthCtrl'
         })
         .state('medsForm', {
-          url: '/medsForm/:medName',
+          url: '/medsForm/:medId',
           templateUrl: 'app/medsForm/medsForm.html',
           controller: 'MedsFormCtrl'
         });
