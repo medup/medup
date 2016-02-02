@@ -29,7 +29,7 @@ module.exports = manifest => {
   }
 
   manifest.connections[0].routes.files = {
-    relativeTo: __dirname + '/../public'
+    relativeTo: __dirname + '/../'
   };
   manifest.connections[0].port = process.env.PORT || 3000;
 
