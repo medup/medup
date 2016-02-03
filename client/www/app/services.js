@@ -21,7 +21,7 @@
 
   function AuthService($window, $state, $http) {
     this.hasToken = function() {
-      return !!$window.localStorage.getItem('com.pillMeNow');
+      return !!$window.localStorage.getItem('com.medUp');
     };
 
     this.signin = function(user) {
@@ -71,7 +71,7 @@
     this.addMed = function(medication) {
       return $http({
           method: 'POST',
-          url: 'https://medup.herokuapp.com/api/medications',
+          url: 'http://localhost:3000/api/medications',
           data: medication
         })
         .then(function(response) {
@@ -94,11 +94,11 @@
         });
     };
 
-    this.deleteMeds = function(user) {
+    this.deleteMeds = function(medId) {
       return $http({
           method: 'DELETE',
-          url: 'http://localhost:3000/api/medications',
-          data: user
+          url: 'http://localhost:3000/api/medications/' + medId
+          //data: 
         })
         .then(function(response) {
           return response.data;
@@ -120,7 +120,7 @@
 
   function Medications() {
     var medFac = {};
-    medFac.userMeds = {};
+    medFac.userMeds = {dbMeds: []};
     // MedService.getMeds(user)
     //   .then(function(medInfoArr) {
     //     medFac.userMeds.dbMeds = medInfoArray;
@@ -128,7 +128,8 @@
     //     console.log("ERROR: User Medications not Received");
     //   });
 
-    medFac.userMeds.localMeds = testMeds;
+    //medFac.userMeds.localMeds = testMeds;
+    
     return medFac;
   }
 

@@ -20,7 +20,7 @@
       });
     })
     .config(function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/dashboard');
+      $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('dashboard', {
           url: '/dashboard/:user',
