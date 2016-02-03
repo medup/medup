@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('starter.healthStats', ['ionic', 'ionic-material', 'nvd3'])
+    .module('medup.healthStats', ['ionic', 'ionic-material', 'nvd3'])
     .controller('HealthStatsCtrl', HealthStatsCtrl);
   HealthStatsCtrl.$inject = ['$scope', '$state'];
 

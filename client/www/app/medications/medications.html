@@ -1,0 +1,19 @@
+<!-- Displays the alerts the user has made for each medication -->
+<ion-view view-title="Medications">
+  <div class="row">
+    <div class="bar bar-header">
+      <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="dashboard"></a>
+      <h1 class="title">Medications</h1>
+    </div>
+  </div class="row">
+  <div class="content has-header">
+    <ion-list show-delete="false" can-swipe="true">
+      <ion-item ng-repeat="medication in medications">
+        <h2><b> {{medication.info.name}} {{medication.info.dosage}} </b></h2>
+        <p class="ion-android-alarm-clock"> {{medication.info.reminder}} </p>
+        <ion-option-button class="button-balanced icon ion-edit" ng-click="editMedication(medication)"></ion-option-button>
+        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeReminder(medication)"></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-view>

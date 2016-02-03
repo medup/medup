@@ -8,7 +8,7 @@
   'use strict';
 
   angular
-    .module('starter.services', ['ionic', 'ngCordova'])
+    .module('medup.services', ['ionic', 'ngCordova'])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
     .service('Notifications', Notifications)

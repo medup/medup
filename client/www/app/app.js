@@ -8,7 +8,7 @@
   'use strict';
 
   angular
-    .module('starter', ['ionic', 'ngCordova', 'nvd3', 'chart.js', 'ds.clock', 'starter.dashboard', 'starter.main', 'starter.healthStats', 'starter.services', 'starter.auth', 'starter.medsForm'])
+    .module('medup', ['ionic', 'ngCordova', 'nvd3', 'chart.js', 'ds.clock', 'medup.dashboard', 'medup.medications', 'medup.healthStats', 'medup.services', 'medup.auth', 'medup.medsForm'])
     .run(function($ionicPlatform, $rootScope) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -37,10 +37,10 @@
           templateUrl: 'app/auth/signup.html',
           controller: 'AuthCtrl'
         })
-        .state('main', {
-          url: '/main',
-          templateUrl: 'app/main/main.html',
-          controller: 'MainCtrl'
+        .state('medications', {
+          url: '/medications',
+          templateUrl: 'app/medications/medications.html',
+          controller: 'MedicationsCtrl'
         })
         .state('healthStats', {
           url: '/healthStats',

@@ -1,24 +1,52 @@
-<!-- Displays the alerts the user has made for each medication -->
-<ion-view view-title="Medications">
+<ion-view view-title="dashboard" name="dashboard-view">
   <div class="row">
     <div class="bar bar-header">
-      <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="main"></a>
-      <h1 class="title">Medications</h1>
+      <h1 class="title">Welcome</h1>
     </div>
   </div class="row">
-  <div class="content has-header">
-    <ion-list show-delete="false" can-swipe="true">
-      <ion-item ng-repeat="medication in medications">
-        <h2><b> {{medication.info.name}} {{medication.info.dosage}} </b></h2>
-        <p class="ion-android-alarm-clock"> {{medication.info.reminder}} </p>
-        <ion-option-button class="button-balanced icon ion-edit" ng-click="editMedication(medication)"></ion-option-button>
-        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="removeReminder(medication)"></ion-option-button>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div class="tabs tabs-positive">
-    <a class="tab-item active"> <i class="icon ion-home"></i> </a>
-    <a class="tab-item" ui-sref="medsForm" is-sref-opts="{reload: true}"> <i class="icon ion-android-add"></i> </a>
-    <a class="tab-item"> <i class="icon ion-gear-a"></i> </a>
+  <ion-content>
+    <div class="main-menu">
+      <!-- Current Time and Date -->
+      <!-- This is pending. We can add another functionality here -->
+      <div class="row">
+        <div class="col col-100">
+          <ds-widget-clock show-digital theme="blue-light" digital-format="'hh:mm a'"></ds-widget-clock>
+        </div>
+      </div>
+      <!-- Menu -->
+      <div class="row">
+        <div class="col col-50">
+          <img src="http://i64.tinypic.com/2qv4k9d.png" ui-sref="calendar">
+          <p> Calendar </p>
+        </div>
+        <div class="col col-50">
+          <img src="http://i63.tinypic.com/2cpvqxh.png" ui-sref="medsForm">
+          <p> Reminder </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <img src="http://i63.tinypic.com/35i4tgk.png" ui-sref="healthStats">
+          <p> Health Stats </p>
+        </div>
+        <div class="col col-50">
+          <img src="http://i68.tinypic.com/2hxqfkk.png" ui-sref="medications">
+          <p> Medications </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Health Chart -->
+    <div class="row healthChart">
+      <div class="col col-100">
+        <nvd3 options="options" data="data"></nvd3>
+      </div>
+    </div>
+  </ion-content>
+  <!-- Footer -->
+  <div class="bar bar-footer bar-royal">
+    <button class="my-footer button button-clear"> Side Effects </button>
+    <div class="title"> Today I'm feeling? </div>
+    <button class="my-footer button button-clear"> Better </button>
   </div>
 </ion-view>
