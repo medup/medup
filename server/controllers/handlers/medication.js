@@ -66,7 +66,7 @@ let internals = {
         }
 
         if (medication.taken) {
-          med.taken = medication.taken;
+          med.taken.push(new Date().now);
           med.save((err, saved) => {
 
             if (err) console.error(err);
