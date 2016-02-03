@@ -25,6 +25,7 @@ const internals = {
           name: Joi.string(),
           instruct: Joi.string()
         }),
+        notifications: Joi.array(),
         taken: Joi.array()
       })
     }

@@ -24,7 +24,6 @@ let dashboardModule = angular.module('dashboard', [uiRouter])
         templateUrl: 'app/components/dashboard/dashboard.auth.html'
       });  
    })     
-
   .component('dashboard', dashboardComponent);
 
 export default dashboardModule;

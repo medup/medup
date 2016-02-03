@@ -21,6 +21,7 @@ let internals = {
 
               return {
                 id: med.id,
+                notifications: med.notifications,
                 owner: med.owner,
                 info: JSON.parse(decryptedText.toString(CryptoJS.enc.Utf8))
               };
@@ -41,6 +42,7 @@ let internals = {
 
     Medications.create({
       info: encryptedInfo.toString(),
+      notifications: medication.notifications || [],
       owner: request.auth.credentials.id
     }).exec(function(err, med) {
       if (err) console.error(err);

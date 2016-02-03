@@ -72,8 +72,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+<<<<<<< HEAD
 	_angular2.default.module('medup-web', [_angularUiRouter2.default, _common2.default.name, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
 	  $urlRouterProvider.otherwise('/');
+=======
+	_angular2.default.module('medup-web', [_angularUiRouter2.default, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
+	  //$urlRouterProvider.otherwise('/');
+>>>>>>> (feat) web client html
 	  // $httpProvider.interceptors.push('AttachTokens');
 	}).component('medupWeb', _app2.default);
 	// .factory('AttachTokens', attachTokens)
@@ -17892,6 +17897,7 @@
 	    template: '<dashboard></dashboard>'
 	  }).state('dashboard.splash', {
 	    url: '/',
+<<<<<<< HEAD
 	    templateUrl: 'app/components/dashboard/dashboard.splash.html'
 	  }).state('dashboard.signin', {
 	    url: '/signin',
@@ -17899,6 +17905,15 @@
 	  }).state('dashboard.signup', {
 	    url: '/signup',
 	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
+=======
+	    templateUrl: 'app/components/dashboard/splash.html'
+	  }).state('dashboard.signin', {
+	    url: 'signin',
+	    templateUrl: 'app/components/auth/auth.html'
+	  }).state('dashboard.signup', {
+	    url: 'signup',
+	    templateUrl: 'app/components/auth/auth.html'
+>>>>>>> (feat) web client html
 	  });
 	}).component('dashboard', _dashboard2.default);
 
@@ -17948,7 +17963,11 @@
 /* 8 */
 /***/ function(module, exports) {
 
+<<<<<<< HEAD
 	module.exports = "<navbar></navbar>\n<div class=\"dashboard splash\">\n  <ui-view> </ui-view>\n</div>\n"
+=======
+	module.exports = "<div class=\"dashboard splash\">\n\n  <ui-view></ui-view>\n\n</div>"
+>>>>>>> (feat) web client html
 
 /***/ },
 /* 9 */

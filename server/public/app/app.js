@@ -13,7 +13,7 @@
     Components.name
   ])
     .config(($httpProvider, $urlRouterProvider) => {
-      $urlRouterProvider.otherwise('/');
+      //$urlRouterProvider.otherwise('/');
       // $httpProvider.interceptors.push('AttachTokens');
     })
     .component('medupWeb', AppComponent);
