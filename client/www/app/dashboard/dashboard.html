@@ -1,5 +1,11 @@
 <!-- Displays the alerts the user has made for each medication -->
 <ion-view view-title="Medications">
+  <div class="row">
+    <div class="bar bar-header">
+      <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="main"></a>
+      <h1 class="title">Medications</h1>
+    </div>
+  </div class="row">
   <div class="content has-header">
     <ion-list show-delete="false" can-swipe="true">
       <ion-item ng-repeat="medication in medications">

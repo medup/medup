@@ -293,24 +293,6 @@
         [1333166400000, 5.5611890039181]
       ]
     }];
-    /*----------  Chart.js Example  ----------*/
-    // $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    // $scope.series = ['Compliance', 'Health'];
-
-    // $scope.data = [
-    //   [28, 48, 40, 19, 86, 27, 90],
-    //   [65, 59, 80, 81, 56, 55, 40]
-    // ];
-    // $scope.onClick = function(points, evt) {
-    //   console.log(points, evt);
-    // };
-    ////////////// Example 2 //////////////
-    // $scope.labels = ["Eating", "Sleeping", "Exercise", "Health"];
-
-    // $scope.data = [
-    //   [65, 59, 90, 81],
-    //   [28, 48, 40, 19]
-    // ];
 
   }
 })();

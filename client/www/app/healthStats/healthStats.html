@@ -1,0 +1,24 @@
+<ion-view view-title="healthStats" name="healthStats-view">
+  <div class="row">
+    <div class="bar bar-header">
+      <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="main"></a>
+      <h1 class="title">Health Stats</h1>
+    </div>
+  </div class="row">
+  <ion-content class="main-menu">
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Adderall </p>
+        <br>
+        <canvas id="radar" class="chart chart-radar" chart-data="data" chart-labels="labels"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Synthroid </p>
+        <br>
+        <canvas id="radar" class="chart chart-radar" chart-data="data" chart-labels="labels"></canvas>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
