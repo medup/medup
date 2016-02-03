@@ -13,8 +13,45 @@
   &.splash {
     width: 100%;
 
+    .auth-button-wrapper {
+      margin-top: rem(48);
+      display: flex;
+      justify-content: center;
+
+      a {
+        display: block;
+        float: left;
+        padding: rem(12) rem(36);
+        color: #fff;
+        font-size: rem(24);
+        font-weight: 300;
+        cursor: pointer;
+
+        &.auth-signin {
+          background-color: $green;
+          margin-right: rem(44);
+
+          &:hover {
+            background-color: darken($green, 5%);
+          }
+        }
+
+        &.auth-signup {
+          background-color: $blue;
+
+          &:hover {
+            background-color: darken($blue, 5%);
+          }
+        }
+      }
+    }
+
     .auth-form {
       
+      
+      h1 {
+
+      }
     }
   }
 }

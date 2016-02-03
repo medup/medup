@@ -17926,7 +17926,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dashboard\">\n            \n  <div class=\"heading-wrapper\">\n\n    <div class=\"primary-logo\">\n      \n      <img src=\"assets/img/logo.png\" alt=\"MedUp Logo\">\n\n    </div>\n\n    <h1>MedUp</h1>\n\n    <h3>Your healthy reminder</h3>\n\n  </div>\n\n</div>"
+	module.exports = "<div class=\"dashboard splash\">\n            \n  <div class=\"heading-wrapper\">\n\n    <div class=\"primary-logo\">\n      \n      <img src=\"assets/img/logo.png\" alt=\"MedUp Logo\">\n\n    </div>\n\n    <h1>MedUp</h1>\n\n    <h3>Your healthy reminder</h3>\n\n    <div class=\"auth-button-wrapper\">\n      \n      <a ui-sref=\"signin\" class=\"auth-signin\">Sign In</a>\n      <a ui-sref=\"signup\" class=\"auth-signup\">Sign Up</a>\n\n    </div>\n\n  </div>\n\n</div>"
 
 /***/ },
 /* 9 */
