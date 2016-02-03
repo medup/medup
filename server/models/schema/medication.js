@@ -6,6 +6,7 @@ module.exports = {
   attributes: {
     info: 'string',
     taken: 'array',
+    notifications: 'array',
     owner: {
       model: 'users'
     }

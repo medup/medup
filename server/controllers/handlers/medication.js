@@ -41,6 +41,7 @@ let internals = {
 
     Medications.create({
       info: encryptedInfo.toString(),
+      notifications: medication.notifications || [],
       owner: request.auth.credentials.id
     }).exec(function(err, med) {
       if (err) console.error(err);
