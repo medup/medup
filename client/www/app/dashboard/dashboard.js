@@ -4,22 +4,14 @@
   angular
     .module('starter.dashboard', ['ionic', 'ngCordova', 'ionic-material'])
     .controller('DashboardCtrl', DashboardCtrl);
-  DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$ionicModal', '$timeout', 'MedService', 'Medications'];
+  DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$timeout', 'MedService', 'Medications'];
 
-  function DashboardCtrl($scope, $state, $stateParams, $ionicModal, $timeout, MedService, Medications) {
-
-    $ionicModal.fromTemplateUrl('app/dashboard/more-information.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
+  function DashboardCtrl($scope, $state, $stateParams, $timeout, MedService, Medications) {
 
     /* Get med data when user enters dashboard */
     var getMedData = function() {
       MedService.getMeds()
         .then(function(medInfoArr) {
-          console.dir(medInfoArr);
           $scope.medications = medInfoArr;
           Medications.userMeds.dbMeds = medInfoArr;
         }).catch(function(err) {
@@ -27,14 +19,15 @@
           console.dir(err);
         });
     };
-
+ 
     $scope.medications = {};
     getMedData();
-
+    
     $scope.editMedication = function(medication) {
       $state.go('medsForm', {
         medId: medication.id
       });
+    };
       /**
 
         TODO:
@@ -45,7 +38,7 @@
 
        */
 
-    };
+    //};
 
     $scope.moreInformation = function(e, medication) {
       $scope.medication = medication;
@@ -57,23 +50,23 @@
       $scope.medications.splice(index, 1);
     };
 
-    $ionicPlatform.ready(function() {
-      // testing notifs
-      var now = new Date().getTime();
-      var _5SecondsFromNow = new Date(now + 5000);
+    // $ionicPlatform.ready(function() {
+    //   // testing notifs
+    //   var now = new Date().getTime();
+    //   var _5SecondsFromNow = new Date(now + 5000);
 
-      var notifs = {
-        id: 12,
-        at: _5SecondsFromNow,
-        every: 'minute',
-        text: "Don't forget to take your medication",
-        title: "Medication Reminder",
-      };
+    //   var notifs = {
+    //     id: 12,
+    //     at: _5SecondsFromNow,
+    //     every: 'minute',
+    //     text: "Don't forget to take your medication",
+    //     title: "Medication Reminder",
+    //   };
 
-      $timeout(function() {
-        Notifications.scheduleNotifications(notifs);
-      }, 5000);
-    });
+    //   $timeout(function() {
+    //     Notifications.scheduleNotifications(notifs);
+    //   }, 5000);
+    // });
   }
 
 })();

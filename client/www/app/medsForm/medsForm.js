@@ -8,15 +8,19 @@
 
   function MedsFormCtrl($scope, $state, $stateParams, MedService, Medications) {
     $scope.med = {};
-    $scope.medId = $stateParams.medId;
-    $scope.userMeds = Medications.userMeds.dbMeds;
-    // $scope.userMeds.dbMeds.forEach(function (medication) {
-    //   if (medication.id === parseInt($scope.medId)) $scope.med = medication;
-    // });
-    
+    var id = parseInt($stateParams.medId);
+    var drugs = Medications.userMeds.dbMeds;
+    console.dir(drugs);
+    console.log('param: %s', id);
+    drugs.forEach(function (drug) {
+      if (drug.id === id) {
+	$scope.med = drug;
+      }
+    });
+
     $scope.saveMed = function () {
       console.log($scope.med);
-      MedService.addMed({info: {name: $scope.med.name, instruct: $scope.med.instruction}})
+      MedService.addMed({info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
         .then(function(data) {
           console.dir(data);
 	}).catch(function (err) {

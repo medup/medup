@@ -31,7 +31,7 @@
     $scope.signup = function() {
       AuthService.signup($scope.user)
         .then(function(data) {
-          $state.go('dashboard');
+          $state.go('dashboard', {user: $scope.user.email});
         }).catch(function(data) {
           var alertPopup = $ionicPopup.alert({
             title: 'Register Failed',
