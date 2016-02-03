@@ -1,9 +1,10 @@
 "use strict";
 
-// import AuthServices from './AuthServices';
+// import AuthFactory from './AuthFactory';
 
 class SignupController {
   constructor($state, $scope) {
+    console.log("kayla" + $scope);
     this.scope = $scope;
     this.scope.user = {};
     this.scope.title = 'Sign Up';
@@ -11,15 +12,15 @@ class SignupController {
     this.state = $state;
  }
  submit() {
-   console.log('success');
-  //  AuthServices.signup(this.user)
-  //  .then(data => {
-  //    this.state.go('dashboard');
-  //    console.log('success');
-  //  })
-  //  .catch(data => {
-  //    console.log("error");
-  //  });
+   // console.log('Kayla');
+   // AuthFactory.signup(this.user)
+   // .then(data => {
+   //   this.state.go('dashboard');
+   //   console.log('success');
+   // })
+   // .catch(data => {
+   //   console.log("error");
+   // });
  }
 }
 

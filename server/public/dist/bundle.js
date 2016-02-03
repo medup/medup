@@ -66,7 +66,7 @@
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _app = __webpack_require__(17);
+	var _app = __webpack_require__(18);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -17997,6 +17997,10 @@
 
 	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
 
+	var _dashboardSignup = __webpack_require__(17);
+
+	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var dashboardModule = _angular2.default.module('dashboard', [_angularUiRouter2.default]).config(function ($stateProvider) {
@@ -18013,7 +18017,7 @@
 	  }).state('dashboard.signup', {
 	    url: '/signup',
 	    templateUrl: 'app/components/dashboard/dashboard.auth.html',
-	    controller: _dashboardSignin2.default,
+	    controller: _dashboardSignup2.default,
 	    controllerAs: 'vm'
 	  });
 	}).component('dashboard', _dashboard2.default);
@@ -18130,6 +18134,54 @@
 /***/ },
 /* 16 */,
 /* 17 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	// import AuthFactory from './AuthFactory';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var SignupController = function () {
+	  function SignupController($state, $scope) {
+	    _classCallCheck(this, SignupController);
+
+	    console.log("kayla" + $scope);
+	    this.scope = $scope;
+	    this.scope.user = {};
+	    this.scope.title = 'Sign Up';
+	    this.scope.action = 'Sign Up';
+	    this.state = $state;
+	  }
+
+	  _createClass(SignupController, [{
+	    key: "submit",
+	    value: function submit() {
+	      // console.log('Kayla');
+	      // AuthFactory.signup(this.user)
+	      // .then(data => {
+	      //   this.state.go('dashboard');
+	      //   console.log('success');
+	      // })
+	      // .catch(data => {
+	      //   console.log("error");
+	      // });
+	    }
+	  }]);
+
+	  return SignupController;
+	}();
+
+	exports.default = SignupController;
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18138,7 +18190,7 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(18);
+	var _app = __webpack_require__(19);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -18152,7 +18204,7 @@
 	exports.default = appComponent;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
