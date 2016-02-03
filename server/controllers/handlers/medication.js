@@ -43,6 +43,7 @@ let internals = {
     Medications.create({
       info: encryptedInfo.toString(),
       notifications: medication.notifications || [],
+      taken: [],
       owner: request.auth.credentials.id
     }).exec(function(err, med) {
       if (err) console.error(err);
@@ -66,7 +67,7 @@ let internals = {
         }
 
         if (medication.taken) {
-          med.taken = medication.taken;
+          med.taken.push(new Date().now);
           med.save((err, saved) => {
 
             if (err) console.error(err);
@@ -83,6 +84,7 @@ let internals = {
           let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
 
           med.info = encryptedInfo.toString();
+          med.notifications = medication.notifications || [];
           med.save((err, saved) => {
 
             if (err) console.error(err);

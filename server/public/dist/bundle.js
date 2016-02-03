@@ -66,7 +66,7 @@
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _app = __webpack_require__(15);
+	var _app = __webpack_require__(17);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -18031,11 +18031,11 @@
 
 	var _dashboard4 = _interopRequireDefault(_dashboard3);
 
-	var _dashboardSignin = __webpack_require__(17);
+	var _dashboardSignin = __webpack_require__(15);
 
 	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
 
-	var _dashboardSignup = __webpack_require__(18);
+	var _dashboardSignup = __webpack_require__(16);
 
 	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
 
@@ -18083,35 +18083,6 @@
 
 /***/ },
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _app = __webpack_require__(16);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var appComponent = {
-	  templateUrl: 'app/app.html',
-	  restrict: 'E'
-	};
-
-	exports.default = appComponent;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
-
-/***/ },
-/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18169,7 +18140,7 @@
 	exports.default = SigninController;
 
 /***/ },
-/* 18 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18225,6 +18196,35 @@
 	}(_dashboard2.default);
 
 	exports.default = SignupController;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _app = __webpack_require__(18);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var appComponent = {
+	  templateUrl: 'app/app.html',
+	  restrict: 'E'
+	};
+
+	exports.default = appComponent;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
 
 /***/ },
 /* 19 */
