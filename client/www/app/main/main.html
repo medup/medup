@@ -1,0 +1,52 @@
+<ion-view view-title="main" name="main-view">
+  <div class="row">
+    <div class="bar bar-header">
+      <h1 class="title">Welcome</h1>
+    </div>
+  </div class="row">
+  <ion-content>
+    <div class="main-menu">
+      <!-- Current Time and Date -->
+      <!-- This is pending. We can add another functionality here -->
+      <div class="row">
+        <div class="col col-100">
+          <h2 class="time"> 9:00 am </h2>
+        </div>
+      </div>
+      <!-- Menu -->
+      <div class="row">
+        <div class="col col-50">
+          <img src="../img/calendar.png" ng-click="openCalendar()">
+          <p> Calendar </p>
+        </div>
+        <div class="col col-50">
+          <img src="../img/alarm.png" ng-click="openReminders()">
+          <p> Reminders </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <img src="../img/stats.png" ng-click="openStats()">
+          <p> Health Stats </p>
+        </div>
+        <div class="col col-50">
+          <img src="../img/medication.png" ng-click="openMedications()">
+          <p> Medications </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Health Chart -->
+    <div class="row healthChart">
+      <div class="col col-100">
+        <nvd3 options="options" data="data"></nvd3>
+      </div>
+    </div>
+  </ion-content>
+  <!-- Footer -->
+  <div class="bar bar-footer bar-royal">
+    <button class="my-footer button button-clear"> Side Effects </button>
+    <div class="title"> Today I'm feeling? </div>
+    <button class="my-footer button button-clear"> Better </button>
+  </div>
+</ion-view>

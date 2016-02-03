@@ -17,6 +17,8 @@
   ],
   "dependencies": {
     "ionic-material": "~0.4.2",
-    "ngCordova": "~0.1.24-alpha"
+    "ngCordova": "~0.1.24-alpha",
+    "angular-nvd3": "~1.0.5",
+    "angular-chart.js": "~0.8.8"
   }
 }

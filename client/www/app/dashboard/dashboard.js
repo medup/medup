@@ -18,6 +18,7 @@
           console.dir(err);
         });
     };
+<<<<<<< 530f112276a5c25761db524668534b13b40e3a18
 
     $scope.$on('$viewContentLoaded', function(event) {
       getMedData();

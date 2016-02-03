@@ -1,5 +1,6 @@
 /* Empty. Add your own CSS if you like */
 
+
 /* Item */
 
 .item {
@@ -14,4 +15,43 @@
 
 .drug-thumb {
   border-radius: 20%;
+}
+
+
+/* Main Page */
+
+hr {
+  display: block;
+  margin-right: 2em;
+  margin-left: 2em;
+  border-style: inset;
+  border-width: 1px;
+  border-top: 1px solid #DADADA;
+}
+H
+.title {
+  font-family: 'Lato', sans-serif;
+}
+
+.time {
+  font-family: 'Lato', sans-serif;
+}
+
+.main-menu {
+  margin-top: 10%;
+  padding-top: 5%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 90%;
+  font-family: 'Lato', sans-serif;
+}
+
+.healthChart {
+  position: relative;
+  right: 17%;
+  padding-right: 20%;
+}
+
+.my-footer {
+  text-align: right;
 }
