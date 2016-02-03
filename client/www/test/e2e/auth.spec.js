@@ -1,105 +1,50 @@
-var LoginPage = require("./pages/authPage");
-require('jasmine-given');
+describe('AuthCtrl', function() {
+   var username, password, signinButton;
+   var signinURL, ionicPopup;
+   var controller = null;
+   $scope = null;
 
-describe("app", function() {
-  var page = new LoginPage();
-  describe("visiting the login page", function() {
-    Given(function() {
-      page.visitPage();
+    beforeEach(function() {
+      module('starter.auth');
+      browser.get('/#/signin');
+      username = element(by.model('data.username'));
+      password = element(by.model('data.password'));
+      signinButton = element(by.buttonText('Submit'));
     });
-    describe("when a user logs in", function() {
-      Given(function() {
-        page.fillEmail("testy@example.com");
-      });
-      Given(function() {
-        page.fillPassword('fasfasdfas');
-      });
-      When(function() {
-        page.login();
-      });
-      Then(function() {
-        page.getCurrentUser().then(function(text) {
-          expect(text).toEqual("Randy Savage");
-        });
-      });
+
+    beforeEach(inject(function ($controller, $rootScope) {
+      $scope = $rootScope.$new();
+      controller = $controller('AuthCtrl', {
+      $scope: $scope
     });
-  });
-});
-// /* Rest of the modules to verify user creation */
-// it('Verify logout', function() {
-//   loginMod.logout();
-// });
-// it('should redirect to the login page if trying to load protected page while not authenticated', function() {
-//   browser.get('/#/login');
-//   loginURL = browser.getCurrentUrl();
+  }));
+ 
+   it('should redirect to the signin page if trying to load protected page while not authenticated', function() {
+     browser.get('/#/signin');
+     signinURL = browser.getCurrentUrl();
+ 
+     browser.get('/#/signin');
+     expect(browser.getCurrentUrl()).toEqual(signinURL);
+   });
+ 
+   it('should validate credentials', function($q) {
+    username.sendKeys('gonehybrid');
+    password.sendKeys('password');
 
-//   browser.get('/#/');
-//   expect(browser.getCurrentUrl()).toEqual(loginURL);
-// });
+    loginButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/#/dashboard');
+ 
+   });
+ 
+   it('should accept a valid username address and password', function() {
+     username.sendKeys('gonehybrid');
+     password.sendKeys('idontknow');
 
-// it('should warn on missing/malformed credentials', function() {
-//   email.clear();
-//   password.clear();
+    loginButton.click().then(function() {
+        expect(browser.getLocationAbsUrl()).toMatch('/login');
 
-//   password.sendKeys('test');
-//   loginButton.click();
-//   expect(error.getText()).toMatch('missing email');
-
-//   email.sendKeys('test');
-//   loginButton.click();
-//   expect(error.getText()).toMatch('invalid email');
-
-//   email.sendKeys('@example.com');
-//   password.clear();
-//   loginButton.click();
-//   expect(error.getText()).toMatch('missing password');
-// });
-
-// it('should return to the login page after logout', function() {
-//   var logoutButton = $('a.logout');
-//   logoutButton.click();
-//   expect(browser.getCurrentUrl()).toEqual(loginURL);
-// });
-
-// expect(input.getAttribute('value')).toBe('Foo123');
-
-// describe('Register Authentication', function() {
-//   var registerURL;
-
-//   it('should redirect to the register page if trying to load protected page while not authenticated', function() {
-//     browser.get('/#/register');
-//     registerURL = browser.getCurrentUrl();
-
-//     browser.get('/#/');
-//     expect(browser.getCurrentUrl()).toEqual(registerURL);
-//   });
-
-//   it('should warn on missing/malformed credentials', function() {
-//     email.clear();
-//     password.clear();
-
-//     password.sendKeys('test');
-//     registerButton.click();
-//     expect(error.getText()).toMatch('missing email');
-
-//     email.sendKeys('test');
-//     registerButton.click();
-//     expect(error.getText()).toMatch('invalid email');
-
-//     email.sendKeys('@example.com');
-//     password.clear();
-//     registerButton.click();
-//     expect(error.getText()).toMatch('missing password');
-//   });
-
-//   it('should check if NEW email address and password is valid', function() {
-//     email.clear();
-//     password.clear();
-//     // updated to test against username & password in database
-//     email.sendKeys('test@example.com');
-//     password.sendKeys('test');
-//     registerButton.click();
-//     expect(browser.getCurrentUrl()).not.toEqual(registerURL);
-//   });
-
-// });
+        var popup = element(by.css('.popup-container.popup-showing.active'));
+        expect(popup.isDisplayed()).toBeTruthy();
+    });
+ 
+ }); 
