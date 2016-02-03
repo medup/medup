@@ -58,11 +58,11 @@
 
 	var _angularComponent2 = _interopRequireDefault(_angularComponent);
 
-	var _common = __webpack_require__(17);
+	var _common = __webpack_require__(5);
 
 	var _common2 = _interopRequireDefault(_common);
 
-	var _components = __webpack_require__(5);
+	var _components = __webpack_require__(10);
 
 	var _components2 = _interopRequireDefault(_components);
 
@@ -72,13 +72,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-<<<<<<< HEAD
 	_angular2.default.module('medup-web', [_angularUiRouter2.default, _common2.default.name, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
-	  $urlRouterProvider.otherwise('/');
-=======
-	_angular2.default.module('medup-web', [_angularUiRouter2.default, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
 	  //$urlRouterProvider.otherwise('/');
->>>>>>> (feat) web client html
 	  // $httpProvider.interceptors.push('AttachTokens');
 	}).component('medupWeb', _app2.default);
 	// .factory('AttachTokens', attachTokens)
@@ -17858,15 +17853,15 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _dashboard = __webpack_require__(6);
+	var _navbar = __webpack_require__(6);
 
-	var _dashboard2 = _interopRequireDefault(_dashboard);
+	var _navbar2 = _interopRequireDefault(_navbar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var componentModule = _angular2.default.module('medup-web.components', [_dashboard2.default.name]);
+	var commonModule = _angular2.default.module('medup.common', [_navbar2.default.name]);
 
-	exports.default = componentModule;
+	exports.default = commonModule;
 
 /***/ },
 /* 6 */
@@ -17886,7 +17881,115 @@
 
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 
-	var _dashboard = __webpack_require__(7);
+	var _navbar = __webpack_require__(7);
+
+	var _navbar2 = _interopRequireDefault(_navbar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var navbarModule = _angular2.default.module('navbar', [_angularUiRouter2.default]).component('navbar', _navbar2.default);
+
+	exports.default = navbarModule;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _navbar = __webpack_require__(8);
+
+	var _navbar2 = _interopRequireDefault(_navbar);
+
+	var _navbar3 = __webpack_require__(9);
+
+	var _navbar4 = _interopRequireDefault(_navbar3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var navbarComponent = {
+	  restrict: 'E',
+	  bindings: {},
+	  template: _navbar2.default,
+	  controller: _navbar4.default,
+	  controllerAs: 'vm'
+	};
+
+	exports.default = navbarComponent;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = "<section class=\"nav-bar\">\n\n  <a ui-sref=\"view-medications\">\n    <div class=\"view-tab nav-tab\">\n\n      <h2>View<br>Medications</h2>\n\n    </div>\n  </a>\n\n  <a ui-sref=\"add-medication\">\n    <div class=\"lower-tab nav-tab add-medication\">\n\n      <h2>Add<br>Medication</h2>\n\n    </div>\n  </a>\n\n  <a ui-sref=\"view-reports\">\n    <div class=\"lower-tab nav-tab view-reports\">\n\n      <h2>View<br>Reports</h2>\n\n    </div>\n  </a>\n\n</section>\n"
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NavbarController = function NavbarController() {
+	  _classCallCheck(this, NavbarController);
+
+	  this.name = 'navbar';
+	};
+
+	exports.default = NavbarController;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(1);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _dashboard = __webpack_require__(11);
+
+	var _dashboard2 = _interopRequireDefault(_dashboard);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var componentModule = _angular2.default.module('medup-web.components', [_dashboard2.default.name]);
+
+	exports.default = componentModule;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(1);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularUiRouter = __webpack_require__(3);
+
+	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
+
+	var _dashboard = __webpack_require__(12);
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
@@ -17897,7 +18000,6 @@
 	    template: '<dashboard></dashboard>'
 	  }).state('dashboard.splash', {
 	    url: '/',
-<<<<<<< HEAD
 	    templateUrl: 'app/components/dashboard/dashboard.splash.html'
 	  }).state('dashboard.signin', {
 	    url: '/signin',
@@ -17905,22 +18007,13 @@
 	  }).state('dashboard.signup', {
 	    url: '/signup',
 	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
-=======
-	    templateUrl: 'app/components/dashboard/splash.html'
-	  }).state('dashboard.signin', {
-	    url: 'signin',
-	    templateUrl: 'app/components/auth/auth.html'
-	  }).state('dashboard.signup', {
-	    url: 'signup',
-	    templateUrl: 'app/components/auth/auth.html'
->>>>>>> (feat) web client html
 	  });
 	}).component('dashboard', _dashboard2.default);
 
 	exports.default = dashboardModule;
 
 /***/ },
-/* 7 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17930,19 +18023,19 @@
 	  value: true
 	});
 
-	var _dashboard = __webpack_require__(8);
+	var _dashboard = __webpack_require__(13);
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
-	var _dashboard3 = __webpack_require__(9);
+	var _dashboard3 = __webpack_require__(14);
 
 	var _dashboard4 = _interopRequireDefault(_dashboard3);
 
-	var _dashboardSignin = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../auth/dashboard.signin.controller\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _dashboardSignin = __webpack_require__(17);
 
 	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
 
-	var _dashboardSignup = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../auth/dashboard.signup.controller\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _dashboardSignup = __webpack_require__(18);
 
 	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
 
@@ -17961,17 +18054,13 @@
 	exports.default = dashboardComponent;
 
 /***/ },
-/* 8 */
+/* 13 */
 /***/ function(module, exports) {
 
-<<<<<<< HEAD
 	module.exports = "<navbar></navbar>\n<div class=\"dashboard splash\">\n  <ui-view> </ui-view>\n</div>\n"
-=======
-	module.exports = "<div class=\"dashboard splash\">\n\n  <ui-view></ui-view>\n\n</div>"
->>>>>>> (feat) web client html
 
 /***/ },
-/* 9 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -17993,11 +18082,6 @@
 	exports.default = DashboardController;
 
 /***/ },
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -18030,95 +18114,125 @@
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _angular = __webpack_require__(1);
+	var _dashboard = __webpack_require__(14);
 
-	var _angular2 = _interopRequireDefault(_angular);
+	var _dashboard2 = _interopRequireDefault(_dashboard);
 
-	var _navbar = __webpack_require__(18);
+	var _AuthServices = __webpack_require__(19);
 
-	var _navbar2 = _interopRequireDefault(_navbar);
+	var _AuthServices2 = _interopRequireDefault(_AuthServices);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var commonModule = _angular2.default.module('medup.common', [_navbar2.default.name]);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	exports.default = commonModule;
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //Todo: update
+
+	var SigninController = function (_DashboardController) {
+	  _inherits(SigninController, _DashboardController);
+
+	  function SigninController($state, AuthService) {
+	    _classCallCheck(this, SigninController);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SigninController).call(this, 'ES6 inheritance with Angular'));
+
+	    _this.user = {};
+	    _this.title = 'Sign In';
+	    _this.action = 'Sign In';
+	    return _this;
+	  }
+
+	  _createClass(SigninController, [{
+	    key: 'submit',
+	    value: function submit() {
+	      _AuthServices2.default.signin(this.user).then(function (data) {
+	        $state.go('dashboard');
+	      }).catch(function (data) {
+	        console.log("error");
+	      });
+	    }
+	  }]);
+
+	  return SigninController;
+	}(_dashboard2.default);
+
+	exports.default = SigninController;
 
 /***/ },
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _angular = __webpack_require__(1);
+	var _dashboard = __webpack_require__(14);
 
-	var _angular2 = _interopRequireDefault(_angular);
+	var _dashboard2 = _interopRequireDefault(_dashboard);
 
-	var _angularUiRouter = __webpack_require__(3);
+	var _AuthServices = __webpack_require__(19);
 
-	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
-
-	var _navbar = __webpack_require__(19);
-
-	var _navbar2 = _interopRequireDefault(_navbar);
+	var _AuthServices2 = _interopRequireDefault(_AuthServices);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var navbarModule = _angular2.default.module('navbar', [_angularUiRouter2.default]).component('navbar', _navbar2.default);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	exports.default = navbarModule;
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //Todo: update
+
+	var SignupController = function (_DashboardController) {
+	  _inherits(SignupController, _DashboardController);
+
+	  function SignupController($state, AuthService) {
+	    _classCallCheck(this, SignupController);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SignupController).call(this, 'ES6 inheritance with Angular'));
+
+	    _this.user = {};
+	    _this.title = 'Sign Up';
+	    _this.action = 'Sign Up';
+	    return _this;
+	  }
+
+	  _createClass(SignupController, [{
+	    key: 'submit',
+	    value: function submit() {
+	      _AuthServices2.default.signup(this.user).then(function (data) {
+	        $state.go('dashboard');
+	      }).catch(function (data) {
+	        console.log("error");
+	      });
+	    }
+	  }]);
+
+	  return SignupController;
+	}(_dashboard2.default);
+
+	exports.default = SignupController;
 
 /***/ },
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _navbar = __webpack_require__(20);
-
-	var _navbar2 = _interopRequireDefault(_navbar);
-
-	var _navbar3 = __webpack_require__(21);
-
-	var _navbar4 = _interopRequireDefault(_navbar3);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var navbarComponent = {
-	  restrict: 'E',
-	  bindings: {},
-	  template: _navbar2.default,
-	  controller: _navbar4.default,
-	  controllerAs: 'vm'
-	};
-
-	exports.default = navbarComponent;
-
-/***/ },
-/* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"nav-bar\">\n\n  <a ui-sref=\"view-medications\">\n    <div class=\"view-tab nav-tab\">\n\n      <h2>View<br>Medications</h2>\n\n    </div>\n  </a>\n\n  <a ui-sref=\"add-medication\">\n    <div class=\"lower-tab nav-tab add-medication\">\n\n      <h2>Add<br>Medication</h2>\n\n    </div>\n  </a>\n\n  <a ui-sref=\"view-reports\">\n    <div class=\"lower-tab nav-tab view-reports\">\n\n      <h2>View<br>Reports</h2>\n\n    </div>\n  </a>\n\n</section>\n"
+	'use strict';
 
-/***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	"use strict";
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -18126,13 +18240,58 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var NavbarController = function NavbarController() {
-	  _classCallCheck(this, NavbarController);
+	var AuthServices = function () {
+	  function AuthServices($window, $state, $http) {
+	    _classCallCheck(this, AuthServices);
 
-	  this.name = 'navbar';
-	};
+	    this.window = $window;
+	    this.state = $state;
+	    this.http = $http;
+	  }
 
-	exports.default = NavbarController;
+	  _createClass(AuthServices, [{
+	    key: 'hasToken',
+	    value: function hasToken() {
+	      return !!this.window.localStorage.getItem('com.pillMeNow');
+	    }
+	  }, {
+	    key: 'signin',
+	    value: function signin(user) {
+	      var _this = this;
+
+	      return this.http({
+	        method: 'POST',
+	        url: 'http://localhost:3000/user/signin',
+	        data: user
+	      }).then(function (response) {
+	        return _this.window.localStorage.setItem('com.medUp', response.data.token);
+	      });
+	    }
+	  }, {
+	    key: 'signup',
+	    value: function signup(user) {
+	      var _this2 = this;
+
+	      return this.http({
+	        method: 'POST',
+	        url: 'http://localhost:3000/user/signup',
+	        data: user
+	      }).then(function (response) {
+	        return _this2.window.localStorage.setItem('com.medUp', response.data.token);
+	      });
+	    }
+	  }, {
+	    key: 'signout',
+	    value: function signout() {
+	      this.window.localStorage.removeItem('com.medUp');
+	      this.state.go('dashboard.signin');
+	    }
+	  }]);
+
+	  return AuthServices;
+	}();
+
+	exports.default = AuthServices;
 
 /***/ }
 /******/ ]);

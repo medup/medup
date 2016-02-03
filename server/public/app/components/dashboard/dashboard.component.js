@@ -2,8 +2,8 @@
 //to do update
 import template from './dashboard.html';
 import DashboardController from './dashboard.controller';
-import SigninController from '../auth/dashboard.signin.controller';
-import SignupController from '../auth/dashboard.signup.controller';
+import SigninController from './dashboard.signin.controller';
+import SignupController from './dashboard.signup.controller';
 
 
 let dashboardComponent = {

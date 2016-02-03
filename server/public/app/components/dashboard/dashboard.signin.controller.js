@@ -1,4 +1,5 @@
 //Todo: update
+
 import DashboardController from './dashboard.controller';
 import AuthServices from './AuthServices.js';
 
@@ -10,7 +11,14 @@ class SigninController extends DashboardController {
     this.action = 'Sign In';
  }
  submit() {
-  AuthServices.signin(this.user).then(data => $state.go('dashboard').catch(data => console.log("error")));
+   AuthServices.signin(this.user)
+   .then(data => {
+     $state.go('dashboard')
+   })
+   .catch(data => {
+     console.log("error") 
+       
+   });
  }
 }
 
