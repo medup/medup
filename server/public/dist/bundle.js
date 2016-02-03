@@ -17993,6 +17993,10 @@
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
+	var _dashboardSignin = __webpack_require__(15);
+
+	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var dashboardModule = _angular2.default.module('dashboard', [_angularUiRouter2.default]).config(function ($stateProvider) {
@@ -18003,10 +18007,14 @@
 	    templateUrl: 'app/components/dashboard/dashboard.splash.html'
 	  }).state('dashboard.signin', {
 	    url: '/signin',
-	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
+	    templateUrl: 'app/components/dashboard/dashboard.auth.html',
+	    controller: _dashboardSignin2.default,
+	    controllerAs: 'vm'
 	  }).state('dashboard.signup', {
 	    url: '/signup',
-	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
+	    templateUrl: 'app/components/dashboard/dashboard.auth.html',
+	    controller: _dashboardSignin2.default,
+	    controllerAs: 'vm'
 	  });
 	}).component('dashboard', _dashboard2.default);
 
@@ -18031,23 +18039,13 @@
 
 	var _dashboard4 = _interopRequireDefault(_dashboard3);
 
-	var _dashboardSignin = __webpack_require__(15);
-
-	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
-
-	var _dashboardSignup = __webpack_require__(16);
-
-	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var dashboardComponent = {
 	  restrict: 'E',
 	  bindings: {},
 	  template: _dashboard2.default,
-	  DashboardController: _dashboard4.default,
-	  SignupController: _dashboardSignup2.default,
-	  SigninController: _dashboardSignin2.default,
+	  controller: _dashboard4.default,
 	  controllerAs: 'vm'
 	};
 
@@ -18071,9 +18069,10 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var DashboardController = function DashboardController($state) {
+	var DashboardController = function DashboardController($state, $scope) {
 	  _classCallCheck(this, DashboardController);
 
+	  console.log('dashboard scope', $scope);
 	  this.name = 'dashboard';
 	  this.state = $state;
 	  this.state.go('dashboard.splash');
@@ -18083,9 +18082,11 @@
 
 /***/ },
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
+
+	// import AuthServices from './AuthServices';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -18093,111 +18094,41 @@
 	  value: true
 	});
 
-	var _dashboard = __webpack_require__(14);
-
-	var _dashboard2 = _interopRequireDefault(_dashboard);
-
-	var _AuthServices = __webpack_require__(19);
-
-	var _AuthServices2 = _interopRequireDefault(_AuthServices);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //Todo: update
-
-	var SigninController = function (_DashboardController) {
-	  _inherits(SigninController, _DashboardController);
-
-	  function SigninController($state, AuthService) {
+	var SigninController = function () {
+	  function SigninController($state, $scope) {
 	    _classCallCheck(this, SigninController);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SigninController).call(this, 'ES6 inheritance with Angular'));
-
-	    _this.user = {};
-	    _this.title = 'Sign In';
-	    _this.action = 'Sign In';
-	    return _this;
+	    this.scope = $scope;
+	    this.scope.user = {};
+	    this.scope.title = 'Sign In';
+	    this.scope.action = 'Sign In';
+	    this.scope.state = $state;
+	    this.scope.submit = this.submit;
 	  }
 
 	  _createClass(SigninController, [{
 	    key: 'submit',
 	    value: function submit() {
-	      _AuthServices2.default.signin(this.user).then(function (data) {
-	        $state.go('dashboard');
-	      }).catch(function (data) {
-	        console.log("error");
-	      });
+	      console.log('submited');
+	      //  AuthServices.signin(this.user)
+	      //  .then(data => {
+	      //    console.log('success');
+	      //  })
+	      //  .catch(data => {
+	      //    console.log("error");
+	      //  });
 	    }
 	  }]);
 
 	  return SigninController;
-	}(_dashboard2.default);
+	}();
 
 	exports.default = SigninController;
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _dashboard = __webpack_require__(14);
-
-	var _dashboard2 = _interopRequireDefault(_dashboard);
-
-	var _AuthServices = __webpack_require__(19);
-
-	var _AuthServices2 = _interopRequireDefault(_AuthServices);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //Todo: update
-
-	var SignupController = function (_DashboardController) {
-	  _inherits(SignupController, _DashboardController);
-
-	  function SignupController($state, AuthService) {
-	    _classCallCheck(this, SignupController);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SignupController).call(this, 'ES6 inheritance with Angular'));
-
-	    _this.user = {};
-	    _this.title = 'Sign Up';
-	    _this.action = 'Sign Up';
-	    return _this;
-	  }
-
-	  _createClass(SignupController, [{
-	    key: 'submit',
-	    value: function submit() {
-	      _AuthServices2.default.signup(this.user).then(function (data) {
-	        $state.go('dashboard');
-	      }).catch(function (data) {
-	        console.log("error");
-	      });
-	    }
-	  }]);
-
-	  return SignupController;
-	}(_dashboard2.default);
-
-	exports.default = SignupController;
-
-/***/ },
+/* 16 */,
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -18225,73 +18156,6 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
-
-/***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var AuthServices = function () {
-	  function AuthServices($window, $state, $http) {
-	    _classCallCheck(this, AuthServices);
-
-	    this.window = $window;
-	    this.state = $state;
-	    this.http = $http;
-	  }
-
-	  _createClass(AuthServices, [{
-	    key: 'hasToken',
-	    value: function hasToken() {
-	      return !!this.window.localStorage.getItem('com.pillMeNow');
-	    }
-	  }, {
-	    key: 'signin',
-	    value: function signin(user) {
-	      var _this = this;
-
-	      return this.http({
-	        method: 'POST',
-	        url: 'http://localhost:3000/user/signin',
-	        data: user
-	      }).then(function (response) {
-	        return _this.window.localStorage.setItem('com.medUp', response.data.token);
-	      });
-	    }
-	  }, {
-	    key: 'signup',
-	    value: function signup(user) {
-	      var _this2 = this;
-
-	      return this.http({
-	        method: 'POST',
-	        url: 'http://localhost:3000/user/signup',
-	        data: user
-	      }).then(function (response) {
-	        return _this2.window.localStorage.setItem('com.medUp', response.data.token);
-	      });
-	    }
-	  }, {
-	    key: 'signout',
-	    value: function signout() {
-	      this.window.localStorage.removeItem('com.medUp');
-	      this.state.go('dashboard.signin');
-	    }
-	  }]);
-
-	  return AuthServices;
-	}();
-
-	exports.default = AuthServices;
 
 /***/ }
 /******/ ]);

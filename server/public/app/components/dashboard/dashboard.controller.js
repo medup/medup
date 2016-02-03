@@ -1,7 +1,8 @@
 'use strict';
 
 class DashboardController {
-  constructor($state) {
+  constructor($state, $scope) {
+    console.log('dashboard scope', $scope);
     this.name = 'dashboard';
     this.state = $state;
     this.state.go('dashboard.splash');

@@ -1,18 +1,14 @@
 'use strict';
 //to do update
 import template from './dashboard.html';
-import DashboardController from './dashboard.controller';
-import SigninController from './dashboard.signin.controller';
-import SignupController from './dashboard.signup.controller';
+import controller from './dashboard.controller';
 
 
 let dashboardComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  DashboardController,
-  SignupController,
-  SigninController,
+  controller,
   controllerAs: 'vm'
 };
 
