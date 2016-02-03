@@ -21,6 +21,7 @@ let internals = {
 
               return {
                 id: med.id,
+                notifications: med.notifications,
                 owner: med.owner,
                 info: JSON.parse(decryptedText.toString(CryptoJS.enc.Utf8))
               };
