@@ -1,0 +1,10 @@
+
+<div id='auth'>
+  <h1>{{ }}}</h1>
+  <form name="authForm" ng-submit='auth()'>
+    <input type='text'ng-model='user.username' required="">
+    <input type="password" ng-model='user.password' required="">
+    <button>Submit</button>
+  </form>
+  <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
+</div>
