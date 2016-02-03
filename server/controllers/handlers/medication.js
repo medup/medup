@@ -83,6 +83,7 @@ let internals = {
           let encryptedInfo = CryptoJS.AES.encrypt(JSON.stringify(medication.info), process.env.keySecret);
 
           med.info = encryptedInfo.toString();
+          med.notifications = medications.notifications || [];
           med.save((err, saved) => {
 
             if (err) console.error(err);
