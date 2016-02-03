@@ -5,8 +5,8 @@ class SignupService {
       this.$http = $http;
     }
     signin() {
-        return this.$http.get('api/user/details');
+      
     }
 }
 
-export default signupFactory;
+export default SignupService;

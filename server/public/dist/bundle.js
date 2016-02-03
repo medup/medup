@@ -62,7 +62,7 @@
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _app = __webpack_require__(10);
+	var _app = __webpack_require__(15);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -17853,9 +17853,13 @@
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
+	var _auth = __webpack_require__(10);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var componentModule = _angular2.default.module('medup-web.components', [_dashboard2.default.name]);
+	var componentModule = _angular2.default.module('medup-web.components', [_dashboard2.default.name, _auth2.default.name]);
 
 	exports.default = componentModule;
 
@@ -17885,8 +17889,16 @@
 
 	var dashboardModule = _angular2.default.module('dashboard', [_angularUiRouter2.default]).config(function ($stateProvider) {
 	  $stateProvider.state('dashboard', {
-	    url: '/dashboard',
 	    template: '<dashboard></dashboard>'
+	  }).state('dashboard.splash', {
+	    url: '/',
+	    templateUrl: 'app/components/dashboard/dashboard.splash.html'
+	  }).state('dashboard.signin', {
+	    url: '/signin',
+	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
+	  }).state('dashboard.signup', {
+	    url: '/signup',
+	    templateUrl: 'app/components/dashboard/dashboard.auth.html'
 	  });
 	}).component('dashboard', _dashboard2.default);
 
@@ -17896,7 +17908,7 @@
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -17910,6 +17922,14 @@
 
 	var _dashboard4 = _interopRequireDefault(_dashboard3);
 
+	var _dashboardSignin = __webpack_require__(13);
+
+	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
+
+	var _dashboardSignup = __webpack_require__(14);
+
+	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var dashboardComponent = {
@@ -17917,6 +17937,8 @@
 	  bindings: {},
 	  template: _dashboard2.default,
 	  controller: _dashboard4.default,
+	  signupController: _dashboardSignup2.default,
+	  signinController: _dashboardSignin2.default,
 	  controllerAs: 'vm'
 	};
 
@@ -17926,13 +17948,13 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dashboard splash\">\n            \n  <div class=\"heading-wrapper\">\n\n    <div class=\"primary-logo\">\n      \n      <img src=\"assets/img/logo.png\" alt=\"MedUp Logo\">\n\n    </div>\n\n    <h1>MedUp</h1>\n\n    <h3>Your healthy reminder</h3>\n\n    <div class=\"auth-button-wrapper\">\n      \n      <a ui-sref=\"signin\" class=\"auth-signin\">Sign In</a>\n      <a ui-sref=\"signup\" class=\"auth-signup\">Sign Up</a>\n\n    </div>\n\n  </div>\n\n</div>"
+	module.exports = "<div class=\"dashboard splash\">\n            \n  <ui-view> </ui-view>\n</div>"
 
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -17940,10 +17962,12 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var DashboardController = function DashboardController() {
+	var DashboardController = function DashboardController($state) {
 	  _classCallCheck(this, DashboardController);
 
 	  this.name = 'dashboard';
+	  this.state = $state;
+	  this.state.go('dashboard.splash');
 	};
 
 	exports.default = DashboardController;
@@ -17952,13 +17976,130 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _angular = __webpack_require__(1);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _angularUiRouter = __webpack_require__(3);
+
+	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
+
+	var _auth = __webpack_require__(11);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var authModule = _angular2.default.module('auth', [_angularUiRouter2.default]).config(function ($stateProvider) {
+	  $stateProvider.state('signin', {
+	    url: '/signin',
+	    template: '<auth></auth>'
+	  }).state('signup', {
+	    url: '/signup',
+	    template: '<auth></auth>'
+	  });
+	}).component('auth', _auth2.default);
+
+	exports.default = authModule;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _auth = __webpack_require__(12);
+
+	var _auth2 = _interopRequireDefault(_auth);
+
+	var _dashboardSignin = __webpack_require__(13);
+
+	var _dashboardSignin2 = _interopRequireDefault(_dashboardSignin);
+
+	var _dashboardSignup = __webpack_require__(14);
+
+	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// import styles';
+
+	var authComponent = {
+	  restrict: 'E',
+	  bindings: {},
+	  template: _auth2.default,
+	  signinController: _dashboardSignin2.default,
+	  signupController: _dashboardSignup2.default,
+	  controllerAs: 'vm'
+	};
+
+	exports.default = authComponent;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div id='auth'>\n  <h1>signin</h1>\n  <form name=\"authForm\" ng-submit='auth()'>\n    <input type='text'ng-model='user.username' required=\"\">\n    <input type=\"password\" ng-model='user.password' required=\"\">\n    <button>Submit</button>\n  </form>\n  <a href=\"#/signup\">Don't have an account? <strong>Signup</strong> ...</a>\n</div>"
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	//Todo: update
+
+	var AuthController = function AuthController($scope, $state, AuthService) {
+	  _classCallCheck(this, AuthController);
+
+	  this.user = {};
+	  AuthService.signin(this.user).then(function (data) {
+	    return $state.go('dashboard').catch(function (data) {
+	      return console.log("error");
+	    });
+	  });
+	  AuthService.signup(this.user).then(function (data) {
+	    return $state.go('dashboard').catch(function (data) {
+	      return console.log("error");
+	    });
+	  });
+	};
+
+	exports.default = AuthController;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _app = __webpack_require__(11);
+	var _app = __webpack_require__(16);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -17972,10 +18113,10 @@
 	exports.default = appComponent;
 
 /***/ },
-/* 11 */
+/* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class='app'>\n  <div ui-view></div>\n  <h1>Hello, world</h1>\n</div>\n"
+	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
 
 /***/ }
 /******/ ]);

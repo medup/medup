@@ -1,8 +1,10 @@
-"use strict";
+'use strict';
 
 class DashboardController {
-  constructor() {
+  constructor($state) {
     this.name = 'dashboard';
+    this.state = $state;
+    this.state.go('dashboard.splash');
   }
 }
 
