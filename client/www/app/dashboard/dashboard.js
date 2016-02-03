@@ -46,8 +46,14 @@
     };
 
     $scope.removeReminder = function(medication) {
-      var index = $scope.medications.indexOf(medication);
-      $scope.medications.splice(index, 1);
+      MedService.deleteMeds(medication.id)
+        .then(function (data) {
+          console.info(data);
+	  $scope.medications = {};
+          getMedData();
+	}).catch(function (err) {
+          console.error(err);
+	});
     };
 
     // $ionicPlatform.ready(function() {

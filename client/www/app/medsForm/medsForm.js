@@ -19,7 +19,17 @@
     });
 
     $scope.saveMed = function () {
-      console.log($scope.med);
+      if ($stateParams.medId) {
+        MedService.updateMeds({id: $stateParams.medId, info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
+        .then(function(data) {
+          console.dir(data);
+	}).catch(function (err) {
+          console.error('unable to update medication on server');
+	  console.dir(err);
+	});
+        console.log($scope.medId);
+      };	
+      
       MedService.addMed({info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
         .then(function(data) {
           console.dir(data);

@@ -94,11 +94,11 @@
         });
     };
 
-    this.deleteMeds = function(user) {
+    this.deleteMeds = function(medId) {
       return $http({
           method: 'DELETE',
-          url: 'http://localhost:3000/api/medications',
-          data: user
+          url: 'http://localhost:3000/api/medications/' + medId
+          //data: 
         })
         .then(function(response) {
           return response.data;
