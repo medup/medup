@@ -3,6 +3,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
+import signinController from './dashboard.signin.controller';
 
 
 let dashboardModule = angular.module('dashboard', [uiRouter])
@@ -17,14 +18,17 @@ let dashboardModule = angular.module('dashboard', [uiRouter])
       })
       .state('dashboard.signin', {
         url: '/signin',
-        templateUrl: 'app/components/dashboard/dashboard.auth.html'
+        templateUrl: 'app/components/dashboard/dashboard.auth.html',
+        controller: signinController,
+        controllerAs: 'vm'
       })
       .state('dashboard.signup', {
         url: '/signup',
-        templateUrl: 'app/components/dashboard/dashboard.auth.html'
-      });  
-   })     
+        templateUrl: 'app/components/dashboard/dashboard.auth.html',
+        controller: signinController,
+        controllerAs: 'vm'
+      });
+   })
   .component('dashboard', dashboardComponent);
 
 export default dashboardModule;
-

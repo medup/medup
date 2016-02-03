@@ -1,23 +1,25 @@
-//Todo: update
-import DashboardController from './dashboard.controller';
-import AuthServices from './AuthServices.js';
+"use strict";
 
-class SignupController extends DashboardController {
-  constructor($state, AuthService) {
-    super('ES6 inheritance with Angular');
-    this.user = {};
-    this.title = 'Sign Up';
-    this.action = 'Sign Up';
+// import AuthServices from './AuthServices';
+
+class SignupController {
+  constructor($state, $scope) {
+    this.scope = $scope;
+    this.scope.user = {};
+    this.scope.title = 'Sign Up';
+    this.scope.action = 'Sign Up';
+    this.state = $state;
  }
  submit() {
-   AuthServices.signup(this.user)
-   .then(data => {
-     $state.go('dashboard')
-   })
-   .catch(data => {
-     console.log("error") 
-       
-   });
+   console.log('success');
+  //  AuthServices.signup(this.user)
+  //  .then(data => {
+  //    this.state.go('dashboard');
+  //    console.log('success');
+  //  })
+  //  .catch(data => {
+  //    console.log("error");
+  //  });
  }
 }
 
