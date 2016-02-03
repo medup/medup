@@ -20,6 +20,19 @@
 
 /* Main Page */
 
+/*Clock*/
+/* this import should be first line in css file else add as <link> in html*/
+.widget-clock.blue-light .digital {
+  text-align: center;
+  margin-bottom: 5%;
+}
+.widget-clock.blue-light .time {
+  font-family: 'Rationale', sans-serif;
+  font-size: 3.0em;
+  color: #4A9896;
+}
+
+/*Content*/
 hr {
   display: block;
   margin-right: 2em;

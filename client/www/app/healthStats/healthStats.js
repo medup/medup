@@ -7,17 +7,21 @@
   HealthStatsCtrl.$inject = ['$scope', '$state'];
 
   function HealthStatsCtrl($scope, $state) {
-    /*----------  Adderall Fake Data ----------*/
-    $scope.labels = ["Dry Mouth", "Stomach Pain", "Dizziness", "Trouble Sleeping"];
-
-    $scope.data = [
-      [65, 59, 90, 81],
-      [28, 48, 40, 19]
+    /*----------  Fake Adderall Side Effects ----------*/
+    $scope.adderallLabels = ["Dry Mouth", "Stomach Pain", "Dizziness", "Trouble Sleeping"];
+    $scope.adderall = [
+      [10, 0, 10, 0]
     ];
 
-    /*----------  Compliance Fake Data  ----------*/
+    /*----------  Fake Synthroid Side Effects ----------*/
+    $scope.synthroidLabels = ["fever", "Stomach Pain", "Dizziness", "Trouble Sleeping"];
+    $scope.synthroid = [
+      [1, 6, 1, 8]
+    ];
 
-    // $scope.labels = ["Taken", "Missed"];
-    // $scope.data = [300, 500, 100, 40, 120];
+    /*----------  Fake Compliance Data ----------*/
+    $scope.complianceLabels = ["Missed", "Taken"];
+    $scope.compliance = [1, 3];
   }
+
 })();

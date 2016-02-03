@@ -8,7 +8,7 @@
   'use strict';
 
   angular
-    .module('starter', ['ionic', 'ngCordova', 'nvd3', 'chart.js', 'starter.dashboard', 'starter.main', 'starter.healthStats', 'starter.services', 'starter.auth', 'starter.medsForm'])
+    .module('starter', ['ionic', 'ngCordova', 'nvd3', 'chart.js', 'ds.clock', 'starter.dashboard', 'starter.main', 'starter.healthStats', 'starter.services', 'starter.auth', 'starter.medsForm'])
     .run(function($ionicPlatform, $rootScope) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
