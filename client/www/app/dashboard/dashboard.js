@@ -7,7 +7,6 @@
   DashboardCtrl.$inject = ['$scope', '$state', '$stateParams', '$timeout', 'MedService', 'Medications'];
 
   function DashboardCtrl($scope, $state, $stateParams, $timeout, MedService, Medications) {
-
     /* Get med data when user enters dashboard */
     var getMedData = function() {
       MedService.getMeds()
@@ -19,7 +18,14 @@
           console.dir(err);
         });
     };
- 
+
+    $scope.$on('$viewContentLoaded', function(event) {
+      getMedData();
+    });
+    
+    $scope.getMeds = function () {
+      console.log('get meds!');
+    };
     $scope.medications = {};
     getMedData();
     

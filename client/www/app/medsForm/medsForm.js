@@ -18,9 +18,21 @@
       }
     });
 
+    $scope.getMedData = function () {
+      MedService.getMeds()
+        .then(function(medInfoArr) {
+          Medications.userMeds.dbMeds = medInfoArr;
+        }).catch(function(err) {
+          console.error("unable to fetch medication data from server");
+          console.dir(err);
+        });
+    };
+    
     $scope.saveMed = function () {
       if ($stateParams.medId) {
-        MedService.updateMeds({id: $stateParams.medId, info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
+        MedService.updateMeds({id: $stateParams.medId,
+			       info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}
+			      })
         .then(function(data) {
           console.dir(data);
 	}).catch(function (err) {
@@ -28,16 +40,16 @@
 	  console.dir(err);
 	});
         console.log($scope.medId);
-      };	
-      
-      MedService.addMed({info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
-        .then(function(data) {
-          console.dir(data);
-	}).catch(function (err) {
-          console.error('unable to PUT new medication on server');
-	  console.dir(err);
-	});
-      console.log($scope.medId);
+      } else {	
+        MedService.addMed({info: {name: $scope.med.info.name, instruct: $scope.med.info.instruct}})
+          .then(function(data) {
+            console.dir(data);
+	  }).catch(function (err) {
+            console.error('unable to PUT new medication on server');
+	    console.dir(err);
+	  });
+	console.log($scope.medId);
+      }	
     };
 
   };
