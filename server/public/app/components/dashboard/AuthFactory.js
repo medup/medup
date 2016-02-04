@@ -15,6 +15,7 @@ let AuthFactory = ($window, $state, $http) => {
       .then(response =>  {
         $window.localStorage.setItem('com.medUp', response.data.token)
           isAuth = true;
+          console.log(isAuth);
         });
 
     };
@@ -29,6 +30,7 @@ let AuthFactory = ($window, $state, $http) => {
       .then(response => {
         $window.localStorage.setItem('com.medUp', response.data.token)
           isAuth = true;
+          console.log(isAuth);
         });
       };
 
