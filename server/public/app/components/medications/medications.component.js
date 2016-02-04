@@ -1,6 +1,6 @@
 'use strict';
 //to do update
-import template from './medications.html';
+import template from './view-medications.html';
 import medicationsController from './medications.controller';
 
 
