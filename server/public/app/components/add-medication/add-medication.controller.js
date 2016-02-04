@@ -17,7 +17,6 @@ class addMedicationController {
     this.scope.submitMedication = this.submitMedication;
   }
   submitMedication(medication) {
-    console.log('medication', medication);
     this.addMedicationFactory.addMedication(medication)
       .then((res) => {
         console.log('response', res);
