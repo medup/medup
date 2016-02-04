@@ -37,6 +37,7 @@
           })
           .then(function(data) {
             console.dir(data);
+            $state.go('dashboard');
           }).catch(function(err) {
             console.error('unable to update medication on server');
             console.dir(err);
@@ -51,6 +52,7 @@
           })
           .then(function(data) {
             console.dir(data);
+            $state.go('dashboard');
           }).catch(function(err) {
             console.error('unable to PUT new medication on server');
             console.dir(err);

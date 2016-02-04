@@ -13,12 +13,12 @@
         <label class="item item-input item-floating-label"> <span class="input-label">Instructions</span>
           <input type="text" placeholder="Instructions (e.g. Take one tablet by mouth every morning)" ng-model="med.info.instruct"> </label>
         <label class="item item-input item-floating-label"> <span class="input-label">Dosage</span>
-          <input type="text" placeholder="Dosage (e.g. 15mg)"> </label>
+          <input type="text" placeholder="Current Amount Remaining"> </label>
         <br />
         <!-- Remainding Medication -->
         <div class="row">
           <div class="col col-50">
-            <input type="text" placeholder="Current Amt Remaining">
+            <input type="text" placeholder="Dosage (e.g. 15mg)" ng-model="med.info.dosage">
           </div>
           <div class="col col-50">
             <label class="item item-input item-select">
@@ -33,7 +33,7 @@
             </label>
           </div>
         </div>
-        <button class="button button-block button-royal ink" data-ink-color="#9DEAFF" data-ink-opacity="1"> Submit </button>
+        <button class="button button-block button-royal ink" data-ink-color="#9DEAFF" data-ink-opacity="1"ng-click="saveMed()"> Submit </button>
       </div>
     </div>
   </ion-content>
