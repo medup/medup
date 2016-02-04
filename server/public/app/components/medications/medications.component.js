@@ -8,7 +8,7 @@ let medicationsComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  controller,
+  medicationsController,
   controllerAs: 'vm'
 };
 

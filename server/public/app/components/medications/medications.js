@@ -11,7 +11,7 @@ let medicationsModule = angular.module('medications', [uiRouter])
     $stateProvider
       .state('viewMedication', {
           url: '/medications',
-          templateUrl: 'app/components/medications/medications.html',
+          templateUrl: 'app/components/medications/view-medications.html',
           controller: 'medicationsController',
           controllerAs: 'vm'
         });
