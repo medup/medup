@@ -4,8 +4,8 @@
 
   <form ng-submit="submit()">
     
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
+    <input type="text" name="email" placeholder="Email" ng-model="user.email" required > 
+    <input type="password" name="password" placeholder="Password" ng-model="user.password" required>
     <button type="submit">{{action}}</button>
 
   </form>

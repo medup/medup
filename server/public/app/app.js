@@ -6,6 +6,7 @@
   import Common from './common/common';
   import Components from './components/components';
   import AppComponent from './app.component';
+  // import AuthServices from './AuthServices';
 
   angular.module('medup-web', [
     uiRouter,
@@ -16,7 +17,8 @@
       //$urlRouterProvider.otherwise('/');
       // $httpProvider.interceptors.push('AttachTokens');
     })
-    .component('medupWeb', AppComponent);
+    .component('medupWeb', AppComponent)
+    // .service('AuthServices', AuthServices);
     // .factory('AttachTokens', attachTokens)
     //  .run();
 //

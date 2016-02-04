@@ -4,6 +4,9 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import dashboardComponent from './dashboard.component';
 import signinController from './dashboard.signin.controller';
+import signupController from './dashboard.signup.controller';
+import AuthFactory from './AuthFactory';
+
 
 
 let dashboardModule = angular.module('dashboard', [uiRouter])
@@ -25,10 +28,11 @@ let dashboardModule = angular.module('dashboard', [uiRouter])
       .state('dashboard.signup', {
         url: '/signup',
         templateUrl: 'app/components/dashboard/dashboard.auth.html',
-        controller: signinController,
+        controller: signupController,
         controllerAs: 'vm'
       });
    })
-  .component('dashboard', dashboardComponent);
+  .component('dashboard', dashboardComponent)
+  .factory('AuthFactory', AuthFactory);
 
 export default dashboardModule;
