@@ -63,7 +63,7 @@
   overflow-y: auto;
 }
 
-med-up, .app, .ng-scope {
+med-up, .app, .app > .ng-scope {
   display: block;
   height: 100%;
 }
