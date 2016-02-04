@@ -36,7 +36,7 @@
         });
     };
 
-    this.signup = function(user) {
+    this.register = function(user) {
       return $http({
           method: 'POST',
           url: 'http://localhost:3000/user/signup',
@@ -48,7 +48,7 @@
         });
     };
 
-    this.signout = function() {
+    this.logout = function() {
       $window.localStorage.removeItem('com.medUp');
       $state.go('/signin');
     };

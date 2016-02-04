@@ -7,11 +7,31 @@
   DashboardCtrl.$inject = ['$scope', '$state'];
 
   function DashboardCtrl($scope, $state) {
+
+    // $ionicPlatform.ready(function() {
+    //   // testing notifs
+    //   var now = new Date().getTime();
+    //   var _5SecondsFromNow = new Date(now + 5000);
+
+    //   var notifs = {
+    //     id: 12,
+    //     at: _5SecondsFromNow,
+    //     every: 'minute',
+    //     text: "Don't forget to take your medication",
+    //     title: "Medication Reminder",
+    //   };
+
+    //   $timeout(function() {
+    //     Notifications.scheduleNotifications(notifs);
+    //   }, 5000);
+    // });
+
+    /*----------  Testing Fake Data  ----------*/
     $scope.options = {
       chart: {
         type: 'stackedAreaChart',
         height: 300,
-        width: 450,
+        width: 465,
         showControls: false,
         showYAxis: false,
         showXAxis: false,

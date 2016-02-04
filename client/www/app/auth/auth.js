@@ -1,11 +1,6 @@
 (function() {
   'use strict';
-  /**
-   * app name : starter
-   * AuthService dependency is defined in the services.js file
-   * $ionicPopup dependency for a simple popup
-   * $state for the transition to the next view
-   */
+  
   angular
     .module('medup.auth', [])
     .controller('AuthCtrl', AuthCtrl);
@@ -17,10 +12,10 @@
     $scope.signin = function() {
       AuthService.signin($scope.user)
         .then(function(data) {
-	  console.dir(data);
-        $state.go('dashboard', {user: $scope.data.email});
+          $state.go('dashboard', {
+            user: $scope.data.email
+          });
         }).catch(function(data) {
-          console.log(data);
           var alertPopup = $ionicPopup.alert({
             title: 'Login Failed',
             template: 'Please Check your credentials!'
@@ -28,10 +23,12 @@
         });
     };
 
-    $scope.signup = function() {
-      AuthService.signup($scope.user)
+    $scope.register = function() {
+      AuthService.register($scope.user)
         .then(function(data) {
-          $state.go('dashboard', {user: $scope.user.email});
+          $state.go('dashboard', {
+            user: $scope.user.email
+          });
         }).catch(function(data) {
           var alertPopup = $ionicPopup.alert({
             title: 'Register Failed',
