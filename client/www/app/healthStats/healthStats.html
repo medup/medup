@@ -1,0 +1,32 @@
+<ion-view view-title="healthStats" name="healthStats-view">
+  <div class="row">
+    <div class="bar bar-header">
+      <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="dashboard"></a>
+      <h1 class="title">Health Stats</h1>
+    </div>
+  </div class="row">
+  <ion-content class="main-menu">
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Adderall Side Effects </p>
+        <br>
+        <canvas id="Adderall" class="chart chart-radar" chart-data="adderall" chart-labels="adderallLabels"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Synthroid Side Effects </p>
+        <br>
+        <canvas id="Synthroid" class="chart chart-radar" chart-data="synthroid" chart-labels="synthroidLabels"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Compliance </p>
+        <br>
+        <canvas id="compliance" class="chart chart-doughnut" chart-data="compliance" chart-labels="complianceLabels">
+        </canvas>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

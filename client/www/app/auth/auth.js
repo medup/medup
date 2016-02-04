@@ -7,7 +7,7 @@
    * $state for the transition to the next view
    */
   angular
-    .module('starter.auth', [])
+    .module('medup.auth', [])
     .controller('AuthCtrl', AuthCtrl);
   AuthCtrl.$inject = ['$scope', '$state', '$ionicPopup', 'AuthService'];
 
