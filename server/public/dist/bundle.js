@@ -72,10 +72,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import AuthServices from './AuthServices';
+
 	_angular2.default.module('medup-web', [_angularUiRouter2.default, _common2.default.name, _components2.default.name]).config(function ($httpProvider, $urlRouterProvider) {
 	  //$urlRouterProvider.otherwise('/');
 	  // $httpProvider.interceptors.push('AttachTokens');
 	}).component('medupWeb', _app2.default);
+	// .service('AuthServices', AuthServices);
 	// .factory('AttachTokens', attachTokens)
 	//  .run();
 	//
@@ -18001,6 +18004,10 @@
 
 	var _dashboardSignup2 = _interopRequireDefault(_dashboardSignup);
 
+	var _AuthFactory = __webpack_require__(20);
+
+	var _AuthFactory2 = _interopRequireDefault(_AuthFactory);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var dashboardModule = _angular2.default.module('dashboard', [_angularUiRouter2.default]).config(function ($stateProvider) {
@@ -18020,7 +18027,7 @@
 	    controller: _dashboardSignup2.default,
 	    controllerAs: 'vm'
 	  });
-	}).component('dashboard', _dashboard2.default);
+	}).component('dashboard', _dashboard2.default).factory('AuthFactory', _AuthFactory2.default);
 
 	exports.default = dashboardModule;
 
@@ -18073,13 +18080,15 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var DashboardController = function DashboardController($state, $scope) {
+	var DashboardController = function DashboardController($state, $scope, AuthFactory) {
 	  _classCallCheck(this, DashboardController);
 
 	  console.log('dashboard scope', $scope);
-	  this.name = 'dashboard';
-	  this.state = $state;
-	  this.state.go('dashboard.splash');
+	  this.scope = $scope;
+	  this.scope.name = 'dashboard';
+	  this.scope.state = $state;
+	  this.scope.state.go('dashboard.splash');
+	  this.scope.isAuth = AuthFactory.isAuth;
 	};
 
 	exports.default = DashboardController;
@@ -18090,8 +18099,6 @@
 
 	"use strict";
 
-	// import AuthServices from './AuthServices';
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
@@ -18101,28 +18108,29 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var SigninController = function () {
-	  function SigninController($state, $scope) {
+	  function SigninController($state, $scope, AuthFactory) {
 	    _classCallCheck(this, SigninController);
 
 	    this.scope = $scope;
+	    this.scope.AuthFactory = AuthFactory;
 	    this.scope.user = {};
 	    this.scope.title = 'Sign In';
 	    this.scope.action = 'Sign In';
-	    this.scope.state = $state;
 	    this.scope.submit = this.submit;
+	    this.scope.state = $state;
 	  }
 
 	  _createClass(SigninController, [{
 	    key: 'submit',
 	    value: function submit() {
-	      console.log('submited');
-	      //  AuthServices.signin(this.user)
-	      //  .then(data => {
-	      //    console.log('success');
-	      //  })
-	      //  .catch(data => {
-	      //    console.log("error");
-	      //  });
+	      var _this = this;
+
+	      this.AuthServices.signin(this.user).then(function (data) {
+	        _this.state.go('dashboard.splash');
+	        console.log('success');
+	      }).catch(function (data) {
+	        console.log("error");
+	      });
 	    }
 	  }]);
 
@@ -18138,8 +18146,6 @@
 
 	"use strict";
 
-	// import AuthFactory from './AuthFactory';
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	Object.defineProperty(exports, "__esModule", {
@@ -18149,29 +18155,29 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var SignupController = function () {
-	  function SignupController($state, $scope) {
+	  function SignupController($state, $scope, AuthFactory) {
 	    _classCallCheck(this, SignupController);
 
-	    console.log("kayla" + $scope);
 	    this.scope = $scope;
+	    this.scope.AuthFactory = AuthFactory;
 	    this.scope.user = {};
 	    this.scope.title = 'Sign Up';
 	    this.scope.action = 'Sign Up';
-	    this.state = $state;
+	    this.scope.submit = this.submit;
+	    this.scope.state = $state;
 	  }
 
 	  _createClass(SignupController, [{
-	    key: "submit",
+	    key: 'submit',
 	    value: function submit() {
-	      // console.log('Kayla');
-	      // AuthFactory.signup(this.user)
-	      // .then(data => {
-	      //   this.state.go('dashboard');
-	      //   console.log('success');
-	      // })
-	      // .catch(data => {
-	      //   console.log("error");
-	      // });
+	      var _this = this;
+
+	      this.AuthFactory.signup(this.user).then(function (data) {
+	        _this.state.go('dashboard.splash');
+	        console.log('success');
+	      }).catch(function (data) {
+	        console.log("error");
+	      });
 	    }
 	  }]);
 
@@ -18208,6 +18214,62 @@
 /***/ function(module, exports) {
 
 	module.exports = "<div class='app'>\n  <div ui-view></div>\n</div>\n"
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var AuthFactory = function AuthFactory($window, $state, $http) {
+
+	  var hasToken = function hasToken() {
+	    return !!$window.localStorage.getItem('com.medUp');
+	  };
+
+	  var isAuth = false;
+
+	  var signin = function signin(user) {
+	    return $http({
+	      method: 'POST',
+	      url: 'http://localhost:3000/user/signin',
+	      data: user
+	    }).then(function (response) {
+	      $window.localStorage.setItem('com.medUp', response.data.token);
+	      isAuth = true;
+	    });
+	  };
+
+	  var signup = function signup(user) {
+	    console.log("printing from the AuthFactory");
+	    return $http({
+	      method: 'POST',
+	      url: 'http://localhost:3000/user/signup',
+	      data: user
+	    }).then(function (response) {
+	      $window.localStorage.setItem('com.medUp', response.data.token);
+	      isAuth = true;
+	    });
+	  };
+
+	  var signout = function signout() {
+	    $window.localStorage.removeItem('com.medUp');
+	    $state.go('dashboard.signin');
+	  };
+
+	  return {
+	    hasToken: hasToken,
+	    signin: signin,
+	    signup: signup,
+	    signout: signout,
+	    isAuth: isAuth
+	  };
+	};
+
+	exports.default = AuthFactory;
 
 /***/ }
 /******/ ]);

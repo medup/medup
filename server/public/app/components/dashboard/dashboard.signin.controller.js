@@ -1,25 +1,25 @@
 "use strict";
 
-// import AuthServices from './AuthServices';
-
 class SigninController {
-  constructor($state, $scope) {
+  constructor($state, $scope, AuthFactory) {
     this.scope = $scope;
+    this.scope.AuthFactory = AuthFactory;
     this.scope.user = {};
     this.scope.title = 'Sign In';
     this.scope.action = 'Sign In';
-    this.scope.state = $state;
     this.scope.submit = this.submit;
+    this.scope.state = $state;
+    
   }
   submit() {
-   console.log('submited');
-  //  AuthServices.signin(this.user)
-  //  .then(data => {
-  //    console.log('success');
-  //  })
-  //  .catch(data => {
-  //    console.log("error");
-  //  });
+   this.AuthServices.signin(this.user)
+   .then(data => {
+     this.state.go('dashboard.splash');
+     console.log('success');
+   })
+   .catch(data => {
+     console.log("error");
+   });
   }
 }
 
