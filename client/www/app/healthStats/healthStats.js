@@ -10,7 +10,7 @@
     /*----------  Fake Adderall Side Effects ----------*/
     $scope.adderallLabels = ["Dry Mouth", "Stomach Pain", "Dizziness", "Trouble Sleeping"];
     $scope.adderall = [
-      [10, 0, 10, 0]
+      [10, 9, 10, 7]
     ];
 
     /*----------  Fake Synthroid Side Effects ----------*/

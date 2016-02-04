@@ -1,4 +1,4 @@
-<ion-view view-title="auth-signin" name="auth-signin-view">
+<ion-view view-title="auth-register" name="auth-register-view">
   <ion-content class="user-auth-background">
     <div class="list list-inset user-auth">
       <img class="user-auth-logo" src="../img/logo.png">
@@ -10,8 +10,8 @@
         <input type="text" placeholder="Password" ng-model="user.password">
       </label>
       <hr>
-      <button class="button button-block button-royal" ng-click="signin()"> Open MedUp </button>
-      <div class="user-auth-redirect"> Don't have an account? <a ui-sref="register"> Register </a></div>
+      <button class="button button-block button-royal" ng-click="register()"> Register </button>
+      <div class="user-auth-redirect"> Have an account? <a ui-sref="signin"> Sign In </a></div>
     </div>
   </ion-content>
 </ion-view>

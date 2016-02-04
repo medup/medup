@@ -10,8 +10,6 @@
     $scope.med = {};
     var id = parseInt($stateParams.medId);
     var drugs = Medications.userMeds.dbMeds;
-    console.dir(drugs);
-    console.log('param: %s', id);
     drugs.forEach(function(drug) {
       if (drug.id === id) {
         $scope.med = drug;

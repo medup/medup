@@ -4,31 +4,37 @@
     <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="dashboard"></a>
     <h1 class="title">Add Reminder</h1>
   </div>
-  <ion-content class="padding">
+  <ion-content class="padding user-medform">
     <div class="list list-inset">
-      <ion-list>
-        <ion-input floating-label>
-          <ion-label>
-            <h4><b>Name</b></h4></ion-label>
-          <input id="name" name="name" type="text" ng-model="med.info.name">
-        </ion-input>
-        <ion-input floating-label>
-          <ion-label>
-            <h4><b>Dosage</b></h4></ion-label>
-          <input id="dosage" name="dosage" type="text" ng-model="med.info.dosage">
-        </ion-input>
-        <ion-input floating-label>
-          <ion-label>
-            <h4><b>Time Needed</b></h4></ion-label>
-          <!-- <span class="ion-android-alarm-clock"></span> -->
-          <input id="time" name="time" type="text" ng-model="med.info.reminder">
-        </ion-input>
-        <ion-input floating-label>
-          <ion-label>
-            <h4><b>Instructions</b></h4></ion-label>
-          <input id="instruct" xoname="instruct" type="text" ng-model="med.info.instruct">
-        </ion-input>
-      </ion-list>
+      <div class="list">
+        <!-- Medication Name, Instruction and Dosage -->
+        <label class="item item-input item-floating-label"> <span class="input-label">Medication Name</span>
+          <input type="text" placeholder="Medication Name (e.g. Adderall)" ng-model="med.info.name"> </label>
+        <label class="item item-input item-floating-label"> <span class="input-label">Instructions</span>
+          <input type="text" placeholder="Instructions (e.g. Take one tablet by mouth every morning)" ng-model="med.info.instruct"> </label>
+        <label class="item item-input item-floating-label"> <span class="input-label">Dosage</span>
+          <input type="text" placeholder="Dosage (e.g. 15mg)"> </label>
+        <br />
+        <!-- Remainding Medication -->
+        <div class="row">
+          <div class="col col-50">
+            <input type="text" placeholder="Current Amt Remaining">
+          </div>
+          <div class="col col-50">
+            <label class="item item-input item-select">
+              <div class="input-label">Unit:</div>
+              <select>
+                <option>oz</option>
+                <option selected>mg</option>
+                <option>mcg</option>
+                <option>g</option>
+                <option>fld.</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <button class="button button-block button-royal ink" data-ink-color="#9DEAFF" data-ink-opacity="1"> Submit </button>
+      </div>
     </div>
   </ion-content>
 </ion-view>

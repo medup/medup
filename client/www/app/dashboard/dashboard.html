@@ -4,35 +4,31 @@
       <h1 class="title">Welcome</h1>
     </div>
   </div class="row">
-  <ion-content>
-    <div class="main-menu">
-      <!-- Current Time and Date -->
-      <!-- This is pending. We can add another functionality here -->
-      <div class="row">
-        <div class="col col-100">
-          <ds-widget-clock show-digital theme="blue-light" digital-format="'hh:mm a'"></ds-widget-clock>
-        </div>
+  <ion-content scroll="false" class="user-dashboard">
+    <div class="row">
+      <div class="col col-100">
+        <ds-widget-clock show-digital theme="blue-light" digital-format="'hh:mm a'"></ds-widget-clock>
       </div>
-      <!-- Menu -->
-      <div class="row">
-        <div class="col col-50">
-          <img src="http://i64.tinypic.com/2qv4k9d.png" ui-sref="calendar">
-          <p> Calendar </p>
-        </div>
-        <div class="col col-50">
-          <img src="http://i63.tinypic.com/2cpvqxh.png" ui-sref="medsForm">
-          <p> Reminder </p>
-        </div>
+    </div>
+    <!-- Menu -->
+    <div class="row">
+      <div class="col col-50">
+        <img src="http://i64.tinypic.com/2qv4k9d.png" ui-sref="calendar">
+        <p> Calendar </p>
       </div>
-      <div class="row">
-        <div class="col col-50">
-          <img src="http://i63.tinypic.com/35i4tgk.png" ui-sref="healthStats">
-          <p> Health Stats </p>
-        </div>
-        <div class="col col-50">
-          <img src="http://i68.tinypic.com/2hxqfkk.png" ui-sref="medications">
-          <p> Medications </p>
-        </div>
+      <div class="col col-50">
+        <img src="../img/alarm.png" ui-sref="medsForm">
+        <p> Add Reminder </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-50">
+        <img src="http://i63.tinypic.com/35i4tgk.png" ui-sref="healthStats">
+        <p> Health Stats </p>
+      </div>
+      <div class="col col-50">
+        <img src="http://i68.tinypic.com/2hxqfkk.png" ui-sref="medications">
+        <p> Medications </p>
       </div>
     </div>
     <hr>
@@ -45,8 +41,8 @@
   </ion-content>
   <!-- Footer -->
   <div class="bar bar-footer bar-royal">
-    <button class="my-footer button button-clear"> Side Effects </button>
+    <button class="my-footer button button-clear "> Side Effects </button>
     <div class="title"> Today I'm feeling? </div>
-    <button class="my-footer button button-clear"> Better </button>
+    <button class="my-footer button button-clear"> Improvement </button>
   </div>
 </ion-view>
