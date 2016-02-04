@@ -31,7 +31,7 @@
 }
 
 .med-left {
-  @include span-columns(7.5);
+  @include span-columns(6.5);
   @include clearfix;
 
   h3 {
@@ -53,10 +53,12 @@
 }
 
 .med-notifications {
-  @include span-columns(2.5);
+  @include span-columns(3.5);
 
   li {
+    float: left;
     margin-bottom: rem(4);
+    margin-right: 0.5rem;
   }
 
   i {

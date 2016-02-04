@@ -38,21 +38,17 @@
 
           <div class="med-left">
 
-            <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
+            <h3 class="med-name">{{medication.name}}<span class="dose">{{medication.dose}}</span></h3>
 
-            <span class="instructions">Take one tablet by mouth every morning</span>
+            <span class="instructions">{{medication.instruct}}</span>
 
           </div>
 
           <div class="med-notifications">
             <ul>
-              <li>
+              <li ng-repeat="time in medication.notifications">
                 <i class="fa fa-clock-o"></i>
-                <span class="time">8:30am</span>
-              </li>
-              <li>
-                <i class="fa fa-clock-o"></i>
-                <span class="time">12:30pm</span>
+                <span class="time">{{time}}</span>
               </li>
             </ul>
           </div>
