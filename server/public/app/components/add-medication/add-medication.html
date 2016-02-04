@@ -8,34 +8,22 @@
 
   <div class="med-form-wrapper">
 
-    <form class="med-form">
+    <form class="med-form" ng-submit='submitMedication(medication)'>
 
       <div class="form-top">
 
-        <input class="med-name-input" type="text" name="medName" placeholder="Medication Name">
+        <input class="med-name-input" type="text" name="medName" ng-model='medication.name' placeholder="Medication Name">
 
-        <input class="med-dose-input" type="text" name="medDose" placeholder="Dose">
+        <input class="med-dose-input" type="text" name="medDose" ng-model='medication.dose' placeholder="Dose">
 
-        <input class="med-instructions-input" type="text" name="medInstructions" placeholder="Instructions">
+        <input class="med-instructions-input" type="text" name="medInstructions" ng-model='medication.instruct' placeholder="Instructions">
 
         <h4 class="select-reminder">Select A Reminder</h4>
 
         <div class="reminder-wrapper">
 
-          <label for="radio0">
-            <input type="checkbox" value="8:30am" name="radio0" id="radio0"><span><i class="fa fa-clock-o"></i>8:30am</span>
-          </label>
-
-          <label for="radio1">
-            <input type="checkbox" value="12:30pm" name="radio1" id="radio1"><span><i class="fa fa-clock-o"></i>12:30pm</span>
-          </label>
-
-          <label for="radio2">
-            <input type="checkbox" value="6:30pm" name="radio2" id="radio2"><span><i class="fa fa-clock-o"></i>6:30pm</span>
-          </label>
-
-          <label for="radio3">
-            <input type="checkbox" value="9:30pm" name="radio3" id="radio3"><span><i class="fa fa-clock-o"></i>9:30pm</span>
+          <label ng-repeat='time in times'>
+            <input type="checkbox" checklist-model='medication.notifications' checklist-value='time'><span><i class='fa fa-clock-o'></i>{{time}}</span></span>
           </label>
 
         </div>
@@ -43,13 +31,13 @@
       </div>
 
       <section class="med-preview">
-    
+
         <h4>Preview</h4>
 
         <div class="med-card">
-          
+
           <div class="med-left">
-    
+
             <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
 
             <span class="instructions">Take one tablet by mouth every morning</span>
@@ -74,7 +62,7 @@
       </section>
 
       <div class="submit-wrapper">
-        
+
         <button type="submit">Save Medication</button>
 
       </div>
