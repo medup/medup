@@ -12,7 +12,7 @@ class SigninController {
     
   }
   submit() {
-   this.AuthServices.signin(this.user)
+   this.AuthFactory.signin(this.user)
    .then(data => {
      this.state.go('dashboard.splash');
      console.log('success');
