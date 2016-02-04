@@ -6,3 +6,4 @@ node_modules
 dist/ 
 .sass-cache
 server/public/assets/css
+bundle.js

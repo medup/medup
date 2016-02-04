@@ -4,7 +4,9 @@ let AuthFactory = ($window, $state, $http) => {
      return !!$window.localStorage.getItem('com.medUp');
     };
 
-    let isAuth = false;
+    let isAuth = {
+      value: false
+    };
 
     let signin = (user) => {
       return $http({
@@ -14,10 +16,8 @@ let AuthFactory = ($window, $state, $http) => {
       })
       .then(response =>  {
         $window.localStorage.setItem('com.medUp', response.data.token)
-          isAuth = true;
-          console.log(isAuth);
-        });
-
+        isAuth = true;
+      });
     };
 
     let signup = (user) => {
@@ -29,15 +29,13 @@ let AuthFactory = ($window, $state, $http) => {
       })
       .then(response => {
         $window.localStorage.setItem('com.medUp', response.data.token)
-          isAuth = true;
-          console.log(isAuth);
-        });
-      };
+        isAuth.value = true;
+      });
+    };
 
     let signout = () => {
       $window.localStorage.removeItem('com.medUp');
       $state.go('dashboard.signin');
-
     };
 
     return {

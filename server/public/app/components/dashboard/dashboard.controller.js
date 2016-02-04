@@ -6,10 +6,8 @@ class DashboardController {
     this.scope.name = 'dashboard';
     this.scope.state = $state;
     this.scope.state.go('dashboard.splash');
-    this.scope.hasToken = AuthFactory.hasToken;
-    console.log("Kayla" + AuthFactory.hasToken());
+    angular.extend(this.scope, AuthFactory);
   }
-
 }
 
 export default DashboardController;
