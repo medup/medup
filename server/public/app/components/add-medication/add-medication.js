@@ -3,9 +3,12 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import addMedicationComponent from './add-medication.component';
+import addMedicationFactory from './add-medication.services';
+
 
 let addMedicationModule = angular.module('addMedication', [
-  uiRouter
+  uiRouter,
+  'checklist-model'
 ])
   .config(($stateProvider) => {
     $stateProvider
@@ -14,6 +17,7 @@ let addMedicationModule = angular.module('addMedication', [
         template: '<add-medication></add-medication>'
       });
   })
-  .component('addMedication', addMedicationComponent);
+  .component('addMedication', addMedicationComponent)
+  .factory('addMedicationFactory', addMedicationFactory);
 
 export default addMedicationModule;
