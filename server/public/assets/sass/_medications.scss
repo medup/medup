@@ -35,7 +35,7 @@
 }
 
 .med-left {
-  @include media($medium-screen) {
+  @include media($small-screen) {
     @include span-columns(6.5);
   }
   @include clearfix;
@@ -60,7 +60,7 @@
 
 .med-notifications {
   @include span-columns(6);
-  @include media($medium-screen) {
+  @include media($small-screen) {
     @include span-columns(3.5);
   }
 
@@ -81,7 +81,7 @@
 
 .med-alarm {
   @include span-columns(2);
-  @include media($medium-screen) {
+  @include media($small-screen) {
     @include span-columns(1);
   }
 
@@ -93,7 +93,7 @@
 .med-controls {
   @include span-columns(4);
   @include omega;
-  @include media($medium-screen) {
+  @include media($small-screen) {
     @include span-columns(1);
   }
   text-align: right;
