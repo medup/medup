@@ -10,117 +10,27 @@
     
     <ul>
       
-      <li class="med-card">
+      <li class="med-card" ng-repeat="medication in medications">
         
         <div class="med-left">
           
-          <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
+          <h3 class="med-name">{{medication.info.name}} <span class="dose">{{medication.info.dose}}</span></h3>
 
-          <span class="instructions">Take one tablet by mouth every morning</span>
+          <span class="instructions">{{medication.info.instruct}}</span>
 
         </div>
 
         <div class="med-notifications">
           <ul>
-            <li>
+            <li ng-repeat="time in medication.notifications">
               <i class="fa fa-clock-o"></i>
-              <span class="time">8:30am</span>
+              <span class="time">{{time}}</span>
             </li>
           </ul>
         </div>
 
         <div class="med-alarm">
           <img src="assets/img/pill-alarm.png">
-        </div>
-
-        <div class="med-controls">
-          <span class="edit">Edit</span>
-          <span class="delete">Delete</span>
-        </div>
-
-      </li>
-
-      <li class="med-card">
-        
-        <div class="med-left">
-          
-          <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
-
-          <span class="instructions">Take one tablet by mouth every morning</span>
-
-        </div>
-
-        <div class="med-notifications">
-          <ul>
-            <li>
-              <i class="fa fa-clock-o"></i>
-              <span class="time">8:30am</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="med-alarm">
-          <!--img src="img/pill-alarm.png"-->
-        </div>
-
-        <div class="med-controls">
-          <span class="edit">Edit</span>
-          <span class="delete">Delete</span>
-        </div>
-
-      </li>
-
-      <li class="med-card">
-        
-        <div class="med-left">
-          
-          <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
-
-          <span class="instructions">Take one tablet by mouth every morning</span>
-
-        </div>
-
-        <div class="med-notifications">
-          <ul>
-            <li>
-              <i class="fa fa-clock-o"></i>
-              <span class="time">8:30am</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="med-alarm">
-          <!--img src="img/pill-alarm.png"-->
-        </div>
-
-        <div class="med-controls">
-          <span class="edit">Edit</span>
-          <span class="delete">Delete</span>
-        </div>
-
-      </li>
-
-      <li class="med-card">
-        
-        <div class="med-left">
-          
-          <h3 class="med-name">Abilify (Aripiprazole) <span class="dose">5mg</span></h3>
-
-          <span class="instructions">Take one tablet by mouth every morning</span>
-
-        </div>
-
-        <div class="med-notifications">
-          <ul>
-            <li>
-              <i class="fa fa-clock-o"></i>
-              <span class="time">8:30am</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="med-alarm">
-          <!--img src="img/pill-alarm.png"-->
         </div>
 
         <div class="med-controls">
