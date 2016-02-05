@@ -1,6 +1,6 @@
 .view-state {
   padding: rem(35) 4% 8rem;
-  @include media($large-screen) {
+  @include media($medium-screen) {
     padding: rem(35) 4%;
   }
   background-color: $light-gray;

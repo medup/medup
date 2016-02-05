@@ -12,11 +12,19 @@ navbar {
   bottom: 0;
   width: 100%;
   z-index: 1;
+  @include media($medium-screen) {
+    position: static;
+    display: block;
+    float: left;
+    width: 35%;
+    height: 100%;
+    bottom: 0;
+    z-index: 0;
+  }
 }
 
 .nav-bar {
   @include media($medium-screen) {
-    @include span-columns(4.2);
     margin-right: 0;
     height: 100%;
   }
@@ -24,18 +32,20 @@ navbar {
   a {
     display: block;
     @include span-columns(4);
+    @include media($medium-screen) {
+      display: inline;
+      width: 100%;
+      float: none;
+    }
   }
 
   .nav-tab {
     padding: 0.75rem 0;
-
-    @include media($large-screen) {
-      padding: 0;
-    }
-
     display: flex;
     align-items: center;
-    padding-left: 17.4%;
+    @include media($medium-screen) {
+      padding: 0 0 0 17.4%;
+    }
     cursor: pointer;
     transition: background-color 0.3s $ease-out-quart;
 
@@ -87,7 +97,7 @@ navbar {
 }
 
 .primary {
-  @include media($large-screen) {
+  @include media($medium-screen) {
     @include span-columns(7.8);
     height: 100%;
     overflow-y: auto;

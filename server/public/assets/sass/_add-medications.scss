@@ -1,6 +1,6 @@
 .add-state {
   padding: rem(35) 4% 8rem;
-  @include media($large-screen) {
+  @include media($medium-screen) {
     padding: rem(35) 4%;
   }
   background-color: $teal;
@@ -38,7 +38,7 @@
     background: #f1f1f1;
     padding: rem(14) rem(24);
     font-size: rem(20);
-    @include media($large-screen) {
+    @include media($medium-screen) {
       font-size: 1.5vw;
     }
     font-weight: 300;
