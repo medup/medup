@@ -1,14 +1,38 @@
 .content {
   height: calc(100% - 58px);
   @include clearfix;
+
+  @media screen and (max-height: 738px) {
+    height: rem(738);
+  }
+}
+
+navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .nav-bar {
-  @include span-columns(4.2);
-  margin-right: 0;
-  height: 100%;
+  @include media($medium-screen) {
+    @include span-columns(4.2);
+    margin-right: 0;
+    height: 100%;
+  }
+
+  a {
+    display: block;
+    @include span-columns(4);
+  }
 
   .nav-tab {
+    padding: 0.75rem 0;
+
+    @include media($large-screen) {
+      padding: 0;
+    }
+
     display: flex;
     align-items: center;
     padding-left: 17.4%;
@@ -17,7 +41,12 @@
 
     h2 {
       font-weight: 100;
-      font-size: rem(48);
+      @include media($medium-screen) {
+        font-size: rem(24);
+      }
+      @include media($large-screen) {
+        font-size: rem(48);
+      }
       color: #fff;
       margin: 0;
     }
@@ -58,12 +87,14 @@
 }
 
 .primary {
-  @include span-columns(7.8);
-  height: 100%;
-  overflow-y: auto;
+  @include media($large-screen) {
+    @include span-columns(7.8);
+    height: 100%;
+    overflow-y: auto;
+  }
 }
 
-med-up-web, .app, .app > .ng-scope {
+medup-web, .app, .app > .ng-scope {
   display: block;
   height: 100%;
 }

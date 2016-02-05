@@ -1,7 +1,14 @@
 .add-state {
-  padding: rem(35) 4%;
+  padding: rem(35) 4% 8rem;
+  @include media($large-screen) {
+    padding: rem(35) 4%;
+  }
   background-color: $teal;
   height: 100%;
+
+  @media screen and (max-height: 738px) {
+    height: auto;
+  }
 
   .top-heading h1 {
     color: #fff;
@@ -20,14 +27,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 rem(65);
+  padding: 0 5%;
+  @include media(rem(1180)) {
+    padding: 0 rem(65);
+  }
   @include clearfix;
 
   input {
     margin-bottom: rem(24);
     background: #f1f1f1;
     padding: rem(14) rem(24);
-    font-size: rem(24);
+    font-size: rem(20);
+    @include media($large-screen) {
+      font-size: 1.5vw;
+    }
     font-weight: 300;
     color: $dark-blue;
     border: 1px solid rgba(151,151,151,0.52);
@@ -35,14 +48,16 @@
 }
 
 input[type="text"].med-name-input {
-  float: left;
-  width: rem(511);
-  margin-right: 2.1rem;
+  @include media($medium-screen) {
+    @include span-columns(9);
+  }
 }
 
 input[type="text"].med-dose-input {
-  float: left;
-  width: rem(145);
+  @include media($medium-screen) {
+    @include span-columns(2);
+    @include omega;
+  }
 }
 
 .select-reminder {
@@ -55,7 +70,11 @@ input[type="text"].med-dose-input {
 
 .reminder-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  @include media($medium-screen) {
+    justify-content: space-between;
+  }
+  flex-wrap: wrap;
   width: 100%;
   margin-bottom: rem(38);
 }
@@ -81,9 +100,13 @@ input[type="text"].med-dose-input {
   transition: all 0.3s $ease-out-quart;
 
   i {
-    color: rgba(182,182,182,1);
-    margin-right: rem(8);
-    transition: all 0.3s $ease-out-quart;
+    display: none;
+    @include media($medium-screen) {
+      display: inline;
+      color: rgba(182,182,182,1);
+      margin-right: rem(8);
+      transition: all 0.3s $ease-out-quart;
+    }
   }
 
   &:hover {
@@ -117,6 +140,10 @@ input[type="text"].med-dose-input {
 }
 
 .med-preview {
+  display: none;
+  @include media($medium-screen) {
+    display: block;
+  }
   padding: rem(32) 8% rem(36);
   background-color: $light-gray;
 
