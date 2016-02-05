@@ -3,9 +3,8 @@
   <h1>{{title}}</h1>
 
   <form ng-submit="submit()">
-    
     <input type="text" name="email" placeholder="Email" ng-model="user.email" required > 
-    <input type="password" name="password" placeholder="Password" ng-model="user.password" required>
+    <input type="password" name="password" placeholder="Password" ng-model="user.password" required ng-pattern="validation.password">
     <button type="submit">{{action}}</button>
 
   </form>

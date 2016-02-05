@@ -9,7 +9,7 @@ class SigninController {
     this.scope.action = 'Sign In';
     this.scope.submit = this.submit;
     this.scope.state = $state;
-    
+    this.scope.validation = AuthFactory.validation;
   }
   submit() {
    this.AuthFactory.signin(this.user)

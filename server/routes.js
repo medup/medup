@@ -7,7 +7,7 @@ const internals = {
     signup: {
       payload: Joi.object().required().keys({
         email: Joi.string().required(),
-        password: Joi.string().required()
+        password: Joi.string().min(8).required()
       })
     },
     signin: {
