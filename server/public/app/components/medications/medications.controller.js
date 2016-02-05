@@ -1,14 +1,19 @@
 "use strict";
 
 class medicationsController {
-  constructor($scope, $state, MedService) {
+  constructor($scope, $state, MedFactory) {
+    this.name = 'medications';
     this.scope = $scope;
-    this.scope.MedService = MedService;
-    this.scope.state = $state;
-    this.scope.getData = this.getData;
-    this.scope.deleteMeds = this.deleteMeds;
-    this.scope.editMeds = this.editMeds;
+    this.scope.getMeds = MedFactory.getMeds;
+    this.scope.deleteMeds = MedFactory.deleteMeds;
+    this.scope.updateMeds = MedFactory.updateMeds;
   }
+  getMeds() {
+    MedFactory.getMeds
+  }
+
+
 }
 
 export default medicationsController;
+

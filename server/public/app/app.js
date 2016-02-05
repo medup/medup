@@ -6,7 +6,7 @@
   import Common from './common/common';
   import Components from './components/components';
   import AppComponent from './app.component';
-  // import AuthServices from './AuthServices';
+
 
   angular.module('medup-web', [
     uiRouter,
