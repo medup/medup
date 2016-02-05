@@ -1,14 +1,13 @@
 'use strict';
 //to do update
 import template from './view-medications.html';
-import medicationsController from './medications.controller';
-
+import controller from './medications.controller';
 
 let medicationsComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  medicationsController,
+  controller,
   controllerAs: 'vm'
 };
 
