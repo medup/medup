@@ -1,5 +1,8 @@
 .view-state {
-  padding: rem(35) 4%;
+  padding: rem(35) 4% 8rem;
+  @include media($medium-screen) {
+    padding: rem(35) 4%;
+  }
   background-color: $light-gray;
   height: 100%;
 }
@@ -21,6 +24,7 @@
 
 .med-card {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background: #f1f1f1;
   padding: rem(30) rem(32);
@@ -31,7 +35,9 @@
 }
 
 .med-left {
-  @include span-columns(6.5);
+  @include media($small-screen) {
+    @include span-columns(6.5);
+  }
   @include clearfix;
 
   h3 {
@@ -53,7 +59,10 @@
 }
 
 .med-notifications {
-  @include span-columns(3.5);
+  @include span-columns(6);
+  @include media($small-screen) {
+    @include span-columns(3.5);
+  }
 
   li {
     float: left;
@@ -71,7 +80,10 @@
 }
 
 .med-alarm {
-  @include span-columns(1);
+  @include span-columns(2);
+  @include media($small-screen) {
+    @include span-columns(1);
+  }
 
   img {
     width: rem(32);
@@ -79,7 +91,11 @@
 }
 
 .med-controls {
-  @include span-columns(1);
+  @include span-columns(4);
+  @include omega;
+  @include media($small-screen) {
+    @include span-columns(1);
+  }
   text-align: right;
 
   span {

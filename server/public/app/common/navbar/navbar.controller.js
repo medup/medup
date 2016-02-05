@@ -1,8 +1,10 @@
 "use strict";
 
 class NavbarController {
-  constructor() {
+  constructor($scope, AuthFactory) {
     this.name = 'navbar';
+    this.scope = $scope;
+    angular.extend(this.scope, AuthFactory);
   }
 }
 

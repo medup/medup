@@ -4,11 +4,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  width: 100%;
+  @include media($medium-screen) {
+    width: 65%;
+  }
   height: calc(100% - 58px);
   background-color: $red;
   transition: all 1.5s $ease-in-out-sine;
   @include transform(translate3d(0,0,0));
+
+  @media screen and (max-height: 738px) {
+    min-height: rem(738);
+    padding-top: 8rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
 
   &.splash {
     width: 100%;
@@ -23,7 +35,9 @@
         float: left;
         padding: rem(12) rem(36);
         color: #fff;
-        font-size: rem(24);
+        @include media($medium-screen) {
+          font-size: rem(24);
+        }
         font-weight: 300;
         cursor: pointer;
 
@@ -69,14 +83,21 @@
   }
 
   h1 {
-    font-size: rem(144);
+    text-align: center;
+    font-size: rem(48);
+    @include media($medium-screen) {
+      font-size: rem(144);
+    }
     font-weight: 100;
     color: #fff;
     margin: 0;
 
     &::after {
       content: '';
-      display: block;
+      display: none;
+      @include media($medium-screen) {
+        display: block;
+      }
       bottom: 0;
       width: rem(254);
       border-bottom: 1px solid rgba(255,255,255,0.31);
@@ -88,6 +109,9 @@
     color: rgba(255,255,255,0.75);
     text-align: center;
     font-weight: 100;
-    font-size: rem(36);
+    font-size: rem(28);
+    @include media($medium-screen) {
+      font-size: rem(36);
+    }
   }
 }

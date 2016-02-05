@@ -6,8 +6,14 @@
   }
 
   input {
-    padding: rem(10) rem(24);
+    padding: rem(10) rem(18);
     font-size: rem(20);
     color: $dark-blue;
+    font-weight: 300;
+  }
+
+  button {
+    background-color: $green;
+    border-radius: 0;
   }
 }
