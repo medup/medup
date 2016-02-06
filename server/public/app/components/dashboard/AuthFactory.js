@@ -7,7 +7,7 @@ let AuthFactory = ($window, $state, $http) => {
     };
 
     let isAuth = {
-      value: false
+      value: hasToken()
     };
 
     let validation = {
@@ -22,7 +22,7 @@ let AuthFactory = ($window, $state, $http) => {
       })
       .then(response =>  {
         $window.localStorage.setItem('com.medUp', response.data.token)
-        isAuth = true;
+        isAuth.value = true;
       });
     };
 
@@ -41,7 +41,8 @@ let AuthFactory = ($window, $state, $http) => {
 
     let signout = () => {
       $window.localStorage.removeItem('com.medUp');
-      $state.go('dashboard.signin');
+      $state.go('dashboard.splash');
+      isAuth.value = false;
     };
 
     return {

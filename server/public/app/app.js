@@ -37,7 +37,7 @@
           return;
         }
 
-        if (!AuthFactory.hasToken() && toState.name !== 'dashboard.signin' && toState.name !== 'dashboard.signup') {
+        if (!AuthFactory.hasToken() && toState.name !== 'dashboard.signin' && toState.name !== 'dashboard.signup' && toState.name !== 'dashboard.splash') {
           e.preventDefault();
           $state.go('dashboard.signin');
         }
