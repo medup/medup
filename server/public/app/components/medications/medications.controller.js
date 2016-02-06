@@ -11,7 +11,12 @@ class medicationsController {
     this.scope.deleteMeds = MedFactory.deleteMeds;
     this.scope.updateMeds = MedFactory.updateMeds;
     this.scope.$on('$viewContentLoaded', function(e) {
-      this.scope.medications = this.scope.getMeds();
+      this.scope.getMeds()
+      .then(medsArray => {
+        this.scope.medications = medsArray;
+      })
+      console.log(this.scope.medications);
+      console.log("testing");
     }.bind(this));
 
   }
