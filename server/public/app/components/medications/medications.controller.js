@@ -16,9 +16,6 @@ class medicationsController {
 
   }
   
-  
-
-
 
   // getMedData() {
   //   this.MedFactory.getMeds()
