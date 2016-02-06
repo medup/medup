@@ -1,3 +1,5 @@
+"use strict";
+
 let AuthFactory = ($window, $state, $http) => {
 
     let hasToken = () => {

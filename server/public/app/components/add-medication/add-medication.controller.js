@@ -4,7 +4,6 @@ class addMedicationController {
   constructor($scope, addMedicationFactory) {
     this.name = 'addMedication';
     this.scope = $scope;
-    this.scope.addMedicationFactory = addMedicationFactory;
     this.scope.medication = {
       notifications: []
     };
@@ -15,14 +14,15 @@ class addMedicationController {
       '9:30pm'
     ];
     this.scope.submitMedication = this.submitMedication;
+    this.scope.addMedication = addMedicationFactory.addMedication;
   }
   submitMedication(medication) {
-    this.addMedicationFactory.addMedication(medication)
+    this.addMedication(medication)
       .then((res) => {
         console.log('response', res);
       })
       .catch((err) => {
-        console.error('error', err);
+        console.log('error', err);
       });
   }
 }
