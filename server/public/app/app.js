@@ -23,7 +23,7 @@
         request: function(object) {
           var jwt = $window.localStorage.getItem('com.medUp');
           if (jwt) {
-            object.headers['Authentication'] = jwt;
+            object.headers['Authorization'] = jwt;
           }
           return object;
         }
