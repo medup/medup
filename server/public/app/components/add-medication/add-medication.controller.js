@@ -15,10 +15,10 @@ class addMedicationController {
       '9:30pm'
     ];
     this.scope.submitMedication = this.submitMedication;
-    this.scope.addMedication = addMedicationFactory.addMedication;
+    this.scope.factory = addMedicationFactory;
   }
   submitMedication(medication) {
-    this.addMedication(medication)
+    this.factory.addMedication(medication)
       .then((res) => {
         console.log('response', res);
       })
