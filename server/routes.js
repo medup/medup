@@ -23,6 +23,7 @@ const internals = {
       payload: Joi.object().keys({
         info: Joi.object().keys({
           name: Joi.string(),
+          dose: Joi.string(),
           instruct: Joi.string()
         }),
         notifications: Joi.array(),

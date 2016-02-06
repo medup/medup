@@ -23,7 +23,7 @@ class addMedicationController {
         console.log('response', res);
       })
       .catch((err) => {
-        console.log('error', err);
+        console.log('Kayla was here', err);
       });
   }
 }
