@@ -15,6 +15,12 @@ let dashboardModule = angular.module('dashboard', [uiRouter])
       .state('dashboard', {
         template: '<dashboard></dashboard>'
       })
+      .state('logout', {
+        url: '/logout',
+        controller: function(AuthFactory) {
+          AuthFactory.signout();
+        }
+      })
       .state('dashboard.splash', {
         url: '/',
         templateUrl: 'app/components/dashboard/dashboard.splash.html'
