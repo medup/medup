@@ -10,6 +10,10 @@ let AuthFactory = ($window, $state, $http) => {
       value: false
     };
 
+    let validation = {
+      password: new RegExp('.{8,}')
+    };
+
     let signin = (user) => {
       return $http({
           method: 'POST',
@@ -45,7 +49,8 @@ let AuthFactory = ($window, $state, $http) => {
       signin,
       signup,
       signout,
-      isAuth
+      isAuth,
+      validation
     }
 
 }

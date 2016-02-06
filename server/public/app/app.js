@@ -15,9 +15,34 @@
   ])
     .config(($httpProvider, $urlRouterProvider) => {
       //$urlRouterProvider.otherwise('/');
-      // $httpProvider.interceptors.push('AttachTokens');
+      $httpProvider.interceptors.push('AttachTokens');
     })
     .component('medupWeb', AppComponent)
+    .factory('AttachTokens', function($window) {
+      var attach = {
+        request: function(object) {
+          var jwt = $window.localStorage.getItem('com.medUp');
+          if (jwt) {
+            object.headers['Authentication'] = jwt;
+          }
+          return object;
+        }
+      };
+      return attach;
+    })
+    .run(function($rootScope, $state, AuthFactory) {
+      $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+
+        if (toState.name === 'dashboard.signin') {
+          return;
+        }
+
+        if (!AuthFactory.hasToken() && toState.name !== 'dashboard.signin' && toState.name !== 'dashboard.signup') {
+          e.preventDefault();
+          $state.go('dashboard.signin');
+        }
+      });
+    });
     // .service('AuthServices', AuthServices);
     // .factory('AttachTokens', attachTokens)
     //  .run();

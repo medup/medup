@@ -26,8 +26,6 @@ class medicationsController {
   //     console.log('error');
   //   });
   // }
-
-
 }
 
 export default medicationsController;
