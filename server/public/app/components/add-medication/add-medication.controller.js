@@ -5,6 +5,7 @@ class addMedicationController {
     this.name = 'addMedication';
     this.scope = $scope;
     this.scope.medication = {
+      info: {},
       notifications: []
     };
     this.scope.times = [
