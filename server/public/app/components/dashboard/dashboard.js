@@ -10,7 +10,7 @@ import AuthFactory from './AuthFactory';
 
 
 let dashboardModule = angular.module('dashboard', [uiRouter])
-  .config(($stateProvider) => {
+  .config(($stateProvider, $httpProvider) => {
     $stateProvider
       .state('dashboard', {
         template: '<dashboard></dashboard>'
@@ -37,8 +37,10 @@ let dashboardModule = angular.module('dashboard', [uiRouter])
         controller: signupController,
         controllerAs: 'vm'
       });
+
+    $httpProvider.interceptors.push('AttachTokens');
    })
   .component('dashboard', dashboardComponent)
-  .factory('AuthFactory', AuthFactory);
+  .factory('AuthFactory', AuthFactory)
 
 export default dashboardModule;

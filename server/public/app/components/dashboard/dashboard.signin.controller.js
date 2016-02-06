@@ -1,7 +1,7 @@
 "use strict";
 
 class SigninController {
-  constructor($state, $scope, AuthFactory) {
+  constructor($state, $scope, AuthFactory, $window) {
     this.scope = $scope;
     this.scope.AuthFactory = AuthFactory;
     this.scope.user = {};

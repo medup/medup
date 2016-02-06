@@ -11,7 +11,7 @@ let AuthFactory = ($window, $state, $http) => {
     };
 
     let validation = {
-      password: '/.{8,}/'
+      password: new RegExp('.{8,}')
     };
 
     let signin = (user) => {
