@@ -12,11 +12,11 @@
 
       <div class="form-top">
 
-        <input class="med-name-input" type="text" name="medName" ng-model='medication.name' placeholder="Medication Name">
+        <input class="med-name-input" type="text" name="medName" ng-model='medication.info.name' placeholder="Medication Name">
 
-        <input class="med-dose-input" type="text" name="medDose" ng-model='medication.dose' placeholder="Dose">
+        <input class="med-dose-input" type="text" name="medDose" ng-model='medication.info.dose' placeholder="Dose">
 
-        <input class="med-instructions-input" type="text" name="medInstructions" ng-model='medication.instruct' placeholder="Instructions">
+        <input class="med-instructions-input" type="text" name="medInstructions" ng-model='medication.info.instruct' placeholder="Instructions">
 
         <h4 class="select-reminder">Select A Reminder</h4>
 
@@ -38,9 +38,9 @@
 
           <div class="med-left">
 
-            <h3 class="med-name">{{medication.name}}<span class="dose">{{medication.dose}}</span></h3>
+            <h3 class="med-name">{{medication.info.name}}<span class="dose">{{medication.info.dose}}</span></h3>
 
-            <span class="instructions">{{medication.instruct}}</span>
+            <span class="instructions">{{medication.info.instruct}}</span>
 
           </div>
 
