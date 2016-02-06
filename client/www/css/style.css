@@ -23,7 +23,7 @@
 }
 
 .user-auth-background {
-  background-image: url("../img/background.png");
+  background-image: url("../img/background2.png");
   background-size: cover;
 }
 
@@ -33,7 +33,18 @@
   text-align: center;
 }
 
+.user-auth input[type="password"] {
+  background: transparent;
+  color: white;
+  text-align: center;
+}
+
 .user-auth input[type="text"]::-webkit-input-placeholder {
+  text-align: center;
+  color: white;
+}
+
+.user-auth input[type="password"]::-webkit-input-placeholder {
   text-align: center;
   color: white;
 }
@@ -47,11 +58,17 @@
   padding: 0;
 }
 
+.user-auth a {
+  color: white;
+}
+
 .user-auth label.item.item-input.item-floating-label {
   border-color: transparent;
 }
 
 .user-auth button.button.button-block.button-royal {
+  border-color: #67B9A1;
+  background-color: #67B9A1;
   margin-top: 4em;
 }
 
@@ -129,6 +146,14 @@
 }
 
 
+/* Footer */
+
+.bar.bar-royal {
+  background-color: #5C6682;
+  border-color: #5C6682;
+}
+
+
 /* ==========================================================================
    Health Stats
    ========================================================================== */
@@ -158,8 +183,3 @@
 .user-medform .item {
   border-width: 0px;
 }
-
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */

@@ -20,7 +20,7 @@
       });
     })
     .config(function(ChartJsProvider, $stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/signin');
+      $urlRouterProvider.otherwise('/dashboard/:user');
       $stateProvider
         .state('calendar', {
           url: '/calendar',
@@ -58,30 +58,30 @@
           controller: 'AuthCtrl'
         });
 
-      $httpProvider.interceptors.push('AttachTokens');
+      // $httpProvider.interceptors.push('AttachTokens');
     })
-    .factory('AttachTokens', function($window) {
-      var attach = {
-        request: function(object) {
-          var jwt = $window.localStorage.getItem('com.medUp');
-          if (jwt) {
-            object.headers['Authorization'] = jwt;
-          }
-          return object;
-        }
-      };
-      return attach;
-    })
-    .run(function($rootScope, $state, AuthService) {
-      $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-        if (toState.name === 'signin' || toState.name === 'register') {
-          return;
-        }
+    // .factory('AttachTokens', function($window) {
+    //   var attach = {
+    //     request: function(object) {
+    //       var jwt = $window.localStorage.getItem('com.medUp');
+    //       if (jwt) {
+    //         object.headers['Authorization'] = jwt;
+    //       }
+    //       return object;
+    //     }
+    //   };
+    //   return attach;
+    // })
+    // .run(function($rootScope, $state, AuthService) {
+    //   $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    //     if (toState.name === 'signin' || toState.name === 'register') {
+    //       return;
+    //     }
 
-        if (!AuthService.hasToken()) {
-          e.preventDefault();
-          $state.go('signin');
-        }
-      });
-    });
+    //     if (!AuthService.hasToken()) {
+    //       e.preventDefault();
+    //       $state.go('signin');
+    //     }
+    //   });
+    // });
 })();
