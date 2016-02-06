@@ -2,38 +2,83 @@
   'use strict';
 
   angular
-    .module('medup.dashboard', ['ionic', 'ionic-material', 'nvd3'])
+    .module('medup.dashboard', ['ionic', 'ngCordova', 'ionic-material', 'nvd3'])
     .controller('DashboardCtrl', DashboardCtrl);
-  DashboardCtrl.$inject = ['$scope', '$state'];
 
-  function DashboardCtrl($scope, $state) {
+  DashboardCtrl.$inject = ['$scope', '$state', '$ionicPlatform', '$cordovaLocalNotification'];
 
-    // $ionicPlatform.ready(function() {
-    //   // testing notifs
-    //   var now = new Date().getTime();
-    //   var _5SecondsFromNow = new Date(now + 5000);
 
-    //   var notifs = {
-    //     id: 12,
-    //     at: _5SecondsFromNow,
-    //     every: 'minute',
-    //     text: "Don't forget to take your medication",
-    //     title: "Medication Reminder",
-    //   };
+  function DashboardCtrl($scope, $state, $ionicPlatform, $cordovaLocalNotification) {
+    $ionicPlatform.ready(function() {
+      // mock data
+      /**
+       *
+       * Medication Name
+       * Instructions
+       * Current Amount Remaining
+       * Dosage
+       * Date // 2016-02-06T20:08:56.298Z
+       * Repeat every day
+       */
 
-    //   $timeout(function() {
-    //     Notifications.scheduleNotifications(notifs);
-    //   }, 5000);
-    // });
+      var example = [{
+        id: 1,
+        title: 'Take Medication Adderall (15mg)',
+        text: 'Instructions',
+        at: new Date(new Date().getTime() + 3000),
+        every: 'minute'
+      }, {
+        id: 2,
+        title: 'Take Medication Abilify (15mg)',
+        text: 'Instructions',
+        at: new Date(new Date().getTime() + 6000),
+        every: 'minute'
+      }, {
+        id: 3,
+        title: 'Take Medication Gummybears (15mg)',
+        text: 'Instructions',
+        at: new Date(new Date().getTime() + 9000),
+        every: 'minute'
+      }];
+
+      console.log("date", new Date(new Date().getTime() + 3000));
+
+      example.forEach(function(val) {
+        console.log("object", val);
+      });
+
+      var cancelAllNotifications = function() {
+        $cordovaLocalNotification.cancelAll()
+          .then(function(result) {
+            console.log("all notifications cancelled", result);
+          })
+          .catch(function(response) {
+            console.error("error cancelling notifs", response);
+          });
+      };
+
+      var scheduleMultipleNotifications = function() {
+        $cordovaLocalNotification.schedule(example)
+          .then(function(result) {
+            console.log('all notifications set');
+          })
+          .catch(function(response) {
+            console.error("error schedualing notifs", response);
+          });
+      };
+
+      cancelAllNotifications();
+      scheduleMultipleNotifications();
+    });
 
     /*----------  Testing Fake Data  ----------*/
     $scope.options = {
       chart: {
         type: 'stackedAreaChart',
-        height: 300,
-        width: 465,
         showControls: false,
         showYAxis: false,
+        width: 520,
+        height: 365,
         showXAxis: false,
         x: function(d) {
           return d[0];
@@ -313,6 +358,5 @@
         [1333166400000, 5.5611890039181]
       ]
     }];
-
   }
 })();

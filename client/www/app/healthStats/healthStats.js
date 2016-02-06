@@ -22,6 +22,7 @@
     /*----------  Fake Compliance Data ----------*/
     $scope.complianceLabels = ["Missed", "Taken"];
     $scope.compliance = [1, 3];
+    $scope.colors = ['#FD1F5E','#1EF9A1'];
   }
 
 })();
