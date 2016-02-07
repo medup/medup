@@ -6,6 +6,17 @@
 
   </div>
 
+  <div>
+    <uib-timepicker ng-model="time1" show-meridian="ismeridian"></uib-timepicker>
+    <button type='button' ng-click='addTime(time1)'>Add</button>
+    <uib-timepicker ng-model="time2" show-meridian="ismeridian"></uib-timepicker>
+    <button type='button' ng-click='addTime(time2)'>Add</button>
+    <uib-timepicker ng-model="time3" show-meridian="ismeridian"></uib-timepicker>
+    <button type='button' ng-click='addTime(time3)'>Add</button>
+    <uib-timepicker ng-model="time4" show-meridian="ismeridian"></uib-timepicker>
+    <button type='button' ng-click='addTime(time4)'>Add</button>
+  </div>
+
   <div class="med-form-wrapper">
 
     <form class="med-form" ng-submit='submitMedication(medication)'>
@@ -22,13 +33,15 @@
 
         <div class="reminder-wrapper">
 
-          <label ng-repeat='time in times'>
+          <!-- CHECKBOX REPEATER -->
+          <!-- <label ng-repeat='time in times'>
             <input type="checkbox" checklist-model='medication.notifications' checklist-value='time'><span><i class='fa fa-clock-o'></i>{{time}}</span></span>
-          </label>
+          </label> -->
 
         </div>
 
       </div>
+
 
       <section class="med-preview">
 
