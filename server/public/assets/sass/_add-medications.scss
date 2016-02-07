@@ -5,6 +5,7 @@
   }
   background-color: $teal;
   height: 100%;
+  min-height: rem(920);
 
   @media screen and (max-height: 738px) {
     height: auto;
