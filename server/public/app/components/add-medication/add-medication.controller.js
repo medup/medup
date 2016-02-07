@@ -8,12 +8,13 @@ class addMedicationController {
       info: {},
       notifications: []
     };
-    this.scope.times = [
-      '8:30am',
-      '12:30pm',
-      '6:30pm',
-      '9:30pm'
-    ];
+    this.scope.time1 = new Date();
+    this.scope.time2 = new Date();
+    this.scope.time3 = new Date();
+    this.scope.time4 = new Date();
+    this.scope.ismeridian = true;
+    this.scope.timeId = 1;
+    this.scope.addTime = this.addTime;
     this.scope.submitMedication = this.submitMedication;
     this.scope.factory = addMedicationFactory;
   }
@@ -25,6 +26,16 @@ class addMedicationController {
       .catch((err) => {
         console.log('Kayla was here', err);
       });
+  }
+  addTime(time) {
+    this.medication.notifications.push(
+      {
+        id: this.timeId++,
+        title: this.medication.info.name,
+        text: this.medication.info.instruct,
+        at: time.toISOString()
+      }
+    );
   }
 }
 
