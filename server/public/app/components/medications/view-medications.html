@@ -34,8 +34,8 @@
         </div>
 
         <div class="med-controls">
-          <span class="edit" ng-click="updateMeds()">Edit</span>
-          <span class="delete" ng-click="deleteMeds()">Delete</span>
+          <span class="edit" ng-click="editMeds(medication.id)">Edit</span>
+          <span class="delete" ng-click="deleteItem(medication.id, $index)">Delete</span>
         </div>
 
       </li>
