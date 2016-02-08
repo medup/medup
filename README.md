@@ -25,27 +25,27 @@
 ## Usage
 
 * **UI Design**
-⋅⋅⋅Insert info here 
+⋅⋅⋅Insert info here⋅⋅ 
 
 * **Register/Login**
 
-An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.
+⋅⋅⋅An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.⋅⋅
 
 * **Dahsboard - View Medications**
 
-Users have a quick access to view their medications with features to add, delete, and edit their medications. 
+⋅⋅⋅Users have a quick access to view their medications with features to add, delete, and edit their medications.⋅⋅ 
 
 * **Add Medications**
 
-With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications. 
+⋅⋅⋅With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications.⋅⋅ 
 
 * **Edit Medications**
 
-From an editable view of their current medication, users can quickly make changes.
+⋅⋅⋅From an editable view of their current medication, users can quickly make changes.⋅⋅
 
 * **Delete Medications**
 
-From View Medications screen, users can quickly  delete medications.
+⋅⋅⋅From View Medications screen, users can quickly  delete medications.⋅⋅
 
 
 * **Notifications**
