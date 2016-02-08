@@ -10,7 +10,7 @@
 
 **Scrum Master, Front End Software Engineer:** Jefri Vanegas
 
-**Front End Software Engineer:** Dave Meidlinger
+**Front End Software Engineer, DevOps:** Dave Meidlinger
 
 **Full Stack Software Engineer:** Robert Lin
 
@@ -24,7 +24,6 @@
 2. [Development](#development)
   1. [Requirements](#requirements)
   2. [Installing Dependencies](#installing-dependencies)
-  3. [The API's](#the-apis)
 4. [Contributing](#contributing)
 
 ## Usage
@@ -36,7 +35,7 @@ Insert info here
 
 An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.
 
-##### Dahsboard - View Medications
+##### Dashboard - View Medications
 
 Users have a quick access to view their medications with features to add, delete, and edit their medications. 
 
@@ -56,7 +55,6 @@ From View Medications screen, users can quickly  delete medications.
 ##### Notifications
 
 Insert info here 
-
 
 
 # Development
@@ -157,10 +155,6 @@ From within the root directory of MedUp:
 npm install
 ```
 *This will install all npm managed dependencies and then run bower install to manage bower dependencies.*
-
-### The APIs
-
-???
 
 ## Contributing
 
