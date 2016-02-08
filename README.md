@@ -6,9 +6,9 @@
 
 ## Software Engineers of MedUp
 
-**Product Owner; Front End Software Engineer:** Kayla Dowling
+**Product Owner, Front End Software Engineer:** Kayla Dowling
 
-**Scrum Master; Full Stack Software Engineer:** Jefri Vanegas
+**Scrum Master, Full Stack Software Engineer:** Jefri Vanegas
 
 **Full Stack Software Engineer:** Robert Lin
 
