@@ -1,9 +1,10 @@
 "use strict";
 
 class addMedicationController {
-  constructor($scope, addMedicationFactory) {
+  constructor($scope, addMedicationFactory, $state) {
     this.name = 'addMedication';
     this.scope = $scope;
+    this.scope.form = {};
     this.scope.medication = {
       info: {},
       notifications: []
@@ -24,7 +25,7 @@ class addMedicationController {
         console.log('response', res);
       })
       .catch((err) => {
-        console.log('Kayla was here', err);
+        console.log('Submit Medication ERROR', err);
       });
   }
   addTime(time) {
