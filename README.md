@@ -1,4 +1,4 @@
-# Medup
+![Imgur](http://i.imgur.com/wXQbebg.png)
 *Demo URL: [https://medup.heroku.com]*
 
 70% of Americans regularly take prescription drugs, with more than half with at least two prescriptions.  Taking the right drug at the correct time is difficult without a plan and daily reminders. With our cross-platform application MedUp, we help users stay on track with their dosages through notifications.
@@ -24,33 +24,35 @@
 
 ## Usage
 
-* **UI Design**
-⋅⋅⋅Insert info here⋅⋅ 
+##### UI Design
+Insert info here 
 
-* **Register/Login**
+##### Register/Login
 
-⋅⋅⋅An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.⋅⋅
+An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.
 
-* **Dahsboard - View Medications**
+##### Dahsboard - View Medications
 
-⋅⋅⋅Users have a quick access to view their medications with features to add, delete, and edit their medications.⋅⋅ 
+Users have a quick access to view their medications with features to add, delete, and edit their medications. 
 
-* **Add Medications**
+##### Add Medications
 
-⋅⋅⋅With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications.⋅⋅ 
+With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications. 
 
-* **Edit Medications**
+##### Edit Medications
 
-⋅⋅⋅From an editable view of their current medication, users can quickly make changes.⋅⋅
+From an editable view of their current medication, users can quickly make changes
 
-* **Delete Medications**
+##### Delete Medications
 
-⋅⋅⋅From View Medications screen, users can quickly  delete medications.⋅⋅
+From View Medications screen, users can quickly  delete medications.
 
 
-* **Notifications**
+##### Notifications
 
-⋅⋅⋅Insert info here 
+Insert info here 
+
+
 
 # Development
 
@@ -84,7 +86,7 @@
 ```
 
 
-#####Development Dependencies
+##### Development Dependencies
 ```
      babel-cli: ^6.4.5,
      babel-core: ^6.4.5,
@@ -151,7 +153,7 @@ npm install
 ```
 *This will install all npm managed dependencies and then run bower install to manage bower dependencies.*
 
-###The APIs
+### The APIs
 
 ???
 
