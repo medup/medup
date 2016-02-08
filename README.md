@@ -8,7 +8,9 @@
 
 **Product Owner, Front End Software Engineer:** Kayla Dowling
 
-**Scrum Master, Full Stack Software Engineer:** Jefri Vanegas
+**Scrum Master, Front End Software Engineer:** Jefri Vanegas
+
+**Front End Software Engineer:** Dave Meidlinger
 
 **Full Stack Software Engineer:** Robert Lin
 
@@ -44,7 +46,7 @@ With a simple form, users can quickly submit medication name, dose, instructions
 
 ##### Edit Medications
 
-From an editable view of their current medication, users can quickly make changes
+From an editable view of their current medication, users can quickly make changes.
 
 ##### Delete Medications
 
