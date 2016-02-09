@@ -1,6 +1,7 @@
 'use strict';
 
 const CryptoJS = require('crypto-js');
+const Shortid = require('shortid');
 
 let internals = {
   'get': (request, reply) => {
@@ -42,7 +43,15 @@ let internals = {
 
     Medications.create({
       info: encryptedInfo.toString(),
-      notifications: medication.notifications || [],
+      notifications: Array.isArray(medication.notifications) ? medication.notifications.map(notification => {
+        return {
+          id: Shortid.generate(),
+          title: notification.title,
+          text: notification.text,
+          at: notification.at,
+          every: notification.every
+        }
+      }) : [],
       taken: [],
       owner: request.auth.credentials.id
     }).exec(function(err, med) {
