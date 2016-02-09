@@ -14,7 +14,6 @@ class addMedicationController {
     this.scope.time3 = new Date();
     this.scope.time4 = new Date();
     this.scope.ismeridian = true;
-    this.scope.timeId = 1;
     this.scope.addTime = this.addTime;
     this.scope.submitMedication = this.submitMedication;
     this.scope.factory = addMedicationFactory;
@@ -31,10 +30,10 @@ class addMedicationController {
   addTime(time) {
     this.medication.notifications.push(
       {
-        id: this.timeId++,
         title: this.medication.info.name,
         text: this.medication.info.instruct,
-        at: time.toISOString()
+        at: time.toISOString(),
+        every: 'day'
       }
     );
   }
