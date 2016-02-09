@@ -10,9 +10,14 @@
         <!-- Medication Name, Instruction and Dosage -->
         <label class="item item-input item-floating-label"> <span class="input-label">Medication Name</span>
           <input type="text" placeholder="Medication Name (e.g. Adderall)" ng-model="med.info.name"> </label>
+	<ionic-timepicker input-obj="timePickerObject">
+          <button class="button button-block button-positive overflowShow">
+            <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
+          </button>
+        </ionic-timepicker>	
         <label class="item item-input item-floating-label"> <span class="input-label">Instructions</span>
           <input type="text" placeholder="Instructions (e.g. Take one tablet by mouth every morning)" ng-model="med.info.instruct"> </label>
-        <label class="item item-input item-floating-label"> <span class="input-label">Dosage</span>
+        <label class="item item-input item-floating-label"> <span class="input-label">Amount Remaining</span>
           <input type="text" placeholder="Current Amount Remaining"> </label>
         <br />
         <!-- Remainding Medication -->
