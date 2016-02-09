@@ -22,8 +22,8 @@
        */
 
       var example = [{
-        id: 1,
-        title: 'Take Medication Adderall (15mg)',
+        id: 1, // created on the server
+        title: 'Take Medication Abilify (15mg)',
         text: 'Instructions',
         at: new Date(new Date().getTime() + 3000),
         every: 'minute'
@@ -35,7 +35,7 @@
         every: 'minute'
       }, {
         id: 3,
-        title: 'Take Medication Gummybears (15mg)',
+        title: 'Take Medication Abilify (15mg)',
         text: 'Instructions',
         at: new Date(new Date().getTime() + 9000),
         every: 'minute'

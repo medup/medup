@@ -2,44 +2,34 @@
   <div class="row">
     <div class="bar bar-header">
       <a class="button icon-left ion-ios-arrow-left button-clear button-dark" ui-sref="dashboard"></a>
-      <h1 class="title"> Calendar </h1>
+      <h1 class="title"> Due Today </h1>
     </div>
   </div class="row">
   <ion-content class="user-calendar">
-    <div class="list">
-      <div class="item item-divider">
-        Today
+    <ion-list show-delete="false" can-swipe="true">
+      <!-- remaining medication -->
+      <div class="item item-divider remaining">
+        Remaining
       </div>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="../img/pill.png">
-        <h2> Adderall 15mg ( 25 left )</h2>
-        <h2> Take at 9:00am </h2>
-        <p> By Mouth / With Food </p>
-      </a>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="../img/pill.png">
-        <h2> Lisinopril 15mg ( 25 left )</h2>
-        <h2> Take at 9:00am </h2>
-        <p> By Mouth / With Food </p>
-      </a>
-      <div class="item item-divider">
-        Tomorrow
+      <ion-item ng-repeat="medication in remaining">
+        <h3> {{medication.info.name}} ({{medication.info.dosage}}mg) </h3>
+        <div class="user-calendar-times">
+          <span ng-repeat="notification in medication.notifications"> {{notification.at | date:'h:mma'}} </span>
+        </div>
+        <p> {{medication.info.instruct}} </p>
+        <ion-option-button class="button-balanced icon ion-checkmark" ng-click="take()"></ion-option-button>
+      </ion-item>
+      <!-- taken medication -->
+      <div class="item item-divider taken">
+        Taken
       </div>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="../img/pill.png">
-        <h2> Hydrocodone 15mg ( 25 left )</h2>
-        <h2> Take at 10:00am </h2>
-        <p> By Mouth / With Food </p>
-      </a>
-      <div class="item item-divider">
-        February 6
-      </div>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="../img/pill.png">
-        <h2> Hydrocodone 15mg ( 25 left )</h2>
-        <h2> Take at 10:00am </h2>
-        <p> By Mouth / With Food </p>
-      </a>
-    </div>
+      <ion-item ng-repeat="medication in taken">
+        <h3> {{medication.info.name}} ({{medication.info.dosage}}mg) </h3>
+        <div class="user-calendar-times">
+          <span ng-repeat="notification in medication.notifications"> {{notification.at | date:'h:mma'}} </span>
+        </div>
+        <p> {{medication.info.instruct}} </p>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

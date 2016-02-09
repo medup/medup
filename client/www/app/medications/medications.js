@@ -28,38 +28,6 @@
     };
     $scope.medications = {};
     getMedData();
-    /*----------  Fake Medication Data  ----------*/
-    // $scope.medications = {
-    //   info: [{
-    //     image: "../img/pill.png",
-    //     name: "Lisinopril",
-    //     dosage: "15mg",
-    //     remaining: 25,
-    //     date: "2015-07-28T04:33:01.852z",
-    //     instruct: "BY MOUTH / WITH FOOD"
-    //   }, {
-    //     image: "../img/pill.png",
-    //     name: "Lisinopril",
-    //     dosage: "15mg",
-    //     remaining: 25,
-    //     date: "2015-07-28T04:33:01.852z",
-    //     instruct: "BY MOUTH / WITH FOOD"
-    //   }, {
-    //     image: "../img/pill.png",
-    //     name: "Lisinopril",
-    //     dosage: "15mg",
-    //     remaining: 25,
-    //     date: "2015-07-28T04:33:01.852z",
-    //     instruct: "BY MOUTH / WITH FOOD"
-    //   }, {
-    //     image: "../img/pill.png",
-    //     name: "Lisinopril",
-    //     dosage: "15mg",
-    //     remaining: 25,
-    //     date: "2015-07-28T04:33:01.852z",
-    //     instruct: "BY MOUTH / WITH FOOD"
-    //   }]
-    // };
 
     $scope.editMedication = function(medication) {
       $state.go('medsForm', {

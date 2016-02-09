@@ -20,7 +20,7 @@
       });
     })
     .config(function(ChartJsProvider, $stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/dashboard/:user');
+      $urlRouterProvider.otherwise('/calendar');
       $stateProvider
         .state('calendar', {
           url: '/calendar',

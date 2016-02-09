@@ -90,12 +90,20 @@
   font-family: 'Lato', sans-serif;
 }
 
-.user-calendar .item.item-divider {
-  background-color: #E2EBEF;
-}
-
 .user-calendar .item {
   border-width: 0px;
+}
+
+.remaining {
+  background-color: #ECECCE;
+}
+
+.taken {
+  background-color: #DCECCE;
+}
+
+.user-calendar-times {
+  float: center;
 }
 
 
@@ -177,7 +185,7 @@
    ========================================================================== */
 
 .user-medform {
-  margin-top: 1em;
+  margin-top: 2em;
 }
 
 .user-medform .item {
