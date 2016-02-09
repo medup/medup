@@ -1,5 +1,7 @@
 "use strict";
 
+let moment = require('moment');
+
 class addMedicationController {
   constructor($scope, addMedicationFactory, $state) {
     this.name = 'addMedication';
@@ -7,7 +9,8 @@ class addMedicationController {
     this.scope.form = {};
     this.scope.medication = {
       info: {},
-      notifications: []
+      notifications: [],
+      display: []
     };
     this.scope.time = new Date();
     this.scope.ismeridian = true;
@@ -33,6 +36,7 @@ class addMedicationController {
         every: 'day'
       }
     );
+    this.medication.display.push(moment().to(time.toISOString()));
   }
 }
 

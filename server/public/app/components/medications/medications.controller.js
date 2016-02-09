@@ -1,10 +1,13 @@
 "use strict";
 
+let moment = require('moment');
+
 class medicationsController {
   constructor($scope, MedFactory) {
     this.name = 'medications';
     this.scope = $scope;
     this.scope.medications = [];
+    this.scope.notifications = [];
     this.scope.MedFactory = MedFactory;
     this.scope.getMeds = MedFactory.getMeds;
     this.scope.apply = $scope.$apply;
@@ -16,10 +19,14 @@ class medicationsController {
       this.scope.getMeds()
       .then(medsArray => {
         this.scope.medications = medsArray;
+        this.scope.medications.forEach((medication) => {
+          this.scope.notifications = this.scope.notifications.concat(medication.notifications);
+        });
+        this.scope.notifications.forEach((notification) => {
+          notification.at = moment().to(notification.at);
+        });
         this.scope.startNotifications();
       });
-      console.log(this.scope.medications);
-      console.log("testing");
     }.bind(this));
   }
 
@@ -40,17 +47,22 @@ class medicationsController {
       return;
     }
 
-    let notifications = [];
+    // let notifications = [];
     let currentTime = new Date().getTime();
 
     // concat all notifications in each medication to single array
-    this.medications.forEach((medication) => {
-      notifications = notifications.concat(medication.notifications);
-    });
+    // this.medications.forEach((medication) => {
+    //   notifications = notifications.concat(medication.notifications);
+    // });
+    //
+    // notifications.forEach((notification) => {
+    //   let date = new Date(Date.parse(notification.at));
+    //   notification.at = date.getHours() + ':' + date.getMinutes();
+    // });
 
     // sort notifications array from earliest to latest according to current time
-    notifications.sort((a, b) => {
-      if  (Date.parse(a.at) - currentTime < Date.parse(b.at) - currentTime && Date.parse(a.at) - currentTime > 0) {
+    this.notifications.sort((a, b) => {
+      if (a.at - currentTime < b.at - currentTime && a.at - currentTime > 0) {
         return -1;
       }
       return 1;
@@ -60,15 +72,17 @@ class medicationsController {
 
       let date, alarm;
 
-      date = notifications.shift();
+      date = this.notifications.shift();
       currentTime = new Date().getTime();
       alarm = Date.parse(date.at) - currentTime;
 
       setTimeout(function() {
+        console.log('displayed notification');
         let notification = new Notification(date.title, {
           body: date.text
         });
         setTimeout(function() {
+          console.log('closed notification');
           notification.close.call(notification);
         }, 4000);
 
