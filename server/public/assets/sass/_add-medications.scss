@@ -177,9 +177,33 @@ input[type="text"].med-dose-input {
   }
 }
 
+.time-picker {
+  width: rem(345);
+  margin: 0 auto;
+}
 
+.uib-timepicker {
+  float: left;
 
+  input[type='text'] {
+    margin-bottom: 0;
+    padding: 2px 4px;
+  }
 
+  tr.text-center {
+    display: none;
+  }
+
+  .am-pm {
+    padding-left: rem(8);
+  }
+}
+
+.uib-timepicker + button {
+  float: left;
+  margin-top: 5px;
+  margin-left: 4rem;
+}
 
 
 
