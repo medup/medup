@@ -44,6 +44,25 @@
       $scope.openFatigue = function(painInput) {
         $scope.dailylog.painInput = painInput || 50;
         $scope.fatigue.modal.show();
+
+      var cancelAllNotifications = function() {
+        // $cordovaLocalNotification.cancelAll()
+        //   .then(function(result) {
+        //     console.log("all notifications cancelled", result);
+        //   })
+        //   .catch(function(response) {
+        //     console.error("error cancelling notifs", response);
+        //   });
+      };
+
+      var scheduleMultipleNotifications = function() {
+        // $cordovaLocalNotification.schedule(example)
+        //   .then(function(result) {
+        //     console.log('all notifications set');
+        //   })
+        //   .catch(function(response) {
+        //     console.error("error schedualing notifs", response);
+        //   });
       };
 
       $scope.openSideEffects = function(fatigueInput) {
