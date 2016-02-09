@@ -8,10 +8,7 @@ class addMedicationController {
       info: {},
       notifications: []
     };
-    this.scope.time1 = new Date();
-    this.scope.time2 = new Date();
-    this.scope.time3 = new Date();
-    this.scope.time4 = new Date();
+    this.scope.time = new Date();
     this.scope.ismeridian = true;
     this.scope.timeId = 1;
     this.scope.addTime = this.addTime;
