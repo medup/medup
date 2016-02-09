@@ -27,23 +27,10 @@ let MedFactory = function($http) {
     });
   };
 
-  let updateMeds = (user) => {
-    return $http({
-      method: 'PUT',
-      url: 'http://localhost:3000/api/medications',
-      data: user
-    })
-    .then(response =>  {
-      return response.data;
-    }, error => {
-      return error;
-    });
-  };
 
   return {
     getMeds,
-    deleteMeds,
-    updateMeds
+    deleteMeds
   }
 
 }

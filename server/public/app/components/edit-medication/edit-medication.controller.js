@@ -1,8 +1,8 @@
 "use strict";
 
-class addMedicationController {
-  constructor($scope, addMedicationFactory) {
-    this.name = 'addMedication';
+class editMedicationController {
+  constructor($scope, editMedicationFactory) {
+    this.name = 'editMedication';
     this.scope = $scope;
     this.scope.medication = {
       info: {},
@@ -11,12 +11,12 @@ class addMedicationController {
     this.scope.time = new Date();
     this.scope.ismeridian = true;
     this.scope.timeId = 1;
-    this.scope.addTime = this.addTime;
+    this.scope.editTime = this.editTime;
     this.scope.submitMedication = this.submitMedication;
-    this.scope.factory = addMedicationFactory;
+    this.scope.factory = editMedicationFactory;
   }
   submitMedication(medication) {
-    this.factory.addMedication(medication)
+    this.factory.editMeds(medication)
       .then((res) => {
         console.log('response', res);
       })
@@ -24,16 +24,17 @@ class addMedicationController {
         console.log('Kayla was here', err);
       });
   }
-  addTime(time) {
+  editTime(time) {
     this.medication.notifications.push(
       {
         id: this.timeId++,
         title: this.medication.info.name,
         text: this.medication.info.instruct,
         at: time.toISOString()
+        every: 
       }
     );
   }
 }
 
-export default addMedicationController;
+export default editMedicationController;

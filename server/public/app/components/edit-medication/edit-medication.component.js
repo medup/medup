@@ -1,9 +1,9 @@
 "use strict";
 
-import template from './add-medication.html';
-import controller from './add-medication.controller';
+import template from './edit-medication.html';
+import controller from './edit-medication.controller';
 
-let addMedicationComponent = {
+let editMedicationComponent = {
   restrict: 'E',
   bindings: {},
   template,
@@ -11,4 +11,4 @@ let addMedicationComponent = {
   controllerAs: 'vm'
 };
 
-export default addMedicationComponent;
+export default editMedicationComponent;

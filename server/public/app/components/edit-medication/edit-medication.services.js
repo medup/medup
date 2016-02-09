@@ -1,21 +1,24 @@
 "use strict";
 
-let addMedicationFactory = function($http) {
+let editMedicationFactory = function($http) {
 
-  let addMedication = (medication) => {
+  let editMeds = (user) => {
     return $http({
-      method: 'POST',
-      url: '/api/medications',
-      data: medication
-    }).then((resp) => {
-      return resp.data;
+      method: 'PUT',
+      url: 'http://localhost:3000/api/medications',
+      data: user
+    })
+    .then(response =>  {
+      return response.data;
+    }, error => {
+      return error;
     });
   };
 
   return {
-    addMedication
+    editMeds
   };
 
 };
 
-export default addMedicationFactory;
+export default editMedicationFactory;
