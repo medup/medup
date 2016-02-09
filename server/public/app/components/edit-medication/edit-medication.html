@@ -38,6 +38,11 @@
             <input type="checkbox" checklist-model='medication.notifications' checklist-value='time'><span><i class='fa fa-clock-o'></i>{{time}}</span></span>
           </label> -->
 
+          <div class="time-picker">
+            <uib-timepicker ng-model="time" show-meridian="ismeridian"></uib-timepicker>
+            <button type='button' ng-click='addTime(time)'>Add</button>
+          </div>
+
         </div>
 
       </div>
