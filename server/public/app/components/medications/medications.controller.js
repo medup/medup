@@ -61,7 +61,7 @@ class medicationsController {
       let date, alarm;
       let count = 0;
 
-      date = storage.shift();
+      date = notifications.shift();
       currentTime = new Date().getTime();
       alarm = Date.parse(date.at) - currentTime;
 
