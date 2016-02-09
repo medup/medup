@@ -30,8 +30,8 @@ class editMedicationController {
         id: this.timeId++,
         title: this.medication.info.name,
         text: this.medication.info.instruct,
-        at: time.toISOString()
-        every: 
+        at: time.toISOString(),
+        every: 'day'
       }
     );
   }
