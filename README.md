@@ -28,9 +28,6 @@
 
 ## Usage
 
-##### UI Design
-Insert info here 
-
 ##### Register/Login
 
 An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.
@@ -54,13 +51,11 @@ From View Medications screen, users can quickly  delete medications.
 
 ##### Notifications
 
-Insert info here 
-
 
 # Development
 
 ### Requirements
-**Tech Stack:** *Ionic, Hapi.js, REACT, Redux, Waterline, MongoDB, JavaScript, Angular, Node.JS, Gulp, Protractor, Mocha, Chai, Tape, ES6*
+**Tech Stack:** *Ionic, Hapi.js, MongoDB, AngularJS, node.js, Gulp, Protractor, Mocha, Chai, ES2015/ES5 *
 ```
      angular:^1.4.9,
      angular-component:0.0.6,
@@ -85,7 +80,8 @@ Insert info here
      plugo:^0.3.1,
      sails-mongo:^0.12.0,
      vinyl-source-stream:^1.1.0,
-     vision:^4.0.1
+     vision:^4.0.1,
+     shortID:^ 2.2.4
 ```
 
 
@@ -143,9 +139,6 @@ Insert info here
    id: de.appplant.cordova.plugin.local-notification   
 ```
      
-
-
-
 
 ### Installing Dependencies
 
