@@ -35,12 +35,14 @@ exports.register.attributes = {
   name: 'db'
 };
 
+/* Use memory adapter if !NODE_ENV */
 internals.local = {
   deploy: {
     adapter: 'memory',
   }
 };
 
+/* Use MongoDB adapter if NODE_ENV */
 internals.deploy = {
   deploy: {
     adapter: 'mongo',

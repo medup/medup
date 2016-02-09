@@ -11,6 +11,7 @@ internals.validate = (decoded, req, callback) => {
 };
 
 exports.register = (plugin, options, next) => {
+  /* Register JSON Web Token auth strategy */
   plugin.auth.strategy('jwt', 'jwt', {
     key: process.env.tokenSecret,
     validateFunc: internals.validate,

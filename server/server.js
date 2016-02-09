@@ -9,6 +9,7 @@ const Hapi = require('hapi'),
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
   if (err) console.error('server.register err:', err);
 
+  /* Force https on Heroku */
   if (process.env.NODE_ENV === 'production') {
     server.ext('onRequest', (request, reply) => {
       if (request.headers['x-forward-proto'] === 'http') {
@@ -20,11 +21,12 @@ Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
     });
   }
 
+  /* Vision templates */
   server.views({
     engines: { ejs: require('ejs') },
     relativeTo: __dirname,
     path: 'public'
-  })
+  });
 
   server.start(() => {
     console.log("Server is listening on", server.info.host);

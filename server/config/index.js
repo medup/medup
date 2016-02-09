@@ -33,7 +33,7 @@ module.exports = manifest => {
 
 internals.port = process.env.PORT || 3000;
 
-/* Node-sass config */
+/* Node-sass options */
 internals.sassOptions = {
   src: path.join(__dirname, '/../public/assets/sass'),
   dest: path.join(__dirname, '/../public/assets/css'),

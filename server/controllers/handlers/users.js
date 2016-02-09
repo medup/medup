@@ -25,7 +25,7 @@ internals.signup = (request, reply) => {
           }).exec((err, user) => {
             if (err) console.error(err);
 
-            User.generateKey(newUser.password, user.salt, key => {
+            // User.generateKey(newUser.password, user.salt, key => {
 
               let session = {
                 id: user.id,
@@ -35,7 +35,7 @@ internals.signup = (request, reply) => {
               User.signToken(session, (token) => {
                 return reply({ token: token }).code(201);
               });
-            });
+            // });
           });
         });
       });
@@ -53,7 +53,7 @@ internals.signin = (request, reply) => {
           User.comparePassword(requestUser.password, user.password, (res) => {
             if (!res) return reply('Invalid password').code(401);
 
-            User.generateKey(requestUser.password, user.salt, key => {
+            // User.generateKey(requestUser.password, user.salt, key => {
 
               let session = {
                 id: user.id,
@@ -63,7 +63,7 @@ internals.signin = (request, reply) => {
               User.signToken(session, (token) => {
                 return reply({ token: token }).code(200);
               });
-            });
+            // });
           });
         } else {
           return reply().code(404);
