@@ -59,7 +59,6 @@ class medicationsController {
     let createNotification = () => {
 
       let date, alarm;
-      let count = 0;
 
       date = notifications.shift();
       currentTime = new Date().getTime();
