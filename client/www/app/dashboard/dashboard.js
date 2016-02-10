@@ -2,25 +2,109 @@
   'use strict';
 
   angular
-    .module('medup.dashboard', ['ionic', 'ngCordova', 'ionic-material', 'nvd3'])
+    .module('medup.dashboard', ['ionic', 'ngCordova', 'ionic-material', 'nvd3', 'siyfion.sfTypeahead', 'jsTag'])
     .controller('DashboardCtrl', DashboardCtrl);
 
-  DashboardCtrl.$inject = ['$scope', '$state', '$ionicPlatform', '$cordovaLocalNotification'];
+  DashboardCtrl.$inject = ['$scope', '$state', '$ionicModal', '$ionicPlatform', '$cordovaLocalNotification', 'JSTagsCollection'];
 
 
-  function DashboardCtrl($scope, $state, $ionicPlatform, $cordovaLocalNotification) {
+  function DashboardCtrl($scope, $state, $ionicModal, $ionicPlatform, $cordovaLocalNotification, JSTagsCollection) {
     $ionicPlatform.ready(function() {
-      // mock data
-      /**
-       *
-       * Medication Name
-       * Instructions
-       * Current Amount Remaining
-       * Dosage
-       * Date // 2016-02-06T20:08:56.298Z
-       * Repeat every day
-       */
 
+      /*----------  Modal  ----------*/
+      var createModal = function(url, animation, name) {
+        $ionicModal.fromTemplateUrl(url, {
+          scope: $scope,
+          animation: animation,
+          backdropClickToClose: true,
+          hardwareBackButtonClose: true,
+          focusFirstInput: true
+        }).then(function(modal) {
+          $scope[name] = {};
+          $scope[name].modal = modal;
+        });
+      };
+
+      createModal('app/healthlog/pain.html', 'slide-in-up', 'pain');
+      createModal('app/healthlog/fatigue.html', 'jelly', 'fatigue');
+      createModal('app/healthlog/sideeffects.html', 'jelly', 'sideeffects');
+      createModal('app/healthlog/overallHealth.html', 'jelly', 'overallHealth');
+
+      $scope.openPain = function() {
+        $scope.pain.modal.show();
+      };
+
+      $scope.openFatigue = function() {
+        $scope.fatigue.modal.show();
+      };
+
+      $scope.openSideEffects = function() {
+        $scope.sideeffects.modal.show();
+      };
+
+      $scope.openOverallHealth = function() {
+        $scope.overallHealth.modal.show();
+      };
+
+      $scope.complete = function() {
+        var modals = ['pain', 'fatigue', 'sideeffects', 'overallHealth'];
+
+        for (var i = 0; i < modals.length; i++) {
+          $scope[modals[i]].modal.hide();
+        }
+      };
+
+      $scope.closeModal = function(name) {
+        $scope[name].modal.hide();
+      };
+
+      /*----------  Tags and Typeahead  ----------*/
+
+      // Build JSTagsCollection
+      $scope.tags = new JSTagsCollection(["jsTag", "angularJS"]);
+      console.log($scope.tags);
+
+      // Export jsTags options, inlcuding our own tags object
+      $scope.jsTagOptions = {
+        'tags': $scope.tags
+      };
+
+      // **** Typeahead code **** //
+
+      // Build suggestions array
+      var suggestions = ['jsTag', 'c#', 'java', 'javascript', 'jquery', 'android', 'php', 'c++', 'python', 'ios', 'mysql', 'iphone', 'sql', 'html', 'css', 'objective-c', 'ruby-on-rails', 'c', 'sql-server', 'ajax', 'xml', '.net', 'ruby', 'regex', 'database', 'vb.net', 'arrays', 'eclipse', 'json', 'django', 'linux', 'xcode', 'windows', 'html5', 'winforms', 'r', 'wcf', 'visual-studio-2010', 'forms', 'performance', 'excel', 'spring', 'node.js', 'git', 'apache', 'entity-framework', 'asp.net', 'web-services', 'linq', 'perl', 'oracle', 'action-script', 'wordpress', 'delphi', 'jquery-ui', 'tsql', 'mongodb', 'neo4j', 'angularJS', 'unit-testing', 'postgresql', 'scala', 'xaml', 'http', 'validation', 'rest', 'bash', 'django', 'silverlight', 'cake-php', 'elgg', 'oracle', 'cocoa', 'swing', 'mocha', 'amazon-web-services'];
+      suggestions = suggestions.map(function(item) {
+        return {
+          "suggestion": item
+        };
+      });
+
+      // Instantiate the bloodhound suggestion engine
+      suggestions = new Bloodhound({
+        datumTokenizer: function(d) {
+          return Bloodhound.tokenizers.whitespace(d.suggestion);
+        },
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: suggestions
+      });
+
+      // Initialize the bloodhound suggestion engine
+      suggestions.initialize();
+
+      // Single dataset example
+      $scope.exampleData = {
+        displayKey: 'suggestion',
+        source: suggestions.ttAdapter()
+      };
+
+      // Typeahead options object
+      $scope.exampleOptions = {
+        hint: false,
+        highlight: true
+      };
+
+
+      /*----------  Notifications  ----------*/
       var medications = [{
         id: 1, // created on the server
         title: 'Take Medication Abilify (15mg)',
@@ -65,7 +149,7 @@
       scheduleMultipleNotifications();
     });
 
-    /*----------  Testing Fake Data  ----------*/
+    /*----------  Graph  ----------*/
     $scope.options = {
       chart: {
         type: 'stackedAreaChart',
@@ -96,13 +180,6 @@
         }
       }
     };
-    /**
-
-      TODO:
-      - Need to get the taken array, which is an array of date objects
-      - Get the average of all the
-
-     */
 
     /*----------  Fake Data  ----------*/
     $scope.data = [{

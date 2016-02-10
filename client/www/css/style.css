@@ -191,3 +191,18 @@
 .user-medform .item {
   border-width: 0px;
 }
+
+
+/* ==========================================================================
+   Modals
+   ========================================================================== */
+
+.ion-nifty-modal .user-modal {
+  background-color: #FFF;
+}
+
+.user-modal-title {
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}

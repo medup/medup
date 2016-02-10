@@ -13,70 +13,69 @@
   CalendarCtrl.$inject = ['$scope', '$state', 'MedService'];
 
   function CalendarCtrl($scope, $state, MedService) {
-    var medications = [];
     /*----------  Fake Medication Data  ----------*/
 
-    // var medications = [{
-    //   info: {
-    //     name: 'Lisinopril',
-    //     dosage: 15,
-    //     instruct: 'BY MOUTH / WITH FOOD'
-    //   },
-    //   taken: [new Date(), new Date(), new Date("2016-02-05")],
-    //   notifications: [{
-    //     id: 1, // created on the server
-    //     title: 'Take Medication Lisinopril (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date("2015-03-25T15:00:00"),
-    //     every: 'day'
-    //   }, {
-    //     id: 2,
-    //     title: 'Take Medication Lisinopril (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date("2015-03-25T15:30:00"),
-    //     every: 'day'
-    //   }]
-    // }, {
-    //   info: {
-    //     name: 'Gummybears',
-    //     dosage: 15,
-    //     instruct: 'BY MOUTH / WITH FOOD'
-    //   },
-    //   taken: [new Date()],
-    //   notifications: [{
-    //     id: 4, // created on the server
-    //     title: 'Take Medication Gummybears (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date(),
-    //     every: 'day'
-    //   }]
-    // }, {
-    //   info: {
-    //     name: 'Adderall',
-    //     dosage: 15,
-    //     instruct: 'BY MOUTH / WITH FOOD'
-    //   },
-    //   taken: [],
-    //   notifications: [{
-    //     id: 8, // created on the server
-    //     title: 'Take Medication Adderall (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date("2016-02-25T15:00:00"),
-    //     every: 'day'
-    //   }, {
-    //     id: 9,
-    //     title: 'Take Medication Adderall (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date("2016-02-25T15:30:00"),
-    //     every: 'day'
-    //   }, {
-    //     id: 10,
-    //     title: 'Take Medication Adderall (15mg)',
-    //     text: 'Instructions',
-    //     at: new Date("2016-02-25T24:00:00"),
-    //     every: 'day'
-    //   }]
-    // }];
+    var medications = [{
+      info: {
+        name: 'Lisinopril',
+        dosage: 15,
+        instruct: 'BY MOUTH / WITH FOOD'
+      },
+      taken: [new Date(), new Date(), new Date("2016-02-05")],
+      notifications: [{
+        id: 1, // created on the server
+        title: 'Take Medication Lisinopril (15mg)',
+        text: 'Instructions',
+        at: new Date("2015-03-25T15:00:00"),
+        every: 'day'
+      }, {
+        id: 2,
+        title: 'Take Medication Lisinopril (15mg)',
+        text: 'Instructions',
+        at: new Date("2015-03-25T15:30:00"),
+        every: 'day'
+      }]
+    }, {
+      info: {
+        name: 'Gummybears',
+        dosage: 15,
+        instruct: 'BY MOUTH / WITH FOOD'
+      },
+      taken: [new Date()],
+      notifications: [{
+        id: 4, // created on the server
+        title: 'Take Medication Gummybears (15mg)',
+        text: 'Instructions',
+        at: new Date(),
+        every: 'day'
+      }]
+    }, {
+      info: {
+        name: 'Adderall',
+        dosage: 15,
+        instruct: 'BY MOUTH / WITH FOOD'
+      },
+      taken: [],
+      notifications: [{
+        id: 8, // created on the server
+        title: 'Take Medication Adderall (15mg)',
+        text: 'Instructions',
+        at: new Date("2016-02-25T15:00:00"),
+        every: 'day'
+      }, {
+        id: 9,
+        title: 'Take Medication Adderall (15mg)',
+        text: 'Instructions',
+        at: new Date("2016-02-25T15:30:00"),
+        every: 'day'
+      }, {
+        id: 10,
+        title: 'Take Medication Adderall (15mg)',
+        text: 'Instructions',
+        at: new Date("2016-02-25T24:00:00"),
+        every: 'day'
+      }]
+    }];
 
     $scope.take = function() {
       var now = new Date();
