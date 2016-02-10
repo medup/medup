@@ -17,6 +17,9 @@ module.exports = {
     salt: {
       type: 'string'
     },
+    // key: {
+    //   type: 'string'
+    // },
     medications: {
       collection: 'medications',
       via: 'owner'

@@ -6,12 +6,12 @@ const Shortid = require('shortid');
 let internals = {
   'get': (request, reply) => {
 
-    let User = request.collections.users,
-        userId = request.auth.credentials.id;
+    let User = request.collections.users;
+    let userId = request.auth.credentials.id;
 
     User.findOne({ id: userId })
         .populate('medications')
-        .exec(function(err, user) { 
+        .exec((err, user) => {
           if (err) console.error(err);
 
           if (!user) return reply('User not found').code(404);
@@ -28,10 +28,10 @@ let internals = {
               };
             });
 
-            return reply(data).code(200);
+            return reply(data);
           }
 
-          return reply([]).code(200);
+          return reply([]);
         });
   },
   'post': (request, reply) => {
@@ -82,7 +82,7 @@ let internals = {
             if (err) console.error(err);
 
             if (saved) {
-              return reply().code(200);
+              return reply();
             }
 
             return reply().code(404);
@@ -99,7 +99,7 @@ let internals = {
             if (err) console.error(err);
 
             if (saved) {
-              return reply().code(200);
+              return reply();
             }
 
             return reply().code(404);
@@ -129,7 +129,7 @@ let internals = {
             return reply().code(404);
           }
 
-          return reply().code(200);
+          return reply();
 
         });
       });

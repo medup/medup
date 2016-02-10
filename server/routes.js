@@ -51,7 +51,9 @@ exports.register = (plugin, options, next) => {
     { method: 'GET', path: '/restricted', config: { auth: 'jwt', handler: handlers['Restricted'] } },
     { method: 'DELETE', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: { params: Joi.object().keys({ id: Joi.string() }) } } },
     { method: 'GET', path: '/api/medications', config: { auth: 'jwt', handler: handlers['Medication'] } },
-    { method: '*', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: internals.routeValidation.medication } }
+    { method: '*', path: '/api/medications/{id?}', config: { auth: 'jwt', handler: handlers['Medication'], validate: internals.routeValidation.medication } },
+    { method: 'POST', path: '/api/log', config: { auth: 'jwt', handler: handlers['Log'].addLog } },
+    { method: 'GET', path: '/api/log', config: { auth: 'jwt', handler: handlers['Log'].getLog } }
   ]);
 
   next();

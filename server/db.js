@@ -21,7 +21,8 @@ exports.register = (plugin, options, next) => {
       connections: process.env.NODE_ENV ? internals.deploy : internals.local,
       models: [
         models.User,
-        models.Medication
+        models.Medication,
+        models.Log
       ]
     }
   }).then(err => {
@@ -35,12 +36,14 @@ exports.register.attributes = {
   name: 'db'
 };
 
+/* Use memory adapter if !NODE_ENV */
 internals.local = {
   deploy: {
     adapter: 'memory',
   }
 };
 
+/* Use MongoDB adapter if NODE_ENV */
 internals.deploy = {
   deploy: {
     adapter: 'mongo',
