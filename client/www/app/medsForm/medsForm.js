@@ -63,7 +63,8 @@
         $scope.med = drug;
       }
     });
-
+    console.dir(drugs);
+    
     $scope.timePickerObject = {
       inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
       step: 15,  //Optional
@@ -98,7 +99,7 @@
 	$scope.displayTime = twelveTime(selectedTime.getUTCHours(), selectedTime.getUTCMinutes());
       }
     }
-    
+
     $scope.getMedData = function() {
       MedService.getMeds()
         .then(function(medInfoArr) {
@@ -109,31 +110,26 @@
         });
     };
 
-    // function mapMed() {
-    //   return {
-    //       title: 'Take ' + $scope.med.info.dose + $scope.med.info.unit + ' of ' + $scope.med.info.name + ' now.',
-    // 	text: $scope.med.info.instruct,
-    // 	at: new Date($scope.timePickerObject.inputEpochTime),
-    // 	every: 'day'
-    // 	};
-    // };
-    
     $scope.saveMed = function() {
-      var note = {
-        title: 'Take ' + $scope.med.info.dose + $scope.med.info.unit + ' of ' + $scope.med.info.name + ' now.',
-	text: $scope.med.info.instruct,
-	at: new Date($scope.timePickerObject.inputEpochTime),
-	every: 'day'
-      };
-      
-      if ($stateParams.medId) {
-        MedService.updateMeds({
-            id: $stateParams.medId,
+      var note = [{
+            title: 'Take ' + $scope.med.info.dose + $scope.med.info.unit + ' of ' + $scope.med.info.name + ' now.',
+	    text: $scope.med.info.instruct,
+	    at: new Date($scope.timePickerObject.inputEpochTime),
+	    every: 'day'
+          }],
+	  pill = {
             info: {
               name: $scope.med.info.name,
+	      dose: $scope.med.info.dosage,
               instruct: $scope.med.info.instruct
             }
-          })
+          };
+      if(!$scope.med.notifications) pill.notifications = note;
+        else pill.notifications = $scope.med.notifications.concat(note);
+      
+      if ($stateParams.medId) {
+	pill.id = $stateParams.medId,
+        MedService.updateMeds(pill)
           .then(function(data) {
             console.dir(data);
             $state.go('dashboard');
@@ -141,14 +137,8 @@
             console.error('unable to update medication on server');
             console.dir(err);
           });
-        console.log($scope.medId);
       } else {
-        MedService.addMed({
-            info: {
-              name: $scope.med.info.name,
-              instruct: $scope.med.info.instruct
-            }
-          })
+        MedService.addMed(pill)
           .then(function(data) {
             console.dir(data);
             $state.go('dashboard');
@@ -156,7 +146,6 @@
             console.error('unable to PUT new medication on server');
             console.dir(err);
           });
-        console.log($scope.medId);
       }
     };
 

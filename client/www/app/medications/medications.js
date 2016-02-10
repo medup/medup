@@ -13,22 +13,25 @@
         .then(function(medInfoArr) {
           $scope.medications = medInfoArr;
           Medications.userMeds.dbMeds = medInfoArr;
+	  console.log('getMedData()');
         }).catch(function(err) {
           console.error("unable to fetch medication data from server");
           console.dir(err);
         });
     };
 
-    $scope.$on('$viewContentLoaded', function(event) {
-      getMedData();
-    });
+    // $scope.$on('$viewContentLoaded', function(event) {
+    //   getMedData();
+    //   console.dir(medications);
+    // });
 
-    $scope.getMeds = function() {
-      console.log('get meds!');
-    };
+    // $scope.getMeds = function() {
+    //   console.log('get meds!');
+    // };
     $scope.medications = {};
     getMedData();
-
+    console.log('I reloaded');
+    
     $scope.editMedication = function(medication) {
       $state.go('medsForm', {
         medId: medication.id

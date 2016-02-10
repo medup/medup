@@ -23,10 +23,8 @@ const internals = {
       payload: Joi.object().keys({
         info: Joi.object().keys({
           name: Joi.string(),
-          dose: Joi.number().integer().min(0).max(10000),
+          dose: Joi.string(),
           instruct: Joi.string(),
-	  time: Joi.string(),
-	  unit: Joi.string().regex(oz|mg|mcg|g|fld)
         }),
         notifications: Joi.array(),
         taken: Joi.array()

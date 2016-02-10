@@ -8,11 +8,7 @@
   'use strict';
 
   angular
-<<<<<<< HEAD
-    .module('medup', ['chart.js', 'ds.clock', 'ionic', 'ngCordova', 'nvd3', 'medup.auth', 'medup.calendar', 'medup.healthlog', 'medup.dashboard', 'medup.healthStats', 'medup.medications', 'medup.medsForm', 'medup.services'])
-=======
-      .module('medup', ['chart.js', 'ds.clock', 'ionic', 'ionic-timepicker', 'ngCordova', 'nvd3', 'medup.auth', 'medup.calendar', 'medup.dashboard', 'medup.healthStats', 'medup.medications', 'medup.medsForm', 'medup.services'])
->>>>>>> (refactor) update before rebase
+    .module('medup', ['chart.js', 'ds.clock', 'ionic', 'ionic-timepicker', 'ngCordova', 'nvd3', 'medup.auth', 'medup.calendar', 'medup.healthlog', 'medup.dashboard', 'medup.healthStats', 'medup.medications', 'medup.medsForm', 'medup.services'])
     .run(function($ionicPlatform, $rootScope) {
       $ionicPlatform.ready(function() {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -24,7 +20,7 @@
       });
     })
     .config(function(ChartJsProvider, $stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
-      $urlRouterProvider.otherwise('/dashboard/:user');
+      $urlRouterProvider.otherwise('/signin');
       $stateProvider
         .state('calendar', {
           url: '/calendar',
@@ -43,6 +39,7 @@
         })
         .state('medications', {
           url: '/medications',
+	  cache: false,
           templateUrl: 'app/medications/medications.html',
           controller: 'MedicationsCtrl'
         })
@@ -62,7 +59,11 @@
           controller: 'AuthCtrl'
         });
 
+<<<<<<< HEAD
       $httpProvider.interceptors.push('AttachTokens');
+=======
+       $httpProvider.interceptors.push('AttachTokens');
+>>>>>>> (fix) set medications state chahe to false so view reloads
     })
     .factory('AttachTokens', function($window) {
       var attach = {
