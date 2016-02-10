@@ -1,0 +1,77 @@
+<div class="edit-state">
+
+  <div class="top-heading">
+
+    <h1>Edit Your Medications</h1>
+
+  </div>
+
+  <div class="med-form-wrapper">
+
+    <form class="med-form" ng-submit='submitMedication(medication)'>
+
+      <div class="form-top">
+
+        <input class="med-name-input" type="text" name="medName" ng-model='medication.info.name' placeholder="Medication Name">
+
+        <input class="med-dose-input" type="text" name="medDose" ng-model='medication.info.dose' placeholder="Dose">
+
+        <input class="med-instructions-input" type="text" name="medInstructions" ng-model='medication.info.instruct' placeholder="Instructions">
+
+        <h4 class="select-reminder">Edit A Reminder</h4>
+
+        <div class="reminder-wrapper">
+
+          <!-- CHECKBOX REPEATER -->
+          <!-- <label ng-repeat='time in times'>
+            <input type="checkbox" checklist-model='medication.notifications' checklist-value='time'><span><i class='fa fa-clock-o'></i>{{time}}</span></span>
+          </label> -->
+
+          <div class="time-picker">
+            <uib-timepicker ng-model="time" show-meridian="ismeridian"></uib-timepicker>
+            <button type='button' ng-click='editTime(time)'>Edit</button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <section class="med-preview">
+
+        <h4>Preview</h4>
+
+        <div class="med-card">
+
+          <div class="med-left">
+
+            <h3 class="med-name">{{medication.info.name}}<span class="dose">{{medication.info.dose}}</span></h3>
+
+            <span class="instructions">{{medication.info.instruct}}</span>
+
+          </div>
+
+          <div class="med-notifications">
+            <ul>
+              <li ng-repeat="time in display">
+                <i class="fa fa-clock-o"></i>
+                <span class="time">{{time}}</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+      <div class="submit-wrapper">
+
+        <button type="submit">Save Medication</button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
