@@ -78,13 +78,21 @@
       }
     };
 
+    
+    function twelveTime(hours, minutes) {
+      var meridian = 'AM';
+      if (hours > 11) meridian = 'PM'
+
+      return (hours % 12) + ':' + minutes + ' ' + meridian;
+    };
+    
     function timePickerCallback(val) {
       if (typeof (val) === 'undefined') {
         console.log('Time not selected');
       } else {
         var selectedTime = new Date(val * 1000);
         console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
-	//$scope.med.info.time = selectedTime.getUTCHours();
+	$scope.timePickerObject.inputEpochTime = twelveTime(selectedTime.getUTCHours(), selectedTime.getUTCMinutes());
       }
     }
     
