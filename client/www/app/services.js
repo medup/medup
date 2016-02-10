@@ -11,12 +11,10 @@
     .module('medup.services', ['ionic', 'ngCordova'])
     .service('AuthService', AuthService)
     .service('MedService', MedService)
-    .service('Notifications', Notifications)
     .factory('Medications', Medications);
 
   AuthService.$inject = ['$window', '$state', '$http'];
   MedService.$inject = ['$state', '$http'];
-  Notifications.$inject = ['$cordovaLocalNotification', '$ionicPlatform'];
   Medications.$inject = ['MedService'];
 
   function AuthService($window, $state, $http) {
@@ -81,6 +79,19 @@
         });
     };
 
+    this.addTaken = function(date) {
+      return $http({
+          method: 'POST',
+          url: 'http://localhost:3000/api/medications',
+          data: date
+        })
+        .then(function(response) {
+          return response.data;
+        }, function(err) {
+          return err;
+        });
+    };
+
     this.updateMeds = function(user) {
       return $http({
           method: 'PUT',
@@ -98,7 +109,7 @@
       return $http({
           method: 'DELETE',
           url: 'http://localhost:3000/api/medications/' + medId
-          //data: 
+            //data:
         })
         .then(function(response) {
           return response.data;
@@ -108,19 +119,11 @@
     };
   }
 
-  function Notifications($cordovaLocalNotification, $ionicPlatform) {
-    var that = this;
-    $cordovaLocalNotification.registerPermission();
-    that.scheduleNotifications = function(notifs) {
-      $cordovaLocalNotification.schedule(notifs).then(function() {
-        alert("Instant Notification set");
-      });
-    };
-  }
-
   function Medications() {
     var medFac = {};
-    medFac.userMeds = {dbMeds: []};
+    medFac.userMeds = {
+      dbMeds: []
+    };
     // MedService.getMeds(user)
     //   .then(function(medInfoArr) {
     //     medFac.userMeds.dbMeds = medInfoArray;
@@ -129,7 +132,7 @@
     //   });
 
     //medFac.userMeds.localMeds = testMeds;
-    
+
     return medFac;
   }
 

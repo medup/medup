@@ -1,0 +1,19 @@
+<ion-modal-view class='ion-nifty-modal'>
+  <ion-content class='user-modal'>
+    <button class="button button-clear icon ion-ios-arrow-left" ng-click="closeModal('overallHealth')"> </button>
+    <h3 class="user-modal-title">Overall Health</h3>
+    <br />
+    <ion-list>
+      <div class="row">
+        <div class="col col-50">
+          <ion-radio ng-model="choice" ng-value="'A'">Stable</ion-radio>
+        </div>
+        <div class="col col-50">
+          <ion-radio ng-model="choice" ng-value="'A'">Improving</ion-radio>
+        </div>
+      </div>
+    </ion-list>
+    <br />
+    <button class="button button-block button-royal" ng-click="complete()"> Finish </button>
+  </ion-content>
+</ion-modal-view>

@@ -8,6 +8,14 @@
   <ion-content class="user-health-stats">
     <div class="card">
       <div class="item item-text-wrap">
+        <p> Compliance </p>
+        <br>
+        <canvas id="compliance" class="chart chart-doughnut" chart-colours="colors" chart-data="compliance" chart-labels="complianceLabels">
+        </canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
         <p> Adderall Side Effects </p>
         <br>
         <canvas id="Adderall" class="chart chart-radar" chart-data="adderall" chart-labels="adderallLabels"></canvas>
@@ -18,14 +26,6 @@
         <p> Synthroid Side Effects </p>
         <br>
         <canvas id="Synthroid" class="chart chart-radar" chart-data="synthroid" chart-labels="synthroidLabels"></canvas>
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-text-wrap">
-        <p> Compliance </p>
-        <br>
-        <canvas id="compliance" class="chart chart-doughnut" chart-colours="colors" chart-data="compliance" chart-labels="complianceLabels">
-        </canvas>
       </div>
     </div>
   </ion-content>

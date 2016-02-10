@@ -10,10 +10,9 @@
   angular
     .module('medup.calendar', ['ionic', 'ionic-material', 'nvd3'])
     .controller('CalendarCtrl', CalendarCtrl);
-  CalendarCtrl.$inject = ['$scope', '$state'];
+  CalendarCtrl.$inject = ['$scope', '$state', 'MedService'];
 
-  function CalendarCtrl($scope, $state) {
-
+  function CalendarCtrl($scope, $state, MedService) {
     /*----------  Fake Medication Data  ----------*/
 
     var medications = [{
@@ -80,7 +79,10 @@
 
     $scope.take = function() {
       var now = new Date();
-
+      MedService.addTaken(now)
+        .then(function() {
+          console.log('working');
+        });
     };
 
     var convertTime = function(date) {
@@ -96,7 +98,7 @@
     var now = new Date();
     var today = convertTime(now);
 
-    var taken = function() {
+    var completed = function() {
       return medications.filter(function(med) {
         var last = med.taken[med.taken.length - 1];
         var medToday = convertTime(last);
@@ -112,8 +114,10 @@
       });
     };
 
-    $scope.taken = taken();
-    $scope.remaining = remaining();
+    if (medications) {
+      $scope.completed = completed();
+      $scope.remaining = remaining();
+    }
   }
 
 })();

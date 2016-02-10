@@ -19,11 +19,11 @@
         <p> {{medication.info.instruct}} </p>
         <ion-option-button class="button-balanced icon ion-checkmark" ng-click="take()"></ion-option-button>
       </ion-item>
-      <!-- taken medication -->
-      <div class="item item-divider taken">
-        Taken
+      <!-- completed medication -->
+      <div class="item item-divider completed">
+        Completed
       </div>
-      <ion-item ng-repeat="medication in taken">
+      <ion-item ng-repeat="medication in completed">
         <h3> {{medication.info.name}} ({{medication.info.dosage}}mg) </h3>
         <div class="user-calendar-times">
           <span ng-repeat="notification in medication.notifications"> {{notification.at | date:'h:mma'}} </span>
