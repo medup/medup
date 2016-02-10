@@ -23,6 +23,10 @@ module.exports = {
     medications: {
       collection: 'medications',
       via: 'owner'
+    },
+    logs: {
+      collection: 'logs',
+      via: 'owner'
     }
   },
   hashPassword(password, callback) {
