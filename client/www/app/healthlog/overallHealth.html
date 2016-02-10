@@ -6,14 +6,14 @@
     <ion-list>
       <div class="row">
         <div class="col col-50">
-          <ion-radio ng-model="choice" ng-value="'A'">Stable</ion-radio>
+          <ion-radio ng-model="choice" ng-value="'stable'">Stable</ion-radio>
         </div>
         <div class="col col-50">
-          <ion-radio ng-model="choice" ng-value="'A'">Improving</ion-radio>
+          <ion-radio ng-model="choice" ng-value="'improving'">Improving</ion-radio>
         </div>
       </div>
     </ion-list>
     <br />
-    <button class="button button-block button-royal" ng-click="complete()"> Finish </button>
+    <button class="button button-block button-royal" ng-click="complete(choice)"> Finish </button>
   </ion-content>
 </ion-modal-view>

@@ -210,3 +210,7 @@
 .user-modal-input {
   text-align: center;
 }
+
+.modal-backdrop-bg {
+  background-color: #A1B6C3;
+}

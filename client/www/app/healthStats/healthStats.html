@@ -10,22 +10,31 @@
       <div class="item item-text-wrap">
         <p> Compliance </p>
         <br>
-        <canvas id="compliance" class="chart chart-doughnut" chart-colours="colors" chart-data="compliance" chart-labels="complianceLabels">
+        <canvas id="compliance" class="chart chart-doughnut" chart-colours="complianceColors" chart-data="compliance" chart-labels="complianceLabels">
         </canvas>
       </div>
     </div>
     <div class="card">
       <div class="item item-text-wrap">
-        <p> Adderall Side Effects </p>
+        <p> February Side Effect Impact </p>
         <br>
-        <canvas id="Adderall" class="chart chart-radar" chart-data="adderall" chart-labels="adderallLabels"></canvas>
+        <canvas id="allSideEffects" class="chart chart-radar" chart-data="allSideEffects" chart-labels="allSideEffectsLabels"></canvas>
       </div>
     </div>
     <div class="card">
       <div class="item item-text-wrap">
-        <p> Synthroid Side Effects </p>
+        <p> Weekly Side Effects </p>
         <br>
-        <canvas id="Synthroid" class="chart chart-radar" chart-data="synthroid" chart-labels="synthroidLabels"></canvas>
+        <canvas id="weeklySideEffects" class="chart chart-bar" chart-data="weeklySideEffects" chart-labels="weeklySideEffectsLabels"> chart-series="series"
+        </canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <p> Weekly Pain & Fatigue </p>
+        <br>
+        <canvas id="scales" class="chart chart-line" chart-colours="scalesColors" chart-data="scales" chart-labels="scalesLabels" chart-legend="true" chart-series="series" chart-click="onClick">
+        </canvas>
       </div>
     </div>
   </ion-content>
