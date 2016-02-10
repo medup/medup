@@ -1,5 +1,5 @@
 ![Imgur](http://i.imgur.com/wXQbebg.png)
-*Demo URL: [https://medup.heroku.com]*
+*Demo URL: [https://medup.herokuapp.com]*
 
 70% of Americans regularly take prescription drugs, with more than half with at least two prescriptions.  Taking the right drug at the correct time is difficult without a plan and daily reminders. With our cross-platform application MedUp, we help users stay on track with their dosages through notifications.
 
@@ -34,11 +34,11 @@ An email and password is required for sign up and sign in. All information provi
 
 ##### Dashboard - View Medications
 
-Users have a quick access to view their medications with features to add, delete, and edit their medications. 
+Users have a quick access to view their medications with features to add, delete, and edit their medications.
 
 ##### Add Medications
 
-With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications. 
+With a simple form, users can quickly submit medication name, dose, instructions, and set up reminder notifications.
 
 ##### Edit Medications
 
@@ -110,7 +110,7 @@ From View Medications screen, users can quickly  delete medications.
      gulp-tape: 0.0.7,
      gulp-uglify: ^1.5.1,
      gulp-util: ^3.0.7,
-     gulp-angular-protractor: 0.0.7, 
+     gulp-angular-protractor: 0.0.7,
      jasmine-given: ^2.6.4,
      jshint: ^2.9.1,
      jshint-stylish: ^2.1.0,
@@ -134,11 +134,11 @@ From View Medications screen, users can quickly  delete medications.
    cordova-plugin-statusbar,
    ionic-plugin-keyboard,
    cordovaPlatforms - ios,
-   cordovaPlatforms - android 
+   cordovaPlatforms - android
    locator: https://github.com/katzer/cordova-plugin-local-notifications.git,
    id: de.appplant.cordova.plugin.local-notification   
 ```
-     
+
 
 ### Installing Dependencies
 
