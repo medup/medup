@@ -21,7 +21,8 @@ exports.register = (plugin, options, next) => {
       connections: process.env.NODE_ENV ? internals.deploy : internals.local,
       models: [
         models.User,
-        models.Medication
+        models.Medication,
+        models.Log
       ]
     }
   }).then(err => {

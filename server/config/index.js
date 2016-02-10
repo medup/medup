@@ -1,8 +1,8 @@
 'use strict';
 
-const crypto = require('crypto'),
-      neat = require('node-neat'),
-      path = require('path');
+const crypto = require('crypto');
+const neat = require('node-neat');
+const path = require('path');
 
 const internals = {};
 

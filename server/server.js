@@ -1,9 +1,9 @@
 "use strict";
 
-const Hapi = require('hapi'),
-      Glue = require('glue'),
-      manifest = require('./config/manifest.json'),
-      config = require('./config')(manifest);
+const Hapi = require('hapi');
+const Glue = require('glue');
+const manifest = require('./config/manifest.json');
+const config = require('./config')(manifest);
 
 
 Glue.compose(manifest, { relativeTo: __dirname }, (err, server) => {
