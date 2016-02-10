@@ -1,14 +1,14 @@
 <ion-modal-view class='ion-nifty-modal'>
-  <ion-content class='user-modal'>
+  <ion-content class="user-modal">
     <button class="button button-clear icon ion-ios-arrow-left" ng-click="closeModal('pain')"> </button>
     <h3 class="user-modal-title">Pain Scale</h3>
     <br />
-    <div class="item range">
-      <i class="icon ion-sad-outline"></i>
-      <input type="range" name="volume">
+    <div class="item range range-assertive">
       <i class="icon ion-happy-outline"></i>
+      <input type="range" name="pain" min="0" max="100" value="{{data.value}}" ng-model="data.value">
+      <i class="icon ion-sad-outline"></i>
     </div>
     <br />
-    <button class="button button-block button-royal" ng-click="openFatigue()"> continue </button>
+    <button class="button button-block button-royal" ng-click="openFatigue(data.value)"> continue </button>
   </ion-content>
 </ion-modal-view>

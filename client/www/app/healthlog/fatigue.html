@@ -3,12 +3,12 @@
     <button class="button button-clear icon ion-ios-arrow-left" ng-click="closeModal('fatigue')"> </button>
     <h3 class="user-modal-title">Fatigue Scale</h3>
     <br />
-    <div class="item range">
-      <i class="icon ion-sad-outline"></i>
-      <input type="range" name="volume">
+    <div class="item range range-assertive">
       <i class="icon ion-happy-outline"></i>
+      <input type="range" name="fatigue" min="0" max="100" value="50" ng-model="fatigueInput">
+      <i class="icon ion-sad-outline"></i>
     </div>
     <br />
-    <button class="button button-block button-royal" ng-click="openSideEffects()"> continue </button>
+    <button class="button button-block button-royal" ng-click="openSideEffects(fatigueInput)"> continue </button>
   </ion-content>
 </ion-modal-view>
