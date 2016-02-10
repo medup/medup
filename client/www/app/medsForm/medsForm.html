@@ -11,7 +11,7 @@
         <label class="item item-input item-floating-label"> <span class="input-label">Medication Name</span>
           <input type="text" placeholder="Medication Name (e.g. Adderall)" ng-model="med.info.name"> </label>
 	<ionic-timepicker input-obj="timePickerObject">
-          <button class="button button-block button-positive overflowShow">Scheduled Time to Take Medication {{timePickerObject.inputEpochTime}}
+          <button class="button button-block button-positive overflowShow">Scheduled Time to Take Medication {{displayTime}}
             <standard-time-meridian etime="timePickerObject.inputEpochTime"></standard-time-meridian>
           </button>
         </ionic-timepicker>	

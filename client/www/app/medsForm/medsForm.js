@@ -78,6 +78,8 @@
       }
     };
 
+    var rightNow = new Date();
+    $scope.displayTime = twelveTime(rightNow.getUTCHours(), 30);
     
     function twelveTime(hours, minutes) {
       var meridian = 'AM';
@@ -92,7 +94,8 @@
       } else {
         var selectedTime = new Date(val * 1000);
         console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
-	$scope.timePickerObject.inputEpochTime = twelveTime(selectedTime.getUTCHours(), selectedTime.getUTCMinutes());
+	$scope.timePickerObject.inputEpochTime = val;
+	$scope.displayTime = twelveTime(selectedTime.getUTCHours(), selectedTime.getUTCMinutes());
       }
     }
     
