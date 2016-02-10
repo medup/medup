@@ -89,21 +89,24 @@ class medicationsController {
 
       date = this.notifications.shift();
       currentTime = new Date().getTime();
+
       alarm = date.at - currentTime;
 
-      setTimeout(function() {
-        console.log('displayed notification');
-        let notification = new Notification(date.title, {
-          body: date.text
-        });
+      if (alarm) {
         setTimeout(function() {
-          console.log('closed notification');
-          notification.close.call(notification);
-        }, 4000);
+          console.log('displayed notification');
+          let notification = new Notification(date.title, {
+            body: date.text
+          });
+          setTimeout(function() {
+            console.log('closed notification');
+            notification.close.call(notification);
+          }, 4000);
 
-        createNotification();
+          createNotification();
 
-      }.bind(this), alarm);
+        }.bind(this), alarm);
+      }
     };
 
     Notification.requestPermission((permission) => {
