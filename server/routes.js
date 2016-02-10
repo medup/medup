@@ -26,7 +26,7 @@ const internals = {
           dose: Joi.number().integer().min(0).max(10000),
           instruct: Joi.string(),
 	  time: Joi.string(),
-	  unit: Joi.string()
+	  unit: Joi.string().regex(oz|mg|mcg|g|fld)
         }),
         notifications: Joi.array(),
         taken: Joi.array()
