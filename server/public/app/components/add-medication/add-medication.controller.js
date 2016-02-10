@@ -9,9 +9,9 @@ class addMedicationController {
     this.scope.form = {};
     this.scope.medication = {
       info: {},
-      notifications: [],
-      display: []
+      notifications: []
     };
+    this.scope.display = [];
     this.scope.time = new Date();
     this.scope.ismeridian = true;
     this.scope.addTime = this.addTime;
@@ -22,6 +22,11 @@ class addMedicationController {
     this.factory.addMedication(medication)
       .then((res) => {
         console.log('response', res);
+        this.medication = {
+          info: {},
+          notifications: []
+        };
+        this.display = [];
       })
       .catch((err) => {
         console.log('Submit Medication ERROR', err);
@@ -36,7 +41,8 @@ class addMedicationController {
         every: 'day'
       }
     );
-    this.medication.display.push(moment().to(time.toISOString()));
+    this.display.push(moment().to(time.toISOString()));
+    this.time = new Date();
   }
 }
 
