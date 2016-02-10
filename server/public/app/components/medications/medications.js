@@ -4,12 +4,12 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import medicationsComponent from './medications.component';
 import medicationsController from './medications.controller';
-import MedFactory from './MedFactory';
+import MedFactory from '../MedFactory';
 
 let medicationsModule = angular.module('medications', [uiRouter])
-  .config(($stateProvider) => {
+  .config(($stateProvider, $httpProvider) => {
     $stateProvider
-      .state('viewMedication', {
+      .state('medications', {
           url: '/medications',
           templateUrl: 'app/components/medications/view-medications.html',
           controller: medicationsController,
