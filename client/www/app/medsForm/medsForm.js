@@ -109,7 +109,23 @@
         });
     };
 
+    // function mapMed() {
+    //   return {
+    //       title: 'Take ' + $scope.med.info.dose + $scope.med.info.unit + ' of ' + $scope.med.info.name + ' now.',
+    // 	text: $scope.med.info.instruct,
+    // 	at: new Date($scope.timePickerObject.inputEpochTime),
+    // 	every: 'day'
+    // 	};
+    // };
+    
     $scope.saveMed = function() {
+      var note = {
+        title: 'Take ' + $scope.med.info.dose + $scope.med.info.unit + ' of ' + $scope.med.info.name + ' now.',
+	text: $scope.med.info.instruct,
+	at: new Date($scope.timePickerObject.inputEpochTime),
+	every: 'day'
+      };
+      
       if ($stateParams.medId) {
         MedService.updateMeds({
             id: $stateParams.medId,
