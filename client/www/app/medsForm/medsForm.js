@@ -64,8 +64,6 @@
       }
     });
 
-    $scope.epochTime = 12600;
-    
     $scope.timePickerObject = {
       inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
       step: 15,  //Optional
