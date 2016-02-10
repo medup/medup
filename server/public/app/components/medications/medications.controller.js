@@ -28,10 +28,24 @@ class medicationsController {
 
 
         this.scope.display.forEach((notification) => {
+          let currentTime = new Date();
+
+          // recreate notification's time relative to current year, month, and date
+          notification.at = new Date(notification.at);
+          notification.at = new Date(
+            currentTime.getFullYear(),
+            currentTime.getMonth(),
+            currentTime.getDate(),
+            notification.at.getHours(),
+            notification.at.getMinutes(),
+            notification.at.getSeconds(),
+            notification.at.getMilliseconds()
+          );
+
           this.scope.notifications.push({
             title: notification.title,
             text: notification.text,
-            at: Date.parse(notification.at)
+            at: notification.at.getTime()
           });
 
           // use moment to format notification time
