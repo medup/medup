@@ -3,9 +3,57 @@
 
   angular
       .module('medup.medsForm', ['ionic', 'ionic-timepicker', 'ionic-material'])
-    .controller('MedsFormCtrl', MedsFormCtrl);
-  MedsFormCtrl.$inject = ['$scope', '$state', '$stateParams', 'MedService', 'Medications'];
+      .controller('MedsFormCtrl', MedsFormCtrl)
+      .directive('StandardTimeMeridian', StandardTimeMeridian);
 
+  MedsFormCtrl.$inject = ['$scope', '$state', '$stateParams', 'MedService', 'Medications'];
+  StandardTimeMeridian.$inject = [];
+
+  function StandardTimeMeridian() {
+    return {
+      restrict: 'AE',
+      replace: true,
+      scope: {
+        etime: '=etime'
+      },
+      template: "<strong>{{stime}}</strong>",
+      link: function(scope, elem, attrs) {
+
+        scope.stime = epochParser(scope.etime, 'time');
+
+        function prependZero(param) {
+          if (String(param).length < 2) {
+            return "0" + String(param);
+          }
+          return param;
+        }
+
+        function epochParser(val, opType) {
+          if (val === null) {
+            return "00:00";
+          } else {
+            var meridian = ['AM', 'PM'];
+
+            if (opType === 'time') {
+              var hours = parseInt(val / 3600);
+              var minutes = (val / 60) % 60;
+              var hoursRes = hours > 12 ? (hours - 12) : hours;
+
+              var currentMeridian = meridian[parseInt(hours / 12)];
+
+              return (prependZero(hoursRes) + ":" + prependZero(minutes) + " " + currentMeridian);
+            }
+          }
+        }
+
+        scope.$watch('etime', function(newValue, oldValue) {
+          scope.stime = epochParser(scope.etime, 'time');
+        });
+
+      }
+    };
+  };
+  
   function MedsFormCtrl($scope, $state, $stateParams, MedService, Medications) {
     $scope.med = {};
     var id = parseInt($stateParams.medId);
@@ -16,6 +64,8 @@
       }
     });
 
+    $scope.epochTime = 12600;
+    
     $scope.timePickerObject = {
       inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
       step: 15,  //Optional
@@ -36,6 +86,7 @@
       } else {
         var selectedTime = new Date(val * 1000);
         console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+	//$scope.med.info.time = selectedTime.getUTCHours();
       }
     }
     
