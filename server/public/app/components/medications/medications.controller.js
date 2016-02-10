@@ -3,19 +3,18 @@
 let moment = require('moment');
 
 class medicationsController {
-  constructor($scope, MedFactory) {
+  constructor($state, $scope, MedFactory) {
     this.name = 'medications';
     this.scope = $scope;
+    this.scope.editsId = "";
     this.scope.medications = [];
     this.scope.notifications = [];
     this.scope.display = [];
     this.scope.MedFactory = MedFactory;
-    this.scope.getMeds = MedFactory.getMeds;
-    this.scope.apply = $scope.$apply;
-    this.scope.deleteMeds = MedFactory.deleteMeds;
     this.scope.deleteItem = this.deleteItem;
-    this.scope.editMeds = MedFactory.updateMeds;
+    this.scope.editItem = this.editItem;
     this.scope.startNotifications = this.startNotifications;
+
     this.scope.$on('$viewContentLoaded', function(e) {
       this.scope.getMeds()
       .then(medsArray => {
@@ -57,7 +56,7 @@ class medicationsController {
   }
 
   deleteItem(id, index) {
-   this.MedFactory.deleteMeds(id)
+   this.MedFactory.deleteMed(id)
    .then(data => {
     console.log(id);
      this.medications.splice(index, 1);
@@ -65,6 +64,11 @@ class medicationsController {
    .catch(data => {
      console.log("error");
    });
+  }
+
+  editItem(id) {
+   this.editsId = id;
+   this.state.go('edit-medication');
   }
   startNotifications() {
 
