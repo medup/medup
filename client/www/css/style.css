@@ -206,3 +206,7 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+.user-modal-input {
+  text-align: center;
+}

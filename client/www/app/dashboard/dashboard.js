@@ -61,12 +61,23 @@
       /*----------  Tags and Typeahead  ----------*/
 
       // Build JSTagsCollection
-      $scope.tags = new JSTagsCollection(["jsTag", "angularJS"]);
+      $scope.tags = new JSTagsCollection(["Nausea"]);
       console.log($scope.tags);
 
       // Export jsTags options, inlcuding our own tags object
       $scope.jsTagOptions = {
-        'tags': $scope.tags
+        'tags': $scope.tags,
+        'edit': true,
+        'defaultTags': [],
+        'breakCodes': [
+          13, // Return
+          44 // Comma
+        ],
+        'splitter': ',',
+        'texts': {
+          'inputPlaceHolder': "Nausea",
+          'removeSymbol': String.fromCharCode(215)
+        }
       };
 
       // **** Typeahead code **** //
@@ -99,7 +110,7 @@
 
       // Typeahead options object
       $scope.exampleOptions = {
-        hint: false,
+        hint: true,
         highlight: true
       };
 
