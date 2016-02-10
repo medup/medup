@@ -8,6 +8,7 @@ class medicationsController {
     this.scope = $scope;
     this.scope.medications = [];
     this.scope.notifications = [];
+    this.scope.display = [];
     this.scope.MedFactory = MedFactory;
     this.scope.getMeds = MedFactory.getMeds;
     this.scope.apply = $scope.$apply;
@@ -19,10 +20,21 @@ class medicationsController {
       this.scope.getMeds()
       .then(medsArray => {
         this.scope.medications = medsArray;
+
+        // concat all notifications in each medication to a single array
         this.scope.medications.forEach((medication) => {
-          this.scope.notifications = this.scope.notifications.concat(medication.notifications);
+          this.scope.display = this.scope.display.concat(medication.notifications);
         });
-        this.scope.notifications.forEach((notification) => {
+
+
+        this.scope.display.forEach((notification) => {
+          this.scope.notifications.push({
+            title: notification.title,
+            text: notification.text,
+            at: Date.parse(notification.at)
+          });
+
+          // use moment to format notification time
           notification.at = moment().to(notification.at);
         });
         this.scope.startNotifications();
@@ -47,18 +59,7 @@ class medicationsController {
       return;
     }
 
-    // let notifications = [];
     let currentTime = new Date().getTime();
-
-    // concat all notifications in each medication to single array
-    // this.medications.forEach((medication) => {
-    //   notifications = notifications.concat(medication.notifications);
-    // });
-    //
-    // notifications.forEach((notification) => {
-    //   let date = new Date(Date.parse(notification.at));
-    //   notification.at = date.getHours() + ':' + date.getMinutes();
-    // });
 
     // sort notifications array from earliest to latest according to current time
     this.notifications.sort((a, b) => {
@@ -74,7 +75,7 @@ class medicationsController {
 
       date = this.notifications.shift();
       currentTime = new Date().getTime();
-      alarm = Date.parse(date.at) - currentTime;
+      alarm = date.at - currentTime;
 
       setTimeout(function() {
         console.log('displayed notification');
