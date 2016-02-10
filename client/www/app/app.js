@@ -59,12 +59,7 @@
           controller: 'AuthCtrl'
         });
 
-<<<<<<< HEAD
-      $httpProvider.interceptors.push('AttachTokens');
-=======
        $httpProvider.interceptors.push('AttachTokens');
->>>>>>> (fix) set medications state chahe to false so view reloads
-    })
     .factory('AttachTokens', function($window) {
       var attach = {
         request: function(object) {
