@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let moment = require('moment');
 
@@ -6,7 +6,7 @@ class medicationsController {
   constructor($state, $scope, MedFactory) {
     this.name = 'medications';
     this.scope = $scope;
-    this.scope.editsId = "";
+    this.scope.state = $state;
     this.scope.medications = [];
     this.scope.notifications = [];
     this.scope.display = [];
@@ -16,7 +16,7 @@ class medicationsController {
     this.scope.startNotifications = this.startNotifications;
 
     this.scope.$on('$viewContentLoaded', function(e) {
-      this.scope.getMeds()
+      this.scope.MedFactory.getMeds()
       .then(medsArray => {
         this.scope.medications = medsArray;
 
@@ -62,17 +62,19 @@ class medicationsController {
      this.medications.splice(index, 1);
    })
    .catch(data => {
-     console.log("error");
+     console.log('error');
    });
   }
 
-  editItem(id) {
-   this.editsId = id;
-   this.state.go('edit-medication');
+  editItem(user) {
+   this.MedFactory.medData = user;
+   console.log('editItem:');
+   console.log(this.MedFactory.medData);
+   this.state.go('editMedication');
   }
   startNotifications() {
 
-    if (!("Notification" in window)) {
+    if (!('Notification' in window)) {
       alert('This browser does not support desktop notification');
       return;
     }

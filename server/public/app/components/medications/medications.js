@@ -4,26 +4,19 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import medicationsComponent from './medications.component';
 import medicationsController from './medications.controller';
-import editMedicationController from './edit-medication.controller';
 import MedFactory from '../MedFactory';
 
 let medicationsModule = angular.module('medications', [uiRouter])
-  .config(($stateProvider) => {
+  .config(($stateProvider, $httpProvider) => {
     $stateProvider
-      .state('viewMedications', {
+      .state('medications', {
           url: '/medications',
-          templateUrl: '<medications><medications>',
+          templateUrl: 'app/components/medications/view-medications.html',
           controller: medicationsController,
           controllerAs: 'vm'
-        })
-      .state('editMedication', {
-          url: '/edit-medication',
-          template: '<edit-medication></edit-medication>',
-          controller: editMedicationController,
-          controllerAs: 'vm'
-      });
+        });
    })
-  .component('medications', medicationsComponent)
+  .component('medicationsComponent', medicationsComponent)
   .factory('MedFactory', MedFactory);
 
 export default medicationsModule;
