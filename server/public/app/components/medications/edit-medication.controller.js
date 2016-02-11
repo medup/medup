@@ -10,7 +10,7 @@ class editMedicationController {
     console.log("printing from edit med controller");
     console.log(this.scope.medication);
     this.scope.form = {};
-    this.scope.display = [];
+    this.scope.display = MedFactory.medData.notifications;
     this.scope.time = new Date();
     this.scope.ismeridian = true;
     this.scope.editTime = this.editTime;
@@ -18,10 +18,15 @@ class editMedicationController {
     this.scope.factory = MedFactory;
   }
   submitMedication(medication) {
+    this.medication = medication;
     this.factory.editMed(medication)
       .then((res) => {
         console.log('Medication Edited', res);
         console.log(res);
+        this.medication = {
+          info: {},
+          notifications: []
+        };
       })
       .catch((err) => {
         console.log('Edit Medication ERROR', err);
@@ -36,8 +41,9 @@ class editMedicationController {
         every: 'day'
       }
     );
-    this.display.push(moment().to(time.toISOString()));
-    this.time = new Date();
+  }
+  clearTime() {
+    this.medication.notifications = []; 
   }
 }
 
