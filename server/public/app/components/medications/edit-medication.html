@@ -29,7 +29,7 @@
 
           <div class="time-picker">
             <uib-timepicker ng-model="time" show-meridian="ismeridian"></uib-timepicker>
-            <button type='button' ng-click='editTime(time)'>Edit</button>
+            <button type='button' ng-click='editTime(time)'>Edit</button> <!-- <button type='button' ng-click='clearTime(time)'>Clear</button> -->
           </div>
 
         </div>
@@ -55,7 +55,7 @@
             <ul>
               <li ng-repeat="time in display">
                 <i class="fa fa-clock-o"></i>
-                <span class="time">{{time}}</span>
+                <span class="time">{{time.at}}</span>
               </li>
             </ul>
           </div>

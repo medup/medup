@@ -32,7 +32,7 @@ let MedFactory = function($http) {
   let editMed = (user) => {
     return $http({
       method: 'PUT',
-      url: 'http://localhost:3000/api/medications',
+      url: 'http://localhost:3000/api/medications/' + user,
       data: user
     })
     .then(response =>  {
