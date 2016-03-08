@@ -30,7 +30,7 @@
 
 ##### Register/Login
 
-An email and password is required for sign up and sign in. All information provided by the user is encrypted for privacy.
+An email and password is required for sign up and sign in.
 
 ##### Dashboard - View Medications
 
