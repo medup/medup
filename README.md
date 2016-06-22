@@ -1,7 +1,11 @@
-![Imgur](http://i.imgur.com/wXQbebg.png)
-*Demo URL: [https://medup.herokuapp.com]*
+![Imgur](https://s32.postimg.org/459zk986t/medup_lanscape.jpg)
+
+*Demo URL: [https://medup.heroku.com]*
 
 70% of Americans regularly take prescription drugs, with more than half with at least two prescriptions.  Taking the right drug at the correct time is difficult without a plan and daily reminders. With our cross-platform application MedUp, we help users stay on track with their dosages through notifications.
+
+![Logo](https://s32.postimg.org/51biwto6p/687474703a2f2f692e696d6775722e636f6d2f7758516265.png)
+
 
 
 ## Software Engineers of MedUp
